@@ -1,0 +1,354 @@
+:root {
+    --font-body:    'Cormorant Garamond';
+    --font-display: 'Cormorant SC';
+    --font-ui:      'IM Fell English';
+
+    /* Font sizes */
+    --size-title:        4.2rem;
+    --size-subtitle:     1.58rem;
+    --size-chapter-label: 1.5rem;
+    --size-blockquote:   1.5rem;
+
+    /* Font sizes — mobile */
+    --size-title-mobile:         2.8rem;
+    --size-subtitle-mobile:      1.2rem;
+    --size-chapter-label-mobile: 0.95rem;
+    --size-blockquote-mobile:    1.25rem;
+
+    /* Line length of the reading column */
+    --measure: 42rem;
+
+    /* Hairlines flanking the chapter labels */
+    --rule-strong: rgba(180, 160, 110, 0.5);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+/* On <html>, not <body>: gallery mode sets overflow on <html>, which would
+   stop body's overflow propagating and turn <body> into a scroll container. */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    background: #0b1a2e;
+    font-family: var(--font-body), Georgia, serif;
+    color: #e8dfc8;
+    position: relative;
+}
+
+/* ============================================================
+   SCENE / BACKGROUND LAYERS
+   ============================================================ */
+
+/*noinspection CssOverwrittenProperties*/
+.scene-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 2.5s ease-in-out; /* the script reads this as the crossfade length */
+}
+
+.scene-layer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.scene-layer.hidden {
+    opacity: 0;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.scene-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
+    z-index: 1;
+    pointer-events: none;
+    background:
+            /*url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),*/
+            /*radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, 0.25) 0%, transparent 70%),*/
+            radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+            rgba(6, 14, 26, 0.7);
+}
+
+/* ============================================================
+   CONTENT LAYOUT
+   ============================================================ */
+
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: calc(var(--measure) + 96px); /* measure plus side padding */
+    margin: 0 auto;
+    padding: 100px 48px 140px;
+}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+
+.masthead {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.masthead h1 {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: var(--size-title);
+    font-variant: small-caps; /* fallback for fonts without a true SC variant */
+    letter-spacing: 0.06em;
+    color: #f5edd8;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.8);
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.masthead .subtitle {
+    font-family: var(--font-ui), Georgia, serif;
+    font-style: italic;
+    font-size: var(--size-subtitle);
+    color: #a89e84;
+    letter-spacing: 0.04em;
+}
+
+.rule {
+    width: 140px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #8a7a5a, transparent);
+    margin: 24px auto;
+}
+
+/* ============================================================
+   PASSAGES
+   ============================================================ */
+
+.passage {
+    display: flow-root; /* keeps a leading divider's margin from collapsing into the gap above */
+    margin-bottom: 84px;
+}
+
+.passage:last-child {
+    margin-bottom: 0;
+}
+
+/* Each label sits between two hairlines that fade outward; the lines double
+   as the divider between passages. */
+.chapter-label {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-family: var(--font-display), Georgia, serif;
+    font-size: var(--size-chapter-label);
+    font-variant: small-caps; /* fallback for fonts without a true SC variant */
+    font-weight: bold;
+    letter-spacing: 0.14em;
+    color: #8a7a5a;
+    margin-bottom: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.chapter-label::before,
+.chapter-label::after {
+    content: "";
+    flex: 1;
+    min-width: 1.5rem;
+    height: 2px;
+}
+
+.chapter-label::before {
+    background: linear-gradient(to right, transparent, var(--rule-strong));
+}
+
+.chapter-label::after {
+    background: linear-gradient(to left, transparent, var(--rule-strong));
+}
+
+/* Stands in for a label when a passage continues the previous chapter's
+   title: the two flanking lines joined, with no text between them. Margins
+   place the line where a label's lines would sit. */
+.divider {
+    border: none;
+    height: 2px;
+    margin: 14px 0 42px;
+    background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+}
+
+.passage blockquote {
+    font-family: var(--font-body), Georgia, serif;
+    font-size: var(--size-blockquote);
+    line-height: 1.85;
+    color: #ddd4bc;
+    /*font-style: italic;*/
+}
+
+.passage blockquote + blockquote {
+    margin-top: 22px;
+}
+
+.passage blockquote p {
+    margin-bottom: 16px;
+}
+
+.passage blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   SCENE MARKERS (anchored scene starts)
+   ============================================================ */
+
+/* Land a jumped-to heading with some room above it, not flush to the top. */
+.scene-marker {
+    scroll-margin-top: 5rem;
+}
+
+.scene-marker a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.scene-marker a:hover,
+.scene-marker a:focus-visible {
+    color: #e8dfc8;
+}
+
+/* ============================================================
+   GALLERY TOGGLE BUTTON
+   ============================================================ */
+
+#gallery-toggle {
+    position: fixed;
+    bottom: 32px;
+    right: 36px;
+    z-index: 10;
+    background: rgba(8, 18, 35, 0.55);
+    border: 1px solid rgba(180, 160, 110, 0.28);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    color: #8a7a5a;
+    font-size: 1.2rem;
+    line-height: 1;
+    user-select: none;
+}
+
+body:hover #gallery-toggle {
+    opacity: 1;
+}
+
+#gallery-toggle:hover {
+    background: rgba(8, 18, 35, 0.8);
+    color: #e8dfc8;
+    border-color: rgba(180, 160, 110, 0.55);
+}
+
+/* ---------- Gallery toggle on touch devices ---------- */
+
+/* Portrait, reading: hidden and untappable. */
+@media (hover: none) and (orientation: portrait) {
+    body:not(.gallery-mode) #gallery-toggle {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* Landscape: visible, dimmed. */
+@media (hover: none) and (orientation: landscape) {
+    #gallery-toggle,
+    body:hover #gallery-toggle {
+        opacity: 0.5;
+    }
+}
+
+/* Gallery mode, any orientation: always visible, so the reader can get back. */
+@media (hover: none) {
+    body.gallery-mode #gallery-toggle {
+        opacity: 0.5;
+    }
+}
+
+/* ============================================================
+   GALLERY MODE
+   ============================================================ */
+
+.content, .scene-overlay {
+    transition: opacity 0.7s ease;
+}
+
+body.gallery-mode .content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.gallery-mode .scene-overlay {
+    opacity: 0;
+}
+
+html:has(body.gallery-mode) {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+    .content              { padding: 56px 24px 90px; }
+    .masthead h1          { font-size: var(--size-title-mobile); }
+    .masthead .subtitle   { font-size: var(--size-subtitle-mobile); }
+    .passage              { margin-bottom: 64px; }
+    .passage blockquote   { font-size: var(--size-blockquote-mobile); }
+    .chapter-label        { font-size: var(--size-chapter-label-mobile); }
+
+    /* Too narrow for flanking lines: most labels would wrap or leave stubs
+       that read as dashes. Stack one hairline above the label instead. */
+    .chapter-label {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .chapter-label::before {
+        flex: none;
+        width: 140px;
+        background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+    }
+
+    .chapter-label::after {
+        display: none;
+    }
+
+    .divider {
+        width: 140px;
+        margin: 0 auto 64px;
+    }
+}

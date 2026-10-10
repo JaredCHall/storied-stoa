@@ -1,0 +1,22 @@
+
+{
+  "lint": {
+    "include": ["scripts/"],
+    "exclude": [],
+    "rules": {
+      "tags": ["recommended"],
+      "include": [],
+      "exclude": ["no-window","no-window-prefix"]
+    }
+  },
+  "fmt": {
+    "useTabs": true,
+    "lineWidth": 140,
+    "indentWidth": 4,
+    "semiColons": true,
+    "singleQuote": true,
+    "proseWrap": "preserve",
+    "include": ["scripts/"],
+    "exclude": []
+  }
+}
