@@ -1,3 +1,5 @@
+/* Shared mural structure lives in ../styles/mural.css — load it first. */
+
 :root {
     --font-body:    'Cormorant Garamond';
     --font-display: 'Cormorant SC';
@@ -15,18 +17,21 @@
     --size-chapter-label-mobile: 0.95rem;
     --size-blockquote-mobile:    1.25rem;
 
-    /* Line length of the reading column */
-    --measure: 42rem;
-
     /* Hairlines flanking the chapter labels */
     --rule-strong: rgba(180, 160, 110, 0.5);
+
+    /* Gallery toggle */
+    --toggle-ground:    #081223;
+    --toggle-line:      #b4a06e;
+    --toggle-ink:       #8a7a5a;
+    --toggle-ink-hover: #e8dfc8;
 }
 
 /* ============================================================
    RESET
    ============================================================ */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { margin: 0; padding: 0; }
 
 /* ============================================================
    BASE
@@ -50,44 +55,20 @@ body {
    SCENE / BACKGROUND LAYERS
    ============================================================ */
 
-/*noinspection CssOverwrittenProperties*/
 .scene-layer {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100lvh;
-    z-index: 0;
-    pointer-events: none;
     transition: opacity 2.5s ease-in-out; /* the script reads this as the crossfade length */
 }
 
-.scene-layer img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.scene-layer.hidden {
-    opacity: 0;
-}
-
-/*noinspection CssOverwrittenProperties*/
 .scene-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100lvh;
-    z-index: 1;
-    pointer-events: none;
     background:
-            /*url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),*/
-            /*radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, 0.25) 0%, transparent 70%),*/
+        /*url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),*/
+        /*radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, 0.25) 0%, transparent 70%),*/
             radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
             rgba(6, 14, 26, 0.7);
+}
+
+.content, .scene-overlay {
+    transition: opacity 0.7s ease;
 }
 
 /* ============================================================
@@ -95,8 +76,6 @@ body {
    ============================================================ */
 
 .content {
-    position: relative;
-    z-index: 2;
     max-width: calc(var(--measure) + 96px); /* measure plus side padding */
     margin: 0 auto;
     padding: 100px 48px 140px;
@@ -223,99 +202,9 @@ body {
     scroll-margin-top: 5rem;
 }
 
-.scene-marker a {
-    color: inherit;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
 .scene-marker a:hover,
 .scene-marker a:focus-visible {
     color: #e8dfc8;
-}
-
-/* ============================================================
-   GALLERY TOGGLE BUTTON
-   ============================================================ */
-
-#gallery-toggle {
-    position: fixed;
-    bottom: 32px;
-    right: 36px;
-    z-index: 10;
-    background: rgba(8, 18, 35, 0.55);
-    border: 1px solid rgba(180, 160, 110, 0.28);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
-    color: #8a7a5a;
-    font-size: 1.2rem;
-    line-height: 1;
-    user-select: none;
-}
-
-body:hover #gallery-toggle {
-    opacity: 1;
-}
-
-#gallery-toggle:hover {
-    background: rgba(8, 18, 35, 0.8);
-    color: #e8dfc8;
-    border-color: rgba(180, 160, 110, 0.55);
-}
-
-/* ---------- Gallery toggle on touch devices ---------- */
-
-/* Portrait, reading: hidden and untappable. */
-@media (hover: none) and (orientation: portrait) {
-    body:not(.gallery-mode) #gallery-toggle {
-        opacity: 0;
-        pointer-events: none;
-    }
-}
-
-/* Landscape: visible, dimmed. */
-@media (hover: none) and (orientation: landscape) {
-    #gallery-toggle,
-    body:hover #gallery-toggle {
-        opacity: 0.5;
-    }
-}
-
-/* Gallery mode, any orientation: always visible, so the reader can get back. */
-@media (hover: none) {
-    body.gallery-mode #gallery-toggle {
-        opacity: 0.5;
-    }
-}
-
-/* ============================================================
-   GALLERY MODE
-   ============================================================ */
-
-.content, .scene-overlay {
-    transition: opacity 0.7s ease;
-}
-
-body.gallery-mode .content {
-    opacity: 0;
-    pointer-events: none;
-}
-
-body.gallery-mode .scene-overlay {
-    opacity: 0;
-}
-
-html:has(body.gallery-mode) {
-    overflow: hidden;
-    scrollbar-gutter: stable;
 }
 
 /* ============================================================
