@@ -61,9 +61,9 @@ body {
 
 .scene-overlay {
     background:
-        /*url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),*/
-        /*radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, 0.25) 0%, transparent 70%),*/
-            radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, 0.25) 0%, transparent 70%),
+            /*radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),*/
             rgba(6, 14, 26, 0.7);
 }
 
@@ -191,6 +191,21 @@ body {
 
 .passage blockquote p:last-child {
     margin-bottom: 0;
+}
+
+.hymn {
+    margin-left: 5em;
+}
+.hymn .stanza {
+    margin: 0 0 1.2em;
+}
+.hymn .line {
+    display: block;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+.hymn .line.indent {
+    padding-left: 3em;
 }
 
 /* ============================================================
