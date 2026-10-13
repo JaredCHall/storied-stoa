@@ -10,33 +10,32 @@ The script throws at startup if any required piece is missing.
 
 ```html
 <head>
-  <link rel="stylesheet" href="mural.css">
-  <script type="module" src="js/index.js"></script>
+    <link rel="stylesheet" href="mural.css">
+    <script type="module" src="js/index.js"></script>
 </head>
 <body>
-  <div id="scene-a"></div>
-  <div id="scene-b" class="hidden"></div>
-  <button id="gallery-toggle" type="button"></button>
-
-  <h2 class="scene-marker" data-scene="img/prologue.jpg">Prologue</h2>
-  <p>…</p>
-  <h2 class="scene-marker" data-scene="img/parodos.jpg">Parodos</h2>
-  <p>…</p>
+    <div id="scene-a"></div>
+    <div id="scene-b" class="hidden"></div>
+    
+    <h2 class="scene-marker" data-scene="img/prologue.jpg">Prologue</h2>
+    <p>…</p>
+    <h2 class="scene-marker" data-scene="img/parodos.jpg">Parodos</h2>
+    <p>…</p>
 </body>
 ```
 
 - **Scene anchors** (required): `.scene-marker` elements with a `data-scene` image path. There must be at least one.
 - **Two layers** (required): `#scene-a` and `#scene-b`. Images are inserted into them as `<img>` children, which replace whatever the layer held. `#scene-a` is painted first, so `#scene-b` should start hidden.
-- **`#gallery-toggle`** (required, even if you don't advertise gallery mode). The script sets the button's content and title.
+- **No `#gallery-toggle`** in the page. The script inserts its own `<button id="gallery-toggle">` at the start of `<body>` and throws if one is already there. Style it by that id.
 - **`type="module"`** on the script tag, because the files use `import`.
 
 ## What the stylesheet needs
 
 ```css
 #scene-a, #scene-b {
-  position: fixed;
-  inset: 0;
-  transition: opacity 1.5s ease-in-out; /* required; sets the fade length */
+    position: fixed;
+    inset: 0;
+    transition: opacity 1.5s ease-in-out; /* required; sets the fade length */
 }
 .hidden { opacity: 0; } /* required */
 #scene-a img, #scene-b img { width: 100%; height: 100%; object-fit: cover; }
