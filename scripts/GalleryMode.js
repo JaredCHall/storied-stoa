@@ -27,6 +27,11 @@ const PLAY_ICON = `${SVG_OPEN}<path d="M7 4 L20 12 L7 20 Z" fill="currentColor"/
 const PAUSE_ICON = `${SVG_OPEN}<rect x="6" y="4" width="4" height="16" fill="currentColor"/>`
 	+ '<rect x="14" y="4" width="4" height="16" fill="currentColor"/></svg>';
 
+// What counts as a swipe. Starting values; tune on a real phone.
+const SWIPE_MIN_PX = 50; // sideways travel
+const SWIPE_MAX_MS = 500; // finger down to finger up
+const SWIPE_MIN_RATIO = 1.5; // sideways travel per unit of vertical travel
+
 /**
  * Turns the mural into a slideshow that steps through each
  * scene image once, in document order, wrapping at the end.
@@ -39,6 +44,12 @@ const PAUSE_ICON = `${SVG_OPEN}<rect x="6" y="4" width="4" height="16" fill="cur
  * The Right and Left arrow keys step forward and back, wrapping at both ends,
  * in gallery mode only; outside it they keep their usual page behavior.
  * Key repeats and Ctrl, Meta or Alt combinations are ignored.
+ * In gallery mode, a quick sideways swipe by touch or pen steps too: swipe
+ * left for the next scene, right for the previous. Mouse drags don't count,
+ * nor do gestures that start on a button, involve a second finger, or are
+ * taken over by the browser (pointercancel). For the browser to leave
+ * sideways drags to the script, the stylesheet should set
+ * `touch-action: pan-y pinch-zoom` in gallery mode.
  *
  * Toggling flips the `gallery-mode` class on <body>; the stylesheet
  * decides what it hides. Entering always starts the slideshow playing.
@@ -60,6 +71,7 @@ export class GalleryMode {
 	#isPaused = false;
 	#run = 0; // increments on each enter, exit, pause and play; stale timers check it
 	#displayTimer; // timer for next paint
+	#swipe = null; // { id, x, y, t } of the touch or pen gesture in progress
 
 	/**
 	 * @param {ScenePainter} scenePainter
@@ -109,6 +121,35 @@ export class GalleryMode {
 				this.#step(e.key === 'ArrowRight' ? 1 : -1);
 			}
 		});
+
+		document.addEventListener('pointerdown', (e) => this.#swipeStart(e));
+		document.addEventListener('pointerup', (e) => this.#swipeEnd(e));
+		document.addEventListener('pointercancel', () => {
+			this.#swipe = null; // the browser took the gesture
+		});
+	}
+
+	#swipeStart(e) {
+		if (e.pointerType !== 'touch' && e.pointerType !== 'pen') return;
+		if (!e.isPrimary) {
+			this.#swipe = null; // a second finger: a pinch, not a swipe
+			return;
+		}
+		if (!this.#isGallery() || e.target.closest?.('button')) return;
+		this.#swipe = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp };
+	}
+
+	#swipeEnd(e) {
+		const start = this.#swipe;
+		if (!start || e.pointerId !== start.id) return;
+		this.#swipe = null;
+		if (!this.#isGallery()) return; // exited mid-gesture
+
+		const dx = e.clientX - start.x;
+		const dy = e.clientY - start.y;
+		if (e.timeStamp - start.t > SWIPE_MAX_MS) return;
+		if (Math.abs(dx) < SWIPE_MIN_PX || Math.abs(dx) < Math.abs(dy) * SWIPE_MIN_RATIO) return;
+		this.#step(dx < 0 ? 1 : -1); // content follows the finger: swipe left, next scene
 	}
 
 	/**

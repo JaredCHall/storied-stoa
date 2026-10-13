@@ -187,3 +187,10 @@ html:has(body.gallery-mode) {
     overflow: hidden;
     scrollbar-gutter: stable;
 }
+
+/* Leave sideways drags to the script's swipe handling; vertical panning and
+   pinch-zoom stay with the browser. Set on both, since a touch can land on either. */
+html:has(body.gallery-mode),
+body.gallery-mode {
+    touch-action: pan-y pinch-zoom;
+}
