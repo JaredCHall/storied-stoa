@@ -173,6 +173,11 @@ body {
     background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
 }
 
+/* Inside a passage there's no passage gap above the divider, so pad both sides. */
+blockquote + .divider {
+    margin-block: 42px;
+}
+
 .passage blockquote {
     font-family: var(--font-body), Georgia, serif;
     font-size: var(--size-blockquote);
@@ -194,7 +199,8 @@ body {
 }
 
 .hymn {
-    margin-left: 5em;
+    width: fit-content;
+    margin-inline: auto;
 }
 .hymn .stanza {
     margin: 0 0 1.2em;
