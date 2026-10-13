@@ -80,11 +80,12 @@
 }
 
 /* ============================================================
-   GALLERY TOGGLE BUTTON
+   GALLERY BUTTONS (toggle and pause; the script inserts both)
    ============================================================ */
 
 /* Colors come from the --toggle-* tokens on :root. */
-#gallery-toggle {
+#gallery-toggle,
+#gallery-pause {
     position: fixed;
     bottom: 32px;
     right: 36px;
@@ -107,18 +108,41 @@
     user-select: none;
 }
 
-#gallery-toggle:hover {
+/* Pause sits left of the toggle: 36px offset + 44px toggle + 12px gap. */
+#gallery-pause {
+    right: 92px;
+}
+
+/* The script draws both buttons' icons as SVG; 1em ties them to the font-size above. */
+#gallery-toggle svg,
+#gallery-pause svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+/* Pause only means something during the slideshow. `display: none`
+   also takes it out of the tab order. */
+body:not(.gallery-mode) #gallery-pause {
+    display: none;
+}
+
+#gallery-toggle:hover,
+#gallery-pause:hover {
     background: color-mix(in srgb, var(--toggle-ground) 85%, transparent);
     border-color: color-mix(in srgb, var(--toggle-line) 55%, transparent);
     color: var(--toggle-ink-hover);
 }
 
-body:hover #gallery-toggle {
+body:hover #gallery-toggle,
+body:hover #gallery-pause {
     opacity: 1;
 }
 
-/* ---------- Gallery toggle on touch devices ---------- */
-/* These must follow `body:hover #gallery-toggle`: same specificity. */
+/* ---------- Gallery buttons on touch devices ---------- */
+/* These must follow `body:hover #gallery-toggle`: same specificity.
+   The portrait rule needs no pause selector: pause is already
+   display: none outside gallery mode. */
 
 /* Portrait, reading: hidden and untappable. */
 @media (hover: none) and (orientation: portrait) {
@@ -131,14 +155,17 @@ body:hover #gallery-toggle {
 /* Landscape: visible, dimmed. */
 @media (hover: none) and (orientation: landscape) {
     #gallery-toggle,
-    body:hover #gallery-toggle {
+    #gallery-pause,
+    body:hover #gallery-toggle,
+    body:hover #gallery-pause {
         opacity: 0.5;
     }
 }
 
 /* Gallery mode, any orientation: always visible, so the reader can get back. */
 @media (hover: none) {
-    body.gallery-mode #gallery-toggle {
+    body.gallery-mode #gallery-toggle,
+    body.gallery-mode #gallery-pause {
         opacity: 0.5;
     }
 }

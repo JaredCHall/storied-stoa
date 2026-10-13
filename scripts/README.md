@@ -14,19 +14,19 @@ The script throws at startup if any required piece is missing.
     <script type="module" src="js/index.js"></script>
 </head>
 <body>
-    <div id="scene-a"></div>
-    <div id="scene-b" class="hidden"></div>
-    
-    <h2 class="scene-marker" data-scene="img/prologue.jpg">Prologue</h2>
-    <p>…</p>
-    <h2 class="scene-marker" data-scene="img/parodos.jpg">Parodos</h2>
-    <p>…</p>
+<div id="scene-a"></div>
+<div id="scene-b" class="hidden"></div>
+
+<h2 class="scene-marker" data-scene="img/prologue.jpg">Prologue</h2>
+<p>…</p>
+<h2 class="scene-marker" data-scene="img/parodos.jpg">Parodos</h2>
+<p>…</p>
 </body>
 ```
 
 - **Scene anchors** (required): `.scene-marker` elements with a `data-scene` image path. There must be at least one.
 - **Two layers** (required): `#scene-a` and `#scene-b`. Images are inserted into them as `<img>` children, which replace whatever the layer held. `#scene-a` is painted first, so `#scene-b` should start hidden.
-- **No `#gallery-toggle`** in the page. The script inserts its own `<button id="gallery-toggle">` at the start of `<body>` and throws if one is already there. Style it by that id.
+- **No `#gallery-toggle` or `#gallery-pause`** in the page. The script inserts both buttons at the start of `<body>` and throws if either is already there. Style them by those ids.
 - **`type="module"`** on the script tag, because the files use `import`.
 
 ## What the stylesheet needs
@@ -46,6 +46,7 @@ body.gallery-mode .text { opacity: 0; } /* yours to define */
 - The layers need a transition with a duration above zero. The script reads the first listed `transition-duration` from `#scene-a` at startup and uses it as the crossfade length. Link the stylesheet in `<head>` so it has loaded by then.
 - `.hidden` must set `opacity: 0`. The crossfade works by moving that class between the layers.
 - Gallery mode only toggles `gallery-mode` on `<body>`. Hiding the text is up to the stylesheet. The `.text` selector above is a placeholder.
+- The script doesn't hide `#gallery-pause` outside gallery mode; the stylesheet should (`mural.css` does).
 - Only the two required rules are fixed. The rest of this CSS is a starting point.
 
 ## Scene paths
@@ -58,7 +59,7 @@ body.gallery-mode .text { opacity: 0; } /* yours to define */
 
 - **Scrolling:** a scene becomes current when its anchor crosses a line 30% of the way down the viewport (set in `index.js`). Above the first anchor, the first scene shows. At the bottom of the page, the last scene shows even if its anchor never reached the line. A scene must stay current for 500 ms before it fades in, so fast scrolling doesn't flash through every scene in between.
 - **Loading:** the first scene is cut in with no fade once it decodes. The others preload one at a time, nearest to the reader first.
-- **Gallery mode:** toggled by the button or the G key. It starts from the scene on screen and shows each image for 10 s, in document order, wrapping at the end. On exit, the page scrolls to the first anchor that uses the scene on screen.
+- **Gallery mode:** toggled by the button or the G key. It starts from the scene on screen and shows each image for 10 s, in document order, wrapping at the end. The pause button or the P key pauses and plays it; play gives the scene on screen a fresh 10 s. Entering always starts playing. On exit, the page scrolls to the first anchor that uses the scene on screen.
 - **Failures:** an image that won't decode logs `Mural: failed to decode …`, and the previous scene stays up.
 
 ## Settings
@@ -80,4 +81,4 @@ body.gallery-mode .text { opacity: 0; } /* yours to define */
 | `ScenePaths.js` | The deduplicated list of image paths, in document order. |
 | `ImageLoader.js` | Fetches and decodes each image once; runs the preload queue. |
 | `ScenePainter.js` | Paints scenes on the two layers: crossfades and cuts. |
-| `GalleryMode.js` | The slideshow and its toggle. |
+| `GalleryMode.js` | The slideshow, its toggle, and its pause button. |
