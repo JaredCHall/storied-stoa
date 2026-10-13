@@ -36,11 +36,14 @@ const PAUSE_ICON = `${SVG_OPEN}<rect x="6" y="4" width="4" height="16" fill="cur
  * - <button id="gallery-toggle">, or the G key, enters and exits gallery mode.
  * - <button id="gallery-pause">, or the P key, pauses and plays the slideshow.
  *   Outside gallery mode it does nothing; the stylesheet should hide it there.
+ * The Right and Left arrow keys step forward and back, wrapping at both ends,
+ * in gallery mode only; outside it they keep their usual page behavior.
  * Key repeats and Ctrl, Meta or Alt combinations are ignored.
  *
  * Toggling flips the `gallery-mode` class on <body>; the stylesheet
  * decides what it hides. Entering always starts the slideshow playing.
- * Play gives the scene on screen a fresh display time.
+ * Play, and any step, give the scene on screen a fresh display time;
+ * a step while paused changes the scene and stays paused.
  */
 export class GalleryMode {
 	#scenePainter; // ScenePainter
@@ -102,6 +105,9 @@ export class GalleryMode {
 			if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
 			if (e.key === 'g' || e.key === 'G') this.#toggleMode();
 			else if (e.key === 'p' || e.key === 'P') this.#togglePause();
+			else if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && this.#isGallery()) {
+				this.#step(e.key === 'ArrowRight' ? 1 : -1);
+			}
 		});
 	}
 
@@ -147,8 +153,12 @@ export class GalleryMode {
 		}
 	}
 
+	#isGallery() {
+		return document.body.classList.contains('gallery-mode');
+	}
+
 	#togglePause() {
-		if (!document.body.classList.contains('gallery-mode')) return;
+		if (!this.#isGallery()) return;
 		this.#isPaused = !this.#isPaused;
 		this.#labelPause(this.#isPaused);
 		this.#stopTimer();
@@ -157,6 +167,20 @@ export class GalleryMode {
 			// (or from its decode, if it is still decoding).
 			void this.#setDisplayTimer(this.#sceneReady);
 		}
+	}
+
+	/**
+	 * Moves delta scenes (±1), wrapping at both ends, and gives the new scene
+	 * its full display time; while paused, it stays paused. Rapid steps need no
+	 * special care: ScenePainter finishes a running fade, then goes straight to
+	 * the latest scene requested.
+	 */
+	#step(delta) {
+		const n = this.#paths.length;
+		this.#index = (this.#index + delta + n) % n;
+		this.#sceneReady = this.#scenePainter.fadeTo(this.#paths[this.#index]);
+		this.#stopTimer();
+		if (!this.#isPaused) void this.#setDisplayTimer(this.#sceneReady);
 	}
 
 	/** Cancels the next step, including one still waiting on a decode. */
@@ -173,11 +197,6 @@ export class GalleryMode {
 			return;
 		}
 
-		this.#displayTimer = setTimeout(() => {
-			this.#index = (this.#index + 1) % this.#paths.length;
-			const ready = this.#scenePainter.fadeTo(this.#paths[this.#index]);
-			this.#sceneReady = ready;
-			void this.#setDisplayTimer(ready);
-		}, this.#sceneDisplayTime);
+		this.#displayTimer = setTimeout(() => this.#step(1), this.#sceneDisplayTime);
 	}
 }

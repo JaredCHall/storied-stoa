@@ -59,7 +59,7 @@ body.gallery-mode .text { opacity: 0; } /* yours to define */
 
 - **Scrolling:** a scene becomes current when its anchor crosses a line 30% of the way down the viewport (set in `index.js`). Above the first anchor, the first scene shows. At the bottom of the page, the last scene shows even if its anchor never reached the line. A scene must stay current for 500 ms before it fades in, so fast scrolling doesn't flash through every scene in between.
 - **Loading:** the first scene is cut in with no fade once it decodes. The others preload one at a time, nearest to the reader first.
-- **Gallery mode:** toggled by the button or the G key. It starts from the scene on screen and shows each image for 10 s, in document order, wrapping at the end. The pause button or the P key pauses and plays it; play gives the scene on screen a fresh 10 s. Entering always starts playing. On exit, the page scrolls to the first anchor that uses the scene on screen.
+- **Gallery mode:** toggled by the button or the G key. It starts from the scene on screen and shows each image for 10 s, in document order, wrapping at the end. The pause button or the P key pauses and plays it; play gives the scene on screen a fresh 10 s. The Right and Left arrow keys step forward and back, one scene per press, wrapping at both ends; each step gives the new scene a fresh 10 s, and a step while paused stays paused. Outside gallery mode the arrows keep their usual page behavior. Entering always starts playing. On exit, the page scrolls to the first anchor that uses the scene on screen.
 - **Failures:** an image that won't decode logs `Mural: failed to decode …`, and the previous scene stays up.
 
 ## Settings
