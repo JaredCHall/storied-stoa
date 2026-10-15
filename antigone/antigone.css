@@ -133,8 +133,9 @@ body {
 
 /* ---------- Quotations ---------- */
 
+/* The space after the last quote comes from the shared frame (mural.css). */
 .quotations {
-    padding: 1rem 0 6rem;
+    padding-top: 1rem;
 }
 
 .quote {
@@ -143,8 +144,11 @@ body {
     border-bottom: 1px solid var(--quote-rule);
 }
 
+/* No rule and no padding after the last quote: the page ends on its text,
+   as Moby's does. */
 .quote:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
 .speaker {
@@ -208,22 +212,6 @@ body {
     line-height: 1.55;
     color: var(--ink);
     white-space: pre-line;
-}
-
-/* ---------- Footer ---------- */
-
-.page-footer {
-    padding: 2rem 0 4rem;
-    text-align: center;
-}
-
-.page-footer p {
-    font-family: var(--font-label), sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    color: var(--ink-dim);
-    opacity: 0.6;
-    margin: 0;
 }
 
 /* ---------- Responsive ---------- */
