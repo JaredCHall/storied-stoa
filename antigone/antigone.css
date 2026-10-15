@@ -5,30 +5,33 @@
     /* Default Background */
     --scene-ground: #17140f;
 
-    --font-display: "Cormorant Garamond", serif;
-    --font-label: "Inter", sans-serif;
+    --font-display: "Cormorant Garamond";
+    --font-label: "Inter";
     --ink: #e9e2d3;
     --ink-dim: #a89e8c;
 
     /* Speaker name colors */
     --antigone: #b14450;
-    --antigone-gold: #c9a24b;
     --creon: #9c7a45;
-    --creon-dim: #beb3a0;
     --neutral: #8f8678;
 
+    /* other colors */
+    --color-gold: #c9a24b;
+
+    --marker-line: color-mix(in srgb, var(--color-gold) 55%, transparent);
+    --quote-rule:  color-mix(in srgb, var(--color-gold) 25%, transparent);
 
     /* Toggle button color overrides */
     --toggle-ground:    #17140f;
-    --toggle-line:      var(--antigone-gold);
-    --toggle-ink:       var(--creon-dim);
-    --toggle-ink-hover: var(--antigone-gold);
+    --toggle-line:      var(--color-gold);
+    --toggle-ink:       #beb3a0;
+    --toggle-ink-hover: var(--color-gold);
 }
 
 body {
     margin: 0;
     color: var(--ink);
-    font-family: var(--font-display);
+    font-family: var(--font-display), serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -48,7 +51,7 @@ body {
 }
 
 .stoa-link {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -57,11 +60,11 @@ body {
 
 .stoa-link:hover,
 .stoa-link:focus-visible {
-    color: var(--antigone-gold);
+    color: var(--color-gold);
 }
 
 .work-title {
-    font-family: var(--font-display);
+    font-family: var(--font-display), serif;
     font-weight: 500;
     font-style: italic;
     font-size: clamp(2.75rem, 6vw, 4rem);
@@ -71,16 +74,16 @@ body {
 }
 
 .author {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.95rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--antigone-gold);
+    color: var(--color-gold);
     margin: 0 0 0.4rem;
 }
 
 .translator {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     color: var(--ink-dim);
@@ -94,12 +97,12 @@ body {
     align-items: center;
     gap: 1.25rem;
     margin: 3.5rem 0 0;
-    font-family: var(--font-display);
+    font-family: var(--font-display), serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.8rem;
     letter-spacing: 0.02em;
-    color: var(--antigone-gold);
+    color: var(--color-gold);
     text-align: center;
     scroll-margin-top: 2rem;
 }
@@ -118,11 +121,11 @@ body {
 }
 
 .scene-marker::before {
-    background: linear-gradient(to right, transparent, rgba(201, 162, 75, 0.55));
+    background: linear-gradient(to right, transparent, var(--marker-line));
 }
 
 .scene-marker::after {
-    background: linear-gradient(to left, transparent, rgba(201, 162, 75, 0.55));
+    background: linear-gradient(to left, transparent, var(--marker-line));
 }
 
 /* The marker replaces the divider above it. */
@@ -145,7 +148,7 @@ body {
 .quote {
     margin: 0;
     padding: 2.75rem 0;
-    border-bottom: 1px solid rgba(201, 162, 75, 0.25);
+    border-bottom: 1px solid var(--quote-rule);
 }
 
 .quote:last-child {
@@ -153,7 +156,7 @@ body {
 }
 
 .speaker {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.85rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -201,7 +204,7 @@ body {
 }
 
 .speaker-inline {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -225,7 +228,7 @@ body {
 }
 
 .page-footer p {
-    font-family: var(--font-label);
+    font-family: var(--font-label), sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     color: var(--ink-dim);
