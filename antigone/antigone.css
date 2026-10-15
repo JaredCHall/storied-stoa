@@ -1,22 +1,24 @@
 /* Shared mural structure lives in ../styles/mural.css — load it first. */
 
 :root {
-    --ink: #e9e2d3;
-    --ink-dim: #a89e8c;
 
-    --rule: rgba(201, 162, 75, 0.25);
-
-    --antigone: #b14450;
-    --antigone-gold: #c9a24b;
-
-    --creon: #9c7a45;
-    --creon-dim: #beb3a0;
-
-    --neutral: #8f8678;
+    /* Default Background */
+    --scene-ground: #17140f;
 
     --font-display: "Cormorant Garamond", serif;
     --font-label: "Inter", sans-serif;
+    --ink: #e9e2d3;
+    --ink-dim: #a89e8c;
 
+    /* Speaker name colors */
+    --antigone: #b14450;
+    --antigone-gold: #c9a24b;
+    --creon: #9c7a45;
+    --creon-dim: #beb3a0;
+    --neutral: #8f8678;
+
+
+    /* Toggle button color overrides */
     --toggle-ground:    #17140f;
     --toggle-line:      var(--antigone-gold);
     --toggle-ink:       var(--creon-dim);
@@ -25,32 +27,10 @@
 
 body {
     margin: 0;
-    background: #17140f;
     color: var(--ink);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-}
-
-/* ============================================================
-   SCENE / BACKGROUND LAYERS
-   ============================================================ */
-
-.scene-layer {
-    transition: opacity 1.5s ease-in-out; /* the script reads this as the crossfade length */
-}
-
-.scene-overlay {
-    background:
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
-            radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90, 65, 40, .25) 0%, transparent 70%),
-            radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .45) 100%),
-            rgba(23, 20, 15, 0.7);
-    transition: opacity 1s ease-in-out;
-}
-
-.content {
-    transition: opacity 1s ease-in-out;
 }
 
 /* ---------- Title block ---------- */
@@ -165,7 +145,7 @@ body {
 .quote {
     margin: 0;
     padding: 2.75rem 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid rgba(201, 162, 75, 0.25);
 }
 
 .quote:last-child {

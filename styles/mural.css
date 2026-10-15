@@ -8,6 +8,13 @@
     /* Line length of the reading column */
     --measure: 42rem;
 
+    /* Scene ground: what shows when no image has loaded. Give opaque
+       colors: the overlay applies its own transparency. */
+    --scene-ground:   #111111;              /* page background */
+    --scene-tint:     var(--scene-ground);  /* overlay wash, at 70% */
+    --scene-glow:     #5a4128;              /* warm light from the top, at 25% */
+    --scene-vignette: #000000;              /* darkened edges, at 45% */
+
     /* Gallery toggle palette. Give opaque colors: the button applies its
        own transparency. Neutral defaults; each mural overrides these. */
     --toggle-ground:     #111111;  /* fill behind the glyph */
@@ -24,7 +31,10 @@
    SCENE / BACKGROUND LAYERS
    ============================================================ */
 
-/* Each mural sets the crossfade with its own `transition`. */
+body {
+    background: var(--scene-ground);
+}
+
 /*noinspection CssOverwrittenProperties*/
 .scene-layer {
     position: fixed;
@@ -34,6 +44,7 @@
     height: 100lvh;
     z-index: 0;
     pointer-events: none;
+    transition: opacity 1.25s ease-in-out; /* the script reads this as the crossfade length */
 }
 
 .scene-layer img {
@@ -48,7 +59,7 @@
     opacity: 0;
 }
 
-/* Each mural sets its own tint `background` and fade `transition`. */
+/* Colors come from the --scene-* tokens on :root. */
 /*noinspection CssOverwrittenProperties*/
 .scene-overlay {
     position: fixed;
@@ -58,6 +69,12 @@
     height: 100lvh;
     z-index: 1;
     pointer-events: none;
+    transition: opacity 0.7s ease;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
+        radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
+        color-mix(in srgb, var(--scene-tint) 70%, transparent);
 }
 
 /* ============================================================
@@ -67,6 +84,7 @@
 .content {
     position: relative;
     z-index: 2;
+    transition: opacity 0.7s ease;
 }
 
 /* ============================================================
