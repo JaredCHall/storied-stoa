@@ -10,6 +10,19 @@
     --font-display: 'Cormorant SC';
     --font-ui:      'IM Fell English';
 
+    /* Ink */
+    --ink-bright: #f5edd8;   /* title */
+    --ink:        #e8dfc8;   /* base text; links brighten to it on hover */
+    --ink-soft:   #ddd4bc;   /* passage text */
+    --ink-dim:    #a89e84;   /* author line */
+
+    /* Brass */
+    --brass:      #8a7a5a;   /* stoa link and passage headings at rest */
+    --brass-pale: #b4a06e;   /* hairlines and the toggle ring */
+
+    /* Hairlines flanking the chapter labels */
+    --rule-strong: color-mix(in srgb, var(--brass-pale) 50%, transparent);
+
     /* Font sizes */
     --size-title:           4.2rem;
     --size-author:          1.58rem;
@@ -22,14 +35,11 @@
     --size-passage-heading-mobile: 0.95rem;
     --size-excerpt-mobile:         1.25rem;
 
-    /* Hairlines flanking the chapter labels */
-    --rule-strong: rgba(180, 160, 110, 0.5);
-
     /* Gallery toggle */
     --toggle-ground:    #081223;
-    --toggle-line:      #b4a06e;
-    --toggle-ink:       #8a7a5a;
-    --toggle-ink-hover: #e8dfc8;
+    --toggle-line:      var(--brass-pale);
+    --toggle-ink:       var(--brass);
+    --toggle-ink-hover: var(--ink);
 }
 
 /* ============================================================
@@ -38,7 +48,7 @@
 
 body {
     font-family: var(--font-body), Georgia, serif;
-    color: #e8dfc8;
+    color: var(--ink);
 }
 
 /* ============================================================
@@ -60,12 +70,12 @@ body {
     font-weight: bold;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #8a7a5a;
+    color: var(--brass);
 }
 
 .stoa-link:hover,
 .stoa-link:focus-visible {
-    color: #e8dfc8;
+    color: var(--ink);
 }
 
 .work-title {
@@ -73,7 +83,7 @@ body {
     font-size: var(--size-title);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     letter-spacing: 0.06em;
-    color: #f5edd8;
+    color: var(--ink-bright);
     text-shadow: 0 2px 24px rgba(0,0,0,0.8);
     line-height: 1.1;
 }
@@ -82,7 +92,7 @@ body {
     font-family: var(--font-ui), Georgia, serif;
     font-style: italic;
     font-size: var(--size-author);
-    color: #a89e84;
+    color: var(--ink-dim);
     letter-spacing: 0.04em;
 }
 
@@ -103,7 +113,7 @@ body {
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
     letter-spacing: 0.14em;
-    color: #8a7a5a;
+    color: var(--brass);
     text-align: center;
     text-transform: uppercase;
     text-wrap: balance;
@@ -127,7 +137,7 @@ body {
 
 .passage-heading a:hover,
 .passage-heading a:focus-visible {
-    color: #e8dfc8;
+    color: var(--ink);
 }
 
 /* The two flanking lines joined, with no text between them. Between excerpts,
@@ -145,7 +155,7 @@ body {
     font-family: var(--font-body), Georgia, serif;
     font-size: var(--size-excerpt);
     line-height: 1.85;
-    color: #ddd4bc;
+    color: var(--ink-soft);
 }
 
 .excerpt p {
