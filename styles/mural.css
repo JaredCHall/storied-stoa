@@ -52,6 +52,8 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
+/* Only the browser defaults the murals' markup actually meets. */
+h1, h2, p, blockquote, figure, hr { margin: 0; padding: 0; }
 
 /* On <html>, not <body>: gallery mode sets overflow on <html>, which would
    stop body's overflow propagating and turn <body> into a scroll container. */
