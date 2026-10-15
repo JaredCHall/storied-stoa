@@ -29,7 +29,6 @@
 }
 
 body {
-    margin: 0;
     color: var(--ink);
     font-family: var(--font-display), serif;
     -webkit-font-smoothing: antialiased;
@@ -38,12 +37,7 @@ body {
 
 /* ---------- Title block ---------- */
 
-.title-block {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: 2.55rem 1.5rem 0;
-    text-align: center;
-}
+/* Position and centering come from mural.css; type and spacing live here. */
 
 /* Dim at rest: the gold caps belong to the author line below the title. */
 .stoa-eyebrow {
@@ -140,9 +134,7 @@ body {
 /* ---------- Quotations ---------- */
 
 .quotations {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: 1rem 1.5rem 6rem;
+    padding: 1rem 0 6rem;
 }
 
 .quote {
@@ -221,9 +213,7 @@ body {
 /* ---------- Footer ---------- */
 
 .page-footer {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    padding: 2rem 0 4rem;
     text-align: center;
 }
 
@@ -242,9 +232,5 @@ body {
     .exchange-line {
         grid-template-columns: 1fr;
         gap: 0.15rem;
-    }
-
-    .title-block {
-        padding-top: 1.25rem;
     }
 }

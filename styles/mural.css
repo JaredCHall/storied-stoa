@@ -5,8 +5,13 @@
    ============================================================ */
 
 :root {
-    /* Line length of the reading column */
-    --measure: 42rem;
+    /* The frame: line length of the reading column, the gutters
+       beside it, and how far down the page the eyebrow sits. Every
+       mural shares these, so the back link holds its place from
+       one mural to the next. */
+    --measure:   42rem;
+    --gutter:    3rem;
+    --frame-top: 3.5rem;
 
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. */
@@ -23,17 +28,36 @@
     --toggle-ink-hover:  #e9e2d3;  /* glyph on hover */
 }
 
+/* Murals should put their own mobile rules at this same breakpoint,
+   so the frame and the reading layout change together. */
+@media (max-width: 40rem) {
+    :root {
+        --gutter:    1.5rem;
+        --frame-top: 1.75rem;
+    }
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
+}
+
+/* On <html>, not <body>: gallery mode sets overflow on <html>, which would
+   stop body's overflow propagating and turn <body> into a scroll container. */
+html {
+    overflow-x: hidden;
+}
+
+/* min-height keeps the body box filling the viewport on a short page,
+   so `body:hover` (which reveals the gallery buttons) fires anywhere. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--scene-ground);
 }
 
 /* ============================================================
    SCENE / BACKGROUND LAYERS
    ============================================================ */
-
-body {
-    background: var(--scene-ground);
-}
 
 /*noinspection CssOverwrittenProperties*/
 .scene-layer {
@@ -71,19 +95,25 @@ body {
     pointer-events: none;
     transition: opacity 0.7s ease;
     background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
-        radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
-        color-mix(in srgb, var(--scene-tint) 70%, transparent);
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
+            radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
+            radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
+            color-mix(in srgb, var(--scene-tint) 70%, transparent);
 }
 
 /* ============================================================
-   CONTENT WRAPPER
+   CONTENT WRAPPER (the frame)
    ============================================================ */
 
+/* Width, gutters and top come from the frame tokens. Each mural sets
+   its own padding-bottom, and everything inside the frame. */
 .content {
     position: relative;
     z-index: 2;
+    max-width: calc(var(--measure) + 2 * var(--gutter)); /* text column is exactly --measure */
+    margin-inline: auto;
+    padding-top: var(--frame-top);
+    padding-inline: var(--gutter);
     transition: opacity 0.7s ease;
 }
 
@@ -95,6 +125,24 @@ body {
     color: inherit;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   TITLE BLOCK (the page header every mural shares)
+   ============================================================ */
+
+/* Markup, in this order; translator is optional:
+   <header class="title-block">
+       <nav class="stoa-eyebrow" aria-label="Site">…</nav>
+       <h1 class="work-title">…</h1>
+       <p class="author">…</p>
+       <p class="translator">…</p>
+   </header>
+   Each mural sets the type, colors, and spacing between the lines,
+   and draws any ornament in CSS rather than adding elements. */
+
+.title-block {
+    text-align: center;
 }
 
 /* ============================================================

@@ -12,13 +12,13 @@
 
     /* Font sizes */
     --size-title:        4.2rem;
-    --size-subtitle:     1.58rem;
+    --size-author:       1.58rem;
     --size-chapter-label: 1.5rem;
     --size-blockquote:   1.5rem;
 
     /* Font sizes — mobile */
     --size-title-mobile:         2.8rem;
-    --size-subtitle-mobile:      1.2rem;
+    --size-author-mobile:        1.2rem;
     --size-chapter-label-mobile: 0.95rem;
     --size-blockquote-mobile:    1.25rem;
 
@@ -42,35 +42,26 @@
    BASE
    ============================================================ */
 
-/* On <html>, not <body>: gallery mode sets overflow on <html>, which would
-   stop body's overflow propagating and turn <body> into a scroll container. */
-html {
-    overflow-x: hidden;
-}
-
 body {
-    min-height: 100vh;
     font-family: var(--font-body), Georgia, serif;
     color: #e8dfc8;
-    position: relative;
 }
 
 /* ============================================================
    CONTENT LAYOUT
    ============================================================ */
 
+/* Width, gutters, and top spacing come from the shared frame (mural.css). */
 .content {
-    max-width: calc(var(--measure) + 96px); /* measure plus side padding */
-    margin: 0 auto;
-    padding: 55px 48px 140px;
+    padding-bottom: 140px;
 }
 
 /* ============================================================
-   MASTHEAD
+   TITLE BLOCK
    ============================================================ */
 
-.masthead {
-    text-align: center;
+/* Position and centering come from mural.css; type and spacing live here. */
+.title-block {
     margin-bottom: 80px;
 }
 
@@ -94,30 +85,22 @@ body {
     color: #e8dfc8;
 }
 
-.masthead h1 {
+.work-title {
     font-family: var(--font-display), Georgia, serif;
     font-size: var(--size-title);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     letter-spacing: 0.06em;
     color: #f5edd8;
     text-shadow: 0 2px 24px rgba(0,0,0,0.8);
-    margin-bottom: 10px;
     line-height: 1.1;
 }
 
-.masthead .subtitle {
+.author {
     font-family: var(--font-ui), Georgia, serif;
     font-style: italic;
-    font-size: var(--size-subtitle);
+    font-size: var(--size-author);
     color: #a89e84;
     letter-spacing: 0.04em;
-}
-
-.rule {
-    width: 140px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #8a7a5a, transparent);
-    margin: 24px auto;
 }
 
 /* ============================================================
@@ -241,11 +224,12 @@ blockquote + .divider {
    RESPONSIVE
    ============================================================ */
 
-@media (max-width: 640px) {
-    .content              { padding: 30px 24px 90px; }
+/* Same breakpoint as the shared frame in mural.css. */
+@media (max-width: 40rem) {
+    .content              { padding-bottom: 90px; }
     .stoa-eyebrow         { margin-bottom: 24px; }
-    .masthead h1          { font-size: var(--size-title-mobile); }
-    .masthead .subtitle   { font-size: var(--size-subtitle-mobile); }
+    .work-title           { font-size: var(--size-title-mobile); }
+    .author               { font-size: var(--size-author-mobile); }
     .passage              { margin-bottom: 64px; }
     .passage blockquote   { font-size: var(--size-blockquote-mobile); }
     .chapter-label        { font-size: var(--size-chapter-label-mobile); }
