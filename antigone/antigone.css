@@ -81,16 +81,26 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     color: var(--ink-dim);
-    margin: 0 0 2.5rem;
+    margin: 0;
 }
 
-/* ---------- Scene markers ---------- */
+/* ---------- Passages ---------- */
 
-.scene-marker {
+/* Gaps between passages, headings, and excerpts come from mural.css. */
+
+/* A plain gold hairline between the quotes of one scene. */
+.divider {
+    height: 0;
+    border: none;
+    border-top: 1px solid var(--quote-rule);
+}
+
+/* ---------- Passage headings ---------- */
+
+.passage-heading {
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    margin: 3.5rem 0 0;
     font-family: var(--font-display), serif;
     font-style: italic;
     font-weight: 500;
@@ -98,58 +108,30 @@ body {
     letter-spacing: 0.02em;
     color: var(--color-gold);
     text-align: center;
-    scroll-margin-top: 2rem;
 }
 
-.scene-marker a:hover,
-.scene-marker a:focus-visible {
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
     color: var(--ink);
 }
 
-.scene-marker::before,
-.scene-marker::after {
+.passage-heading::before,
+.passage-heading::after {
     content: "";
     flex: 1;
     min-width: 1.5rem;
     height: 2px;
 }
 
-.scene-marker::before {
+.passage-heading::before {
     background: linear-gradient(to right, transparent, var(--marker-line));
 }
 
-.scene-marker::after {
+.passage-heading::after {
     background: linear-gradient(to left, transparent, var(--marker-line));
 }
 
-/* The marker replaces the divider above it. */
-.quote:has(+ .scene-marker) {
-    border-bottom: none;
-}
-
-.scene-marker + .quote {
-    padding-top: 1.75rem;
-}
-
-/* ---------- Quotations ---------- */
-
-/* The space after the last quote comes from the shared frame (mural.css). */
-.quotations {
-    padding-top: 1rem;
-}
-
-.quote {
-    margin: 0;
-    padding: 2.75rem 0;
-    border-bottom: 1px solid var(--quote-rule);
-}
-
-/* No rule and no padding after the last quote: the page ends on its text,
-   as Moby's does. */
-.quote:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
+/* ---------- Speeches ---------- */
 
 .speaker {
     font-family: var(--font-label), sans-serif;
@@ -186,7 +168,7 @@ body {
 
 /* ---------- Exchanges (stichomythia) ---------- */
 
-.quote--exchange {
+.excerpt--exchange {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;

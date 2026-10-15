@@ -11,16 +11,16 @@
     --font-ui:      'IM Fell English';
 
     /* Font sizes */
-    --size-title:        4.2rem;
-    --size-author:       1.58rem;
-    --size-chapter-label: 1.5rem;
-    --size-blockquote:   1.5rem;
+    --size-title:           4.2rem;
+    --size-author:          1.58rem;
+    --size-passage-heading: 1.5rem;
+    --size-excerpt:         1.5rem;
 
     /* Font sizes — mobile */
-    --size-title-mobile:         2.8rem;
-    --size-author-mobile:        1.2rem;
-    --size-chapter-label-mobile: 0.95rem;
-    --size-blockquote-mobile:    1.25rem;
+    --size-title-mobile:           2.8rem;
+    --size-author-mobile:          1.2rem;
+    --size-passage-heading-mobile: 0.95rem;
+    --size-excerpt-mobile:         1.25rem;
 
     /* Hairlines flanking the chapter labels */
     --rule-strong: rgba(180, 160, 110, 0.5);
@@ -51,12 +51,10 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position and centering come from mural.css; type and spacing live here. */
-.title-block {
-    margin-bottom: 80px;
-}
+/* Position, centering, and the gap below come from mural.css; type and
+   spacing between the lines live here. */
 
-/* Same brass and hover as the chapter labels, which are links too. */
+/* Same brass and hover as the passage headings, which are links too. */
 .stoa-eyebrow {
     margin-bottom: 30px;
 }
@@ -98,81 +96,74 @@ body {
    PASSAGES
    ============================================================ */
 
-.passage {
-    display: flow-root; /* keeps a leading divider's margin from collapsing into the gap above */
-    margin-bottom: 84px;
-}
+/* Gaps between passages, headings, and excerpts come from mural.css. */
 
-.passage:last-child {
-    margin-bottom: 0;
-}
-
-/* Each label sits between two hairlines that fade outward; the lines double
+/* Each heading sits between two hairlines that fade outward; the lines double
    as the divider between passages. */
-.chapter-label {
+.passage-heading {
     display: flex;
     align-items: center;
     gap: 1.25rem;
     font-family: var(--font-display), Georgia, serif;
-    font-size: var(--size-chapter-label);
+    font-size: var(--size-passage-heading);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
     letter-spacing: 0.14em;
     color: #8a7a5a;
-    margin-bottom: 28px;
     text-align: center;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
-.chapter-label::before,
-.chapter-label::after {
+.passage-heading::before,
+.passage-heading::after {
     content: "";
     flex: 1;
     min-width: 1.5rem;
     height: 2px;
 }
 
-.chapter-label::before {
+.passage-heading::before {
     background: linear-gradient(to right, transparent, var(--rule-strong));
 }
 
-.chapter-label::after {
+.passage-heading::after {
     background: linear-gradient(to left, transparent, var(--rule-strong));
 }
 
-/* Stands in for a label when a passage continues the previous chapter's
-   title: the two flanking lines joined, with no text between them. Margins
-   place the line where a label's lines would sit. */
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
+    color: #e8dfc8;
+}
+
+/* The two flanking lines joined, with no text between them. Between excerpts,
+   mural.css spaces it. Opening a passage, it stands in for a heading when the
+   passage continues the previous chapter's title: the margin-top drops it to
+   where a heading's lines would sit. */
 .divider {
     border: none;
     height: 2px;
-    margin: 14px 0 42px;
+    margin: 14px 0 var(--space-around-divider);
     background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
 }
 
-/* Inside a passage there's no passage gap above the divider, so pad both sides. */
-blockquote + .divider {
-    margin-block: 42px;
-}
-
-.passage blockquote {
+.excerpt {
     font-family: var(--font-body), Georgia, serif;
-    font-size: var(--size-blockquote);
+    font-size: var(--size-excerpt);
     line-height: 1.85;
     color: #ddd4bc;
     /*font-style: italic;*/
 }
 
-.passage blockquote + blockquote {
+.excerpt + .excerpt {
     margin-top: 22px;
 }
 
-.passage blockquote p {
+.excerpt p {
     margin-bottom: 16px;
 }
 
-.passage blockquote p:last-child {
+.excerpt p:last-child {
     margin-bottom: 0;
 }
 
@@ -193,25 +184,6 @@ blockquote + .divider {
 }
 
 /* ============================================================
-   CHAPTER LINKS (every label links to itself)
-   ============================================================ */
-
-/* Land a jumped-to heading with some room above it, not flush to the top. */
-.chapter-label {
-    scroll-margin-top: 5rem;
-}
-
-.chapter-label a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.chapter-label a:hover,
-.chapter-label a:focus-visible {
-    color: #e8dfc8;
-}
-
-/* ============================================================
    RESPONSIVE
    ============================================================ */
 
@@ -220,24 +192,23 @@ blockquote + .divider {
     .stoa-eyebrow         { margin-bottom: 24px; }
     .work-title           { font-size: var(--size-title-mobile); }
     .author               { font-size: var(--size-author-mobile); }
-    .passage              { margin-bottom: 64px; }
-    .passage blockquote   { font-size: var(--size-blockquote-mobile); }
-    .chapter-label        { font-size: var(--size-chapter-label-mobile); }
+    .excerpt              { font-size: var(--size-excerpt-mobile); }
+    .passage-heading      { font-size: var(--size-passage-heading-mobile); }
 
     /* Too narrow for flanking lines: most labels would wrap or leave stubs
        that read as dashes. Stack one hairline above the label instead. */
-    .chapter-label {
+    .passage-heading {
         flex-direction: column;
         gap: 18px;
     }
 
-    .chapter-label::before {
+    .passage-heading::before {
         flex: none;
         width: 140px;
         background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
     }
 
-    .chapter-label::after {
+    .passage-heading::after {
         display: none;
     }
 

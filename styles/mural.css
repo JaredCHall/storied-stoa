@@ -15,6 +15,13 @@
     --frame-top:    3.5rem;
     --frame-bottom: 8.75rem;   /* 140px */
 
+    /* Reading rhythm: the gaps between the shared blocks of the reading
+       body. What sits inside a header, heading, or excerpt is the mural's. */
+    --space-after-header:     5rem;      /* 80px: header to first passage */
+    --space-between-passages: 5.25rem;   /* 84px */
+    --space-after-heading:    1.75rem;   /* 28px: heading to its first excerpt */
+    --space-around-divider:   2.625rem;  /* 42px above and below a divider */
+
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. */
     --scene-ground:   #111111;              /* page background */
@@ -37,6 +44,8 @@
         --gutter:       1.5rem;
         --frame-top:    1.75rem;
         --frame-bottom: 5.625rem;  /* 90px */
+
+        --space-between-passages: 4rem;  /* 64px */
     }
 }
 
@@ -121,16 +130,6 @@ body {
 }
 
 /* ============================================================
-   SCENE MARKERS (anchored scene starts)
-   ============================================================ */
-
-.scene-marker a {
-    color: inherit;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* ============================================================
    TITLE BLOCK (the page header every mural shares)
    ============================================================ */
 
@@ -188,6 +187,65 @@ body {
 .stoa-link:focus-visible {
     outline: 1px solid currentColor;
     outline-offset: 6px;
+}
+
+/* ============================================================
+   READING BODY (the skeleton every mural shares)
+   ============================================================ */
+
+/* Markup:
+   <main class="reading">
+       <section class="passage">
+           <h2 class="passage-heading" id="…"><a href="#…">…</a></h2>
+           <blockquote class="excerpt">…</blockquote>
+           <hr class="divider">
+           <blockquote class="excerpt">…</blockquote>
+       </section>
+   </main>
+   - A heading that changes the backdrop also takes `scene-marker` and a
+     `data-scene` image path. That pair is the script's hook.
+   - A passage may open with <hr class="divider"> in place of a heading,
+     to continue the previous passage under the same title.
+   - Inside an excerpt the markup is the mural's own: speakers and lines
+     for a play, paragraphs and verse for a novel. So is the look of the
+     headings and dividers; the gaps between blocks are set here, from the
+     --space-* tokens. A mural's header should end with no trailing margin,
+     so --space-after-header is the whole gap below it.
+   - A divider that opens a passage is placed by the mural (its margins),
+     since where it belongs depends on the heading it stands in for. */
+
+.reading {
+    margin-top: var(--space-after-header);
+}
+
+/* flow-root, so a leading divider's margin-top adds to the gap above
+   instead of collapsing into it. */
+.passage {
+    display: flow-root;
+}
+
+.passage + .passage {
+    margin-top: var(--space-between-passages);
+}
+
+/* A jumped-to heading lands where the eyebrow sits at the top of the page. */
+.passage-heading {
+    margin: 0 0 var(--space-after-heading);
+    scroll-margin-top: var(--frame-top);
+}
+
+.excerpt {
+    margin: 0;
+}
+
+.excerpt + .divider {
+    margin-block: var(--space-around-divider);
+}
+
+.passage-heading a {
+    color: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ============================================================
