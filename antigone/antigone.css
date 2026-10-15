@@ -16,16 +16,16 @@
     --neutral: #8f8678;
 
     /* other colors */
-    --color-gold: #c9a24b;
+    --gold: #c9a24b;
 
-    --marker-line: color-mix(in srgb, var(--color-gold) 55%, transparent);
-    --quote-rule:  color-mix(in srgb, var(--color-gold) 25%, transparent);
+    --marker-line: color-mix(in srgb, var(--gold) 55%, transparent);
+    --quote-rule:  color-mix(in srgb, var(--gold) 25%, transparent);
 
     /* Toggle button color overrides */
     --toggle-ground:    #17140f;
-    --toggle-line:      var(--color-gold);
+    --toggle-line:      var(--gold);
     --toggle-ink:       #beb3a0;
-    --toggle-ink-hover: var(--color-gold);
+    --toggle-ink-hover: var(--gold);
 }
 
 body {
@@ -54,7 +54,7 @@ body {
 
 .stoa-link:hover,
 .stoa-link:focus-visible {
-    color: var(--color-gold);
+    color: var(--gold);
 }
 
 .work-title {
@@ -72,7 +72,7 @@ body {
     font-size: 0.95rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--gold);
     margin: 0 0 0.4rem;
 }
 
@@ -106,7 +106,7 @@ body {
     font-weight: 500;
     font-size: 1.8rem;
     letter-spacing: 0.02em;
-    color: var(--color-gold);
+    color: var(--gold);
     text-align: center;
 }
 
