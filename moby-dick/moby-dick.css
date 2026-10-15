@@ -11,12 +11,15 @@
     --font-ui:      'IM Fell English';
 
     /* Colors */
+    --brass:      #8a7a5a;   /* stoa link and passage headings at rest */
+    --brass-pale: #b4a06e;   /* hairlines and the toggle ring */
+    --winedark-sea: #081223;
+
+    /* Ink */
     --ink-bright: #f5edd8;   /* title */
     --ink:        #e8dfc8;   /* base text; links brighten to it on hover */
     --ink-soft:   #ddd4bc;   /* passage text */
     --ink-dim:    #a89e84;   /* author line */
-    --brass:      #8a7a5a;   /* stoa link and passage headings at rest */
-    --brass-pale: #b4a06e;   /* hairlines and the toggle ring */
 
     /* Hairlines flanking the chapter labels */
     --rule-strong: color-mix(in srgb, var(--brass-pale) 50%, transparent);
@@ -34,7 +37,7 @@
     --size-excerpt-mobile:         1.25rem;
 
     /* Gallery toggle */
-    --toggle-ground:    #081223;
+    --toggle-ground:    var(--winedark-sea);
     --toggle-line:      var(--brass-pale);
     --toggle-ink:       var(--brass);
     --toggle-ink-hover: var(--ink);

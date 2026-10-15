@@ -33,7 +33,7 @@
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. */
     --scene-ground:   var(--charcoal);      /* page background */
-    --scene-tint:     var(--scene-ground);  /* overlay wash, at 70% */
+    --scene-tint:     var(--charcoal);  /* overlay wash, at 70% */
     --scene-glow:     var(--umber);         /* warm light from the top, at 25% */
     --scene-vignette: var(--black);         /* darkened edges, at 45% */
 

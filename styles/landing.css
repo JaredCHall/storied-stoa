@@ -44,7 +44,7 @@
     --veil-glow:     var(--umber);        /* warm Theban light, top left, at 30% */
     --veil-water:    var(--harbor);       /* deep Nantucket water, bottom right, at 45% */
     --veil-vignette: var(--black);        /* darkened edges, at 45% */
-    --veil-tint:     var(--page-ground);  /* overall wash, at 50% */
+    --veil-tint:     var(--soot);         /* overall wash, at 25% */
 }
 
 /* ============================================================
@@ -110,7 +110,7 @@ body {
             radial-gradient(ellipse 60% 50% at 15% 0%, color-mix(in srgb, var(--veil-glow) 30%, transparent), transparent 70%),
             radial-gradient(ellipse 60% 50% at 85% 100%, color-mix(in srgb, var(--veil-water) 45%, transparent), transparent 70%),
             radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--veil-vignette) 45%, transparent) 100%),
-            color-mix(in srgb, var(--veil-tint) 50%, transparent);
+            color-mix(in srgb, var(--veil-tint) 20%, transparent);
 }
 
 /* ============================================================
