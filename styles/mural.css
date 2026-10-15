@@ -22,19 +22,27 @@
     --space-after-heading:    1.75rem;   /* 28px: heading to its first excerpt */
     --space-around-divider:   2.625rem;  /* 42px above and below a divider */
 
+    /* Colors: the neutral palette the defaults below draw on. */
+    --charcoal:  #111111;
+    --umber:     #5a4128;
+    --black:     #000000;
+    --parchment: #e9e2d3;
+    --sandstone: #a89e8c;
+    --limestone: #8f8678;
+
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. */
-    --scene-ground:   #111111;              /* page background */
+    --scene-ground:   var(--charcoal);      /* page background */
     --scene-tint:     var(--scene-ground);  /* overlay wash, at 70% */
-    --scene-glow:     #5a4128;              /* warm light from the top, at 25% */
-    --scene-vignette: #000000;              /* darkened edges, at 45% */
+    --scene-glow:     var(--umber);         /* warm light from the top, at 25% */
+    --scene-vignette: var(--black);         /* darkened edges, at 45% */
 
     /* Gallery toggle palette. Give opaque colors: the button applies its
        own transparency. Neutral defaults; each mural overrides these. */
-    --toggle-ground:     #111111;  /* fill behind the glyph */
-    --toggle-line:       #a89e8c;  /* ring */
-    --toggle-ink:        #8f8678;  /* glyph at rest */
-    --toggle-ink-hover:  #e9e2d3;  /* glyph on hover */
+    --toggle-ground:     var(--charcoal);   /* fill behind the glyph */
+    --toggle-line:       var(--sandstone);  /* ring */
+    --toggle-ink:        var(--limestone);  /* glyph at rest */
+    --toggle-ink-hover:  var(--parchment);  /* glyph on hover */
 }
 
 /* Murals should put their own mobile rules at this same breakpoint,
