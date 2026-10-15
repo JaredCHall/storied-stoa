@@ -1,0 +1,38 @@
+/* ============================================================
+   COLORS — the Stoa's palette. Load it before every other
+   stylesheet: colors.css, then mural.css and the mural's own
+   sheet, or colors.css, then landing.css.
+   Raw colors only, named for what they are. Each stylesheet
+   maps them to roles (--ink, --scene-ground, --toggle-line)
+   in its own :root, and declares no color of its own.
+   ============================================================ */
+
+:root {
+    /* Grounds and shadows, darkest first */
+    --black:        #000000;
+    --abyss:        #060e1a;
+    --winedark-sea: #081223;
+    --deep-sea:     #0b1a2e;
+    --charcoal:     #111111;
+    --soot:         #121212;   /* a shade off --charcoal, on purpose */
+    --lamp-black:   #17140f;
+    --harbor:       #142d50;
+    --umber:        #5a4128;
+
+    /* Stones and inks, darkest first */
+    --limestone:    #8f8678;
+    --driftwood:    #a89e84;   /* four steps of blue off --sandstone */
+    --sandstone:    #a89e8c;
+    --flax:         #beb3a0;
+    --vellum:       #ddd4bc;
+    --bone:         #e8dfc8;
+    --parchment:    #e9e2d3;
+    --ivory:        #f5edd8;
+
+    /* Metals and dyes */
+    --brass:        #8a7a5a;
+    --bronze:       #9c7a45;
+    --brass-pale:   #b4a06e;
+    --gold:         #c9a24b;
+    --wine:         #b14450;
+}

@@ -1,25 +1,24 @@
-/* Shared mural structure lives in ../styles/mural.css — load it first. */
+/* Load ../styles/colors.css, then ../styles/mural.css, then this. */
 
 :root {
 
     /* Default Background */
-    --scene-ground: #0b1a2e;
-    --scene-tint:   #060e1a;
+    --scene-ground: var(--deep-sea);
+    --scene-tint:   var(--abyss);
 
     --font-body:    'Cormorant Garamond';
     --font-display: 'Cormorant SC';
     --font-ui:      'IM Fell English';
 
-    /* Colors */
-    --brass:      #8a7a5a;   /* stoa link and passage headings at rest */
-    --brass-pale: #b4a06e;   /* hairlines and the toggle ring */
-    --winedark-sea: #081223;
+    /* Colors come from colors.css. Used directly: --brass for the stoa
+       link and passage headings at rest, --brass-pale for the hairlines
+       and the toggle ring. */
 
     /* Ink */
-    --ink-bright: #f5edd8;   /* title */
-    --ink:        #e8dfc8;   /* base text; links brighten to it on hover */
-    --ink-soft:   #ddd4bc;   /* passage text */
-    --ink-dim:    #a89e84;   /* author line */
+    --ink-bright: var(--ivory);      /* title */
+    --ink:        var(--bone);       /* base text; links brighten to it on hover */
+    --ink-soft:   var(--vellum);     /* passage text */
+    --ink-dim:    var(--driftwood);  /* author line */
 
     /* Hairlines flanking the chapter labels */
     --rule-strong: color-mix(in srgb, var(--brass-pale) 50%, transparent);
@@ -85,7 +84,7 @@ body {
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     letter-spacing: 0.06em;
     color: var(--ink-bright);
-    text-shadow: 0 2px 24px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
     line-height: 1.1;
 }
 

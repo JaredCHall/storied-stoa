@@ -1,22 +1,19 @@
-/* Shared mural structure lives in ../styles/mural.css — load it first. */
+/* Load ../styles/colors.css, then ../styles/mural.css, then this. */
 
 :root {
 
     /* Default Background */
-    --scene-ground: #17140f;
+    --scene-ground: var(--lamp-black);
 
     --font-display: "Cormorant Garamond";
     --font-label:   "Inter";
 
-    /* Colors */
-    --gold:      #c9a24b;   /* author line and passage headings; the stoa link brightens to it on hover */
-    --bronze:    #9c7a45;   /* creon */
-    --wine:      #b14450;   /* antigone */
-    --limestone: #8f8678;   /* neutral speaker */
+    /* Colors come from colors.css. --gold, used directly, sets the author
+       line and passage headings; the stoa link brightens to it on hover. */
 
     /* Ink */
-    --ink:       #e9e2d3;   /* base text, title, and lines; headings brighten to it on hover */
-    --ink-dim:   #a89e8c;   /* stoa link at rest and translator line */
+    --ink:       var(--parchment);  /* base text, title, and lines; headings brighten to it on hover */
+    --ink-dim:   var(--sandstone);  /* stoa link at rest and translator line */
 
     /* Speaker names */
     --antigone: var(--wine);
@@ -28,9 +25,9 @@
     --quote-rule:  color-mix(in srgb, var(--gold) 25%, transparent);
 
     /* Gallery toggle */
-    --toggle-ground:    #17140f;
+    --toggle-ground:    var(--lamp-black);
     --toggle-line:      var(--gold);
-    --toggle-ink:       #beb3a0;
+    --toggle-ink:       var(--flax);
     --toggle-ink-hover: var(--gold);
 }
 

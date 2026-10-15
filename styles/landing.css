@@ -1,6 +1,7 @@
 /* ============================================================
    LANDING — the Stoa's front page: the painted backdrop, the
    masthead, and a card for each mural.
+   Load after ../styles/colors.css.
    ============================================================ */
 
 :root {
@@ -10,21 +11,7 @@
     --font-body:    'Cormorant Garamond';
     --font-display: 'Cormorant SC';
 
-    /* Colors */
-    --ivory:     #f5edd8;
-    --parchment: #e9e2d3;
-    --sandstone: #a89e8c;
-    --gold:      #c9a24b;
-    --umber:     #5a4128;
-    --harbor:    #142d50;
-    --soot:      #121212;   /* a shade off mural.css's --charcoal (#111111) */
-    --black:     #000000;
-
-    /* The murals' own colors, for their cards */
-    --lamp-black: #17140f;  /* Antigone's scene ground */
-    --deep-sea:   #0b1a2e;  /* Moby-Dick's scene ground */
-    --wine:       #b14450;  /* Antigone's own name color */
-    --brass:      #8a7a5a;  /* Moby-Dick's headings */
+    /* Colors come from colors.css. */
 
     /* Page ground: what shows until the painting decodes. */
     --page-ground: var(--soot);
@@ -147,7 +134,7 @@ body {
     letter-spacing: 0.06em;
     line-height: 1.1;
     color: var(--ink-bright);
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
 }
 
 .rule {
@@ -256,8 +243,8 @@ body {
 /* Each card borrows its mural's own colors and title face. Give opaque
    colors: the card applies its own transparency to the tint. */
 .mural--antigone {
-    --card-tint:   var(--lamp-black);  /* fill, at 75% */
-    --card-accent: var(--wine);        /* short bar above the title */
+    --card-tint:   var(--lamp-black);  /* fill, at 75%: Antigone's scene ground */
+    --card-accent: var(--wine);        /* short bar above the title: Antigone's own name color */
 }
 .mural--antigone .mural-title {
     font-style: italic;
@@ -266,8 +253,8 @@ body {
 }
 
 .mural--moby-dick {
-    --card-tint:   var(--deep-sea);
-    --card-accent: var(--brass);
+    --card-tint:   var(--deep-sea);    /* Moby-Dick's scene ground */
+    --card-accent: var(--brass);       /* Moby-Dick's headings */
 }
 .mural--moby-dick .mural-title {
     font-family: var(--font-display), Georgia, serif;
