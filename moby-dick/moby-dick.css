@@ -18,7 +18,7 @@
     --ink-bright: var(--ivory);      /* title */
     --ink:        var(--bone);       /* base text; links brighten to it on hover */
     --ink-soft:   var(--vellum);     /* passage text */
-    --ink-dim:    var(--driftwood);  /* author line */
+    --ink-dim:    var(--sandstone);  /* author line */
 
     /* Hairlines flanking the chapter labels */
     --rule-strong: color-mix(in srgb, var(--brass-pale) 50%, transparent);

@@ -14,14 +14,12 @@
     --winedark-sea: #081223;
     --deep-sea:     #0b1a2e;
     --charcoal:     #111111;
-    --soot:         #121212;   /* a shade off --charcoal, on purpose */
     --lamp-black:   #17140f;
     --harbor:       #142d50;
     --umber:        #5a4128;
 
     /* Stones and inks, darkest first */
     --limestone:    #8f8678;
-    --driftwood:    #a89e84;   /* four steps of blue off --sandstone */
     --sandstone:    #a89e8c;
     --flax:         #beb3a0;
     --vellum:       #ddd4bc;

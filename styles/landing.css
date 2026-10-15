@@ -14,7 +14,7 @@
     /* Colors come from colors.css. */
 
     /* Page ground: what shows until the painting decodes. */
-    --page-ground: var(--soot);
+    --page-ground: var(--charcoal);
 
     /* Ink */
     --ink-bright: var(--ivory);      /* masthead and card titles */
@@ -31,7 +31,7 @@
     --veil-glow:     var(--umber);        /* warm Theban light, top left, at 30% */
     --veil-water:    var(--harbor);       /* deep Nantucket water, bottom right, at 45% */
     --veil-vignette: var(--black);        /* darkened edges, at 45% */
-    --veil-tint:     var(--soot);         /* overall wash, at 25% */
+    --veil-tint:     var(--charcoal);         /* overall wash, at 20% */
 }
 
 /* ============================================================
