@@ -77,7 +77,7 @@ body {
 .content {
     max-width: calc(var(--measure) + 96px); /* measure plus side padding */
     margin: 0 auto;
-    padding: 100px 48px 140px;
+    padding: 55px 48px 140px;
 }
 
 /* ============================================================
@@ -87,6 +87,26 @@ body {
 .masthead {
     text-align: center;
     margin-bottom: 80px;
+}
+
+/* Same brass and hover as the chapter labels, which are links too. */
+.stoa-eyebrow {
+    margin-bottom: 30px;
+}
+
+.stoa-link {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 0.95rem;
+    font-variant: small-caps; /* fallback for fonts without a true SC variant */
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a7a5a;
+}
+
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: #e8dfc8;
 }
 
 .masthead h1 {
@@ -237,7 +257,8 @@ blockquote + .divider {
    ============================================================ */
 
 @media (max-width: 640px) {
-    .content              { padding: 56px 24px 90px; }
+    .content              { padding: 30px 24px 90px; }
+    .stoa-eyebrow         { margin-bottom: 24px; }
     .masthead h1          { font-size: var(--size-title-mobile); }
     .masthead .subtitle   { font-size: var(--size-subtitle-mobile); }
     .passage              { margin-bottom: 64px; }
