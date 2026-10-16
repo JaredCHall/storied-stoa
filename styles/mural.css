@@ -29,6 +29,14 @@
     --heading-rule:       color-mix(in srgb, var(--sandstone) 50%, transparent);
     --heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
 
+    /* Type roles: faces named for the job they do. Families only, from
+       fonts.css; each use site adds its own generic fallback. mural.css
+       applies only --font-text, to <body>; which element wears which role
+       is the mural's call. Stoa defaults; each mural overrides these. */
+    --font-text:    'Cormorant Garamond';  /* reading face: body and excerpts */
+    --font-display: 'Cormorant Garamond';  /* title and passage headings */
+    --font-label:   'Inter';               /* eyebrow, byline, translator, speakers */
+
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. Neutral
        defaults from colors.css; each mural overrides what it needs. */
@@ -75,6 +83,7 @@ body {
     margin: 0;
     min-height: 100vh;
     background: var(--scene-ground);
+    font-family: var(--font-text), serif;
 }
 
 /* ============================================================

@@ -5,6 +5,8 @@
     /* Default Background */
     --scene-ground: var(--lamp-black);
 
+    /* Type roles (see mural.css) */
+    --font-text:    "Cormorant Garamond";
     --font-display: "Cormorant Garamond";
     --font-label:   "Inter";
 
@@ -38,7 +40,6 @@
 
 body {
     color: var(--ink);
-    font-family: var(--font-display), serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }

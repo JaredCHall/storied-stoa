@@ -6,9 +6,10 @@
     --scene-ground: var(--deep-sea);
     --scene-tint:   var(--abyss);
 
-    --font-body:    'Cormorant Garamond';
+    /* Type roles (see mural.css) */
+    --font-text:    'Cormorant Garamond';
     --font-display: 'Cormorant SC';
-    --font-ui:      'IM Fell English';
+    --font-label:   'IM Fell English';  /* the author line */
 
     /* Colors come from colors.css. Used directly: --brass for the stoa
        link and passage headings at rest, --brass-pale for the hairlines
@@ -48,7 +49,6 @@
    ============================================================ */
 
 body {
-    font-family: var(--font-body), Georgia, serif;
     color: var(--ink);
 }
 
@@ -65,7 +65,7 @@ body {
 }
 
 .stoa-link {
-    font-family: var(--font-display), Georgia, serif;
+    font-family: var(--font-display), serif;
     font-size: 0.95rem;
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
@@ -80,7 +80,7 @@ body {
 }
 
 .work-title {
-    font-family: var(--font-display), Georgia, serif;
+    font-family: var(--font-display), serif;
     font-size: var(--size-title);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     letter-spacing: 0.06em;
@@ -90,7 +90,7 @@ body {
 }
 
 .author {
-    font-family: var(--font-ui), Georgia, serif;
+    font-family: var(--font-label), serif;
     font-style: italic;
     font-size: var(--size-author);
     color: var(--ink-dim);
@@ -105,7 +105,7 @@ body {
    so do the hairlines around each heading and their narrow-screen stack.
    The lines double as the divider between passages. */
 .passage-heading {
-    font-family: var(--font-display), Georgia, serif;
+    font-family: var(--font-display), serif;
     font-size: var(--size-passage-heading);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
@@ -131,7 +131,7 @@ body {
 }
 
 .excerpt {
-    font-family: var(--font-body), Georgia, serif;
+    font-family: var(--font-text), serif;
     font-size: var(--size-excerpt);
     line-height: 1.85;
     color: var(--ink-soft);
