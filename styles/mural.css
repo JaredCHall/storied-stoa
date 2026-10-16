@@ -22,6 +22,13 @@
     --space-after-heading:    1.75rem;   /* 28px: heading to its first excerpt */
     --space-around-divider:   2.625rem;  /* 42px above and below a divider */
 
+    /* Passage-heading hairlines: the label sits between two lines that
+       fade outward, or below the breakpoint under one short line. Give
+       the finished color, transparency included: the lines use it as is.
+       A mural that draws its own divider can reuse both tokens. */
+    --heading-rule:       color-mix(in srgb, var(--sandstone) 50%, transparent);
+    --heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
+
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. Neutral
        defaults from colors.css; each mural overrides what it needs. */
@@ -206,10 +213,12 @@ body {
    - A passage may open with <hr class="divider"> in place of a heading,
      to continue the previous passage under the same title.
    - Inside an excerpt the markup is the mural's own: speakers and lines
-     for a play, paragraphs and verse for a novel. So is the look of the
-     headings and dividers; the gaps between blocks are set here, from the
-     --space-* tokens. A mural's header should end with no trailing margin,
-     so --space-after-header is the whole gap below it.
+     for a play, paragraphs and verse for a novel. So are the headings'
+     type and color, and the look of the dividers. The gaps between blocks
+     are set here, from the --space-* tokens, and so are the heading's
+     hairlines and how they stack on narrow screens. A mural's header
+     should end with no trailing margin, so --space-after-header is the
+     whole gap below it.
    - A divider that opens a passage is placed by the mural (its margins),
      since where it belongs depends on the heading it stands in for. */
 
@@ -245,6 +254,54 @@ body {
     color: inherit;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Passage-heading hairlines ---------- */
+
+/* The label between two hairlines that fade outward. Color from
+   --heading-rule; the mural sets the label's type and color. */
+.passage-heading {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    text-wrap: balance;  /* if a label must break, break it evenly */
+}
+
+.passage-heading::before,
+.passage-heading::after {
+    content: "";
+    flex: 1;
+    min-width: 1.5rem;
+    height: 2px;
+}
+
+.passage-heading::before {
+    background: linear-gradient(to right, transparent, var(--heading-rule));
+}
+
+.passage-heading::after {
+    background: linear-gradient(to left, transparent, var(--heading-rule));
+}
+
+/* Too narrow for flanking lines: most labels would wrap or leave stubs
+   that read as dashes. Stack one short hairline above the label instead.
+   Same breakpoint as the frame tokens above. */
+@media (max-width: 40rem) {
+    .passage-heading {
+        flex-direction: column;
+        gap: 1.125rem;  /* 18px */
+    }
+
+    .passage-heading::before {
+        flex: none;
+        width: var(--heading-rule-short);
+        background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
+    }
+
+    .passage-heading::after {
+        display: none;
+    }
 }
 
 /* ============================================================

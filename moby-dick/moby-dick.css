@@ -20,8 +20,9 @@
     --ink-soft:   var(--vellum);     /* passage text */
     --ink-dim:    var(--sandstone);  /* author line */
 
-    /* Hairlines flanking the chapter labels */
-    --rule-strong: color-mix(in srgb, var(--brass-pale) 50%, transparent);
+    /* Hairlines around the chapter labels (drawn by mural.css); the
+       divider reuses it */
+    --heading-rule: color-mix(in srgb, var(--brass-pale) 50%, transparent);
 
     /* Font sizes */
     --size-title:           4.2rem;
@@ -100,39 +101,17 @@ body {
    PASSAGES
    ============================================================ */
 
-/* Gaps between passages, headings, and excerpts come from mural.css. */
-
-/* Each heading sits between two hairlines that fade outward; the lines double
-   as the divider between passages. */
+/* Gaps between passages, headings, and excerpts come from mural.css, and
+   so do the hairlines around each heading and their narrow-screen stack.
+   The lines double as the divider between passages. */
 .passage-heading {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
     font-family: var(--font-display), Georgia, serif;
     font-size: var(--size-passage-heading);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
     letter-spacing: 0.14em;
     color: var(--brass);
-    text-align: center;
     text-transform: uppercase;
-    text-wrap: balance;
-}
-
-.passage-heading::before,
-.passage-heading::after {
-    content: "";
-    flex: 1;
-    min-width: 1.5rem;
-    height: 2px;
-}
-
-.passage-heading::before {
-    background: linear-gradient(to right, transparent, var(--rule-strong));
-}
-
-.passage-heading::after {
-    background: linear-gradient(to left, transparent, var(--rule-strong));
 }
 
 .passage-heading a:hover,
@@ -148,7 +127,7 @@ body {
     border: none;
     height: 2px;
     margin: 14px 0 var(--space-around-divider);
-    background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+    background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
 }
 
 .excerpt {
@@ -194,25 +173,9 @@ body {
     .excerpt              { font-size: var(--size-excerpt-mobile); }
     .passage-heading      { font-size: var(--size-passage-heading-mobile); }
 
-    /* Too narrow for flanking lines: most labels would wrap or leave stubs
-       that read as dashes. Stack one hairline above the label instead. */
-    .passage-heading {
-        flex-direction: column;
-        gap: 18px;
-    }
-
-    .passage-heading::before {
-        flex: none;
-        width: 140px;
-        background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
-    }
-
-    .passage-heading::after {
-        display: none;
-    }
-
+    /* Shortened to match the single hairline over each heading. */
     .divider {
-        width: 140px;
+        width: var(--heading-rule-short);
         margin: 0 auto 64px;
     }
 }

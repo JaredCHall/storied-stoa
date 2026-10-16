@@ -20,9 +20,10 @@
     --creon:    var(--bronze);
     --neutral:  var(--limestone);  /* everyone else */
 
-    /* Hairlines flanking the passage headings, and between quotes */
-    --marker-line: color-mix(in srgb, var(--gold) 55%, transparent);
-    --quote-rule:  color-mix(in srgb, var(--gold) 25%, transparent);
+    /* Hairlines: around the passage headings (drawn by mural.css), and
+       between quotes */
+    --heading-rule: color-mix(in srgb, var(--gold) 55%, transparent);
+    --quote-rule:   color-mix(in srgb, var(--gold) 25%, transparent);
 
     /* Gallery toggle */
     --toggle-ground:    var(--lamp-black);
@@ -98,36 +99,16 @@ body {
    PASSAGES
    ============================================================ */
 
-/* Gaps between passages, headings, and excerpts come from mural.css. */
+/* Gaps between passages, headings, and excerpts come from mural.css, and
+   so do the hairlines around each heading and their narrow-screen stack. */
 
-/* Each heading sits between two hairlines that fade outward. */
 .passage-heading {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
     font-family: var(--font-display), serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.8rem;
     letter-spacing: 0.02em;
     color: var(--gold);
-    text-align: center;
-}
-
-.passage-heading::before,
-.passage-heading::after {
-    content: "";
-    flex: 1;
-    min-width: 1.5rem;
-    height: 2px;
-}
-
-.passage-heading::before {
-    background: linear-gradient(to right, transparent, var(--marker-line));
-}
-
-.passage-heading::after {
-    background: linear-gradient(to left, transparent, var(--marker-line));
 }
 
 .passage-heading a:hover,
@@ -219,22 +200,6 @@ body {
 
 /* Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {
-    /* Too narrow for flanking lines: stack one hairline above the label. */
-    .passage-heading {
-        flex-direction: column;
-        gap: 1.125rem;          /* 18px, as in Moby-Dick */
-        text-wrap: balance;     /* if a title must break, break it evenly */
-    }
-
-    .passage-heading::before {
-        flex: none;
-        width: 8.75rem;         /* 140px */
-        background: linear-gradient(to right, transparent, var(--marker-line), transparent);
-    }
-
-    .passage-heading::after {
-        display: none;
-    }
     /* Too narrow for two columns: stack each speaker above the line. */
     .exchange-line {
         grid-template-columns: 1fr;
