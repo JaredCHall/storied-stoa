@@ -1,0 +1,182 @@
+/* Load ../styles/colors.css, then ../styles/mural.css, then
+   ../styles/play.css, then this. */
+
+:root {
+
+    /* Default Background: dusk over Cloudcuckooland */
+    --scene-ground: var(--dusk);
+    --scene-tint:   var(--nightfall);
+    --scene-glow:   var(--cinnamon);  /* afterglow from the top */
+
+    /* Type roles (see mural.css) */
+    --font-text:    "Cormorant Garamond";
+    --font-display: "IM Fell English SC";  /* title, author line, and passage headings */
+    --font-label:   "Inter";
+
+    /* Colors come from colors.css. --cinnamon, the hoopoe's crest, used
+       directly, sets the author line and passage headings; the stoa
+       link brightens to it on hover. */
+
+    /* Ink */
+    --ink-bright: var(--ivory);    /* title */
+    --ink:        var(--bone);     /* base text and lines; headings brighten to it on hover */
+    --ink-dim:    var(--heather);  /* stoa link at rest and translator line */
+
+    /* Speaker names (see play.css), by side: the man, the birds, the gods */
+    --peisetaerus: var(--myrtle);
+    --birds:       var(--cinnamon);    /* Tereus, the Chorus, and its Leader */
+    --gods:        var(--cornflower);  /* Prometheus, Poseidon, and Heracles */
+    --speaker-ink: var(--heather);     /* everyone else */
+
+    /* Wide enough for "First Messenger" on one line */
+    --speaker-column: 9.5rem;
+
+    /* Hairlines: around the passage headings (drawn by mural.css), and
+       between quotes */
+    --heading-rule: color-mix(in srgb, var(--cinnamon) 50%, transparent);
+    --quote-rule:   color-mix(in srgb, var(--cinnamon) 25%, transparent);
+
+    /* Gallery toggle */
+    --toggle-ground:    var(--nightfall);
+    --toggle-line:      var(--cinnamon);
+    --toggle-ink:       var(--heather);
+    --toggle-ink-hover: var(--cinnamon);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   TITLE BLOCK
+   ============================================================ */
+
+/* Position, centering, and the gap below come from mural.css; type and
+   spacing between the lines live here. IM Fell English SC comes in one
+   weight, so every use sets 400: no synthesized bold. */
+
+.stoa-eyebrow {
+    margin-bottom: 1.75rem;
+}
+
+.stoa-link {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+}
+
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: var(--cinnamon);
+}
+
+.work-title {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 8vw, 4.6rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin: 0 0 0.9rem;
+    color: var(--ink-bright);
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
+}
+
+.author {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: var(--cinnamon);
+    margin: 0 0 0.45rem;
+}
+
+.translator {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    margin: 0;
+}
+
+/* ============================================================
+   PASSAGES
+   ============================================================ */
+
+/* Gaps between passages, headings, and excerpts come from mural.css, and
+   so do the hairlines around each heading and their narrow-screen stack. */
+
+.passage-heading {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: 1.75rem;
+    letter-spacing: 0.05em;
+    color: var(--cinnamon);
+}
+
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
+    color: var(--ink);
+}
+
+/* A hairline between the quotes of one scene, fading at both ends.
+   Between excerpts, mural.css spaces it. */
+.divider {
+    height: 1px;
+    border: none;
+    background: linear-gradient(to right, transparent, var(--quote-rule), transparent);
+}
+
+/* ============================================================
+   SPEECHES AND EXCHANGES
+   ============================================================ */
+
+/* Layout, rhythm, line breaks, and the narrow-screen stack come from
+   play.css; type and colors live here. */
+
+.speaker {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.speaker-inline {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.speaker--peisetaerus { --speaker-ink: var(--peisetaerus); }
+.speaker--birds       { --speaker-ink: var(--birds); }
+.speaker--gods        { --speaker-ink: var(--gods); }
+
+.line {
+    font-size: 1.35rem;
+    line-height: 1.65;
+    font-weight: 400;
+    color: var(--ink);
+}
+
+.line-inline {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Same breakpoint as the shared frame in mural.css. */
+@media (max-width: 40rem) {
+    .passage-heading { font-size: 1.4rem; }
+}

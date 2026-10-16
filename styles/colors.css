@@ -12,14 +12,17 @@
     --black:        #000000;
     --abyss:        #060e1a;
     --winedark-sea: #081223;
+    --nightfall:    #0e0a16;
     --deep-sea:     #0b1a2e;
     --charcoal:     #111111;
     --lamp-black:   #17140f;
+    --dusk:         #1b1428;
     --harbor:       #142d50;
     --umber:        #5a4128;
 
     /* Stones and inks, darkest first */
     --limestone:    #8f8678;
+    --heather:      #9a8fab;
     --sandstone:    #a89e8c;
     --flax:         #beb3a0;
     --vellum:       #ddd4bc;
@@ -33,4 +36,9 @@
     --brass-pale:   #b4a06e;
     --gold:         #c9a24b;
     --wine:         #b14450;
+
+    /* Spices, leaves, and flowers */
+    --cinnamon:     #d08850;
+    --myrtle:       #8fae7c;
+    --cornflower:   #8ea6da;
 }
