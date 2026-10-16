@@ -20,6 +20,11 @@
     /* Speech rhythm */
     --space-around-speaker:         0.9rem;  /* above and below a name; none above the first */
     --space-between-exchange-lines: 0.6rem;
+    --space-around-song:            1.75rem; /* where a song meets speech in one excerpt */
+
+    /* How far a song stands in from the column's left edge. The same
+       for every song, so they all share one edge down the page. */
+    --song-inset: 3.5rem;
 }
 
 /* Markup, inside an excerpt:
@@ -33,6 +38,13 @@
                <span class="line-inline">…</span>
            </div>
        </blockquote>
+   Songs: wrap a sung speech, or a run of them, speakers included:
+       <div class="song">
+           <p class="speaker …">…</p>
+           <p class="line">…</p>
+       </div>
+     Only what the play sets as song: a translation that puts every
+     line in verse still keeps its spoken lines out of this.
    - The mural defines each speaker modifier and sets only the token in
      it: .speaker--antigone { --speaker-ink: var(--antigone); }
    - Line breaks in the source are line breaks on the page; indentation
@@ -48,7 +60,9 @@
     margin: var(--space-around-speaker) 0;
 }
 
-.speaker:first-child {
+/* No gap above the excerpt's first name, whether or not a song opens it. */
+.excerpt > .speaker:first-child,
+.excerpt > .song:first-child > .speaker:first-child {
     margin-top: 0;
 }
 
@@ -62,6 +76,30 @@
 .speaker-inline,
 .line-inline {
     white-space: pre-line;
+}
+
+/* ============================================================
+   SONGS
+   ============================================================ */
+
+/* Set in by a fixed amount, not centered: centering on each song's
+   longest line moves the edge from one song to the next. The speaker's
+   name stands at the inset with the lines. Italic, so a song still reads
+   as one on a phone, where the inset is small. */
+.song {
+    padding-left: var(--song-inset);
+}
+
+.song:not(:first-child) {
+    margin-top: var(--space-around-song);
+}
+
+.song:not(:last-child) {
+    margin-bottom: var(--space-around-song);
+}
+
+.song .line {
+    font-style: italic;
 }
 
 /* ============================================================
@@ -85,6 +123,10 @@
 /* Too narrow for two columns: stack each speaker above the line.
    Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {
+    :root {
+        --song-inset: 1.25rem;
+    }
+
     .exchange-line {
         grid-template-columns: 1fr;
         gap: 0.15rem;
