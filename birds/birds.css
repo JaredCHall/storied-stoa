@@ -9,7 +9,7 @@
     --scene-glow:   var(--cinnamon);  /* afterglow from the top */
 
     /* Type roles (see mural.css) */
-    --font-text:    "Cormorant Garamond";
+    --font-text:    "Alegreya";            /* lines and songs: sturdier italic on dark */
     --font-display: "IM Fell English SC";  /* title, author line, and passage headings */
     --font-label:   "Inter";
 
