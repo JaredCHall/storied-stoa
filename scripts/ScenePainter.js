@@ -16,7 +16,8 @@
  * has finished; it never interrupts a fade.
  *
  * cutTo() paints a scene without a fade once its image is decoded, cancelling anything pending.
- * If a fade is running, the new image takes the fading-in layer and the fade carries on.
+ * If a fade is running when it paints, the fade ends at once: the new scene shows in full,
+ * the old one is gone.
  *
  * Requires both layers in the DOM, an opacity transition on them
  * (its duration sets the fade length), a .hidden class that sets
@@ -58,6 +59,14 @@ export class ScenePainter {
 		}
 	}
 
+	/**
+	 * True while a crossfade is running, or one is queued behind it.
+	 * False while the next scene is still decoding: no fade has begun yet.
+	 */
+	get isFading() {
+		return this.#nextFadeTimer !== null || this.#msUntilFree() > 0;
+	}
+
 	/** Paints a scene with no fade, once its image is decoded. */
 	cutTo(src) {
 		this.#clearPending();
@@ -70,8 +79,9 @@ export class ScenePainter {
 				return;
 			}
 			this.#activeLayer.replaceChildren(img);
-			// backdate last swap so #msUntilFree returns zero
-			this.#lastSwapMs = Math.max(this.#lastSwapMs, performance.now() - this.#fadeDuration);
+			if (this.#msUntilFree() > 0) this.#finishFade();
+			// backdate last swap so #msUntilFree returns zero: no fade is running now
+			this.#lastSwapMs = performance.now() - this.#fadeDuration;
 			this.#current = src;
 		});
 		return ready;
@@ -134,6 +144,19 @@ export class ScenePainter {
 		this.#current = src;
 		this.#lastSwapMs = performance.now();
 		this.#clearPending();
+	}
+
+	/**
+	 * Ends a running crossfade at once. Turning the transition off cancels it and
+	 * puts each layer at its end opacity: the active layer shown, the other hidden.
+	 * The forced style read applies that before the stylesheet's transition returns,
+	 * so restoring it starts no new fade.
+	 */
+	#finishFade() {
+		const layers = [this.#activeLayer, this.#inactiveLayer];
+		for (const el of layers) el.style.transition = 'none';
+		void this.#activeLayer.offsetWidth; // flush styles
+		for (const el of layers) el.style.transition = '';
 	}
 
 	#msUntilFree() {

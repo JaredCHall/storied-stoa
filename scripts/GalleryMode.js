@@ -50,6 +50,8 @@ const SWIPE_MIN_RATIO = 1.5; // sideways travel per unit of vertical travel
  * taken over by the browser (pointercancel). For the browser to leave
  * sideways drags to the script, the stylesheet should set
  * `touch-action: pan-y pinch-zoom` in gallery mode.
+ * Key and swipe steps cut straight to the new scene, ending the slideshow's
+ * crossfade if one is running; the slideshow's own advance crossfades.
  *
  * Toggling flips the `gallery-mode` class on <body>; the stylesheet
  * decides what it hides. Entering always starts the slideshow playing.
@@ -118,7 +120,7 @@ export class GalleryMode {
 			if (e.key === 'g' || e.key === 'G') this.#toggleMode();
 			else if (e.key === 'p' || e.key === 'P') this.#togglePause();
 			else if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && this.#isGallery()) {
-				this.#step(e.key === 'ArrowRight' ? 1 : -1);
+				this.#step(e.key === 'ArrowRight' ? 1 : -1, true);
 			}
 		});
 
@@ -149,7 +151,7 @@ export class GalleryMode {
 		const dy = e.clientY - start.y;
 		if (e.timeStamp - start.t > SWIPE_MAX_MS) return;
 		if (Math.abs(dx) < SWIPE_MIN_PX || Math.abs(dx) < Math.abs(dy) * SWIPE_MIN_RATIO) return;
-		this.#step(dx < 0 ? 1 : -1); // content follows the finger: swipe left, next scene
+		this.#step(dx < 0 ? 1 : -1, true); // content follows the finger: swipe left, next scene
 	}
 
 	/**
@@ -212,14 +214,16 @@ export class GalleryMode {
 
 	/**
 	 * Moves delta scenes (±1), wrapping at both ends, and gives the new scene
-	 * its full display time; while paused, it stays paused. Rapid steps need no
-	 * special care: ScenePainter finishes a running fade, then goes straight to
-	 * the latest scene requested.
+	 * its full display time; while paused, it stays paused.
+	 * @param {number} delta
+	 * @param {boolean} [cut=false] - true paints with no fade: key and swipe
+	 *   steps. The slideshow's own advance leaves it false.
 	 */
-	#step(delta) {
+	#step(delta, cut = false) {
 		const n = this.#paths.length;
 		this.#index = (this.#index + delta + n) % n;
-		this.#sceneReady = this.#scenePainter.fadeTo(this.#paths[this.#index]);
+		const src = this.#paths[this.#index];
+		this.#sceneReady = cut ? this.#scenePainter.cutTo(src) : this.#scenePainter.fadeTo(src);
 		this.#stopTimer();
 		if (!this.#isPaused) void this.#setDisplayTimer(this.#sceneReady);
 	}
