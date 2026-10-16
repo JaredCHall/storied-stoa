@@ -219,6 +219,22 @@ body {
 
 /* Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {
+    /* Too narrow for flanking lines: stack one hairline above the label. */
+    .passage-heading {
+        flex-direction: column;
+        gap: 1.125rem;          /* 18px, as in Moby-Dick */
+        text-wrap: balance;     /* if a title must break, break it evenly */
+    }
+
+    .passage-heading::before {
+        flex: none;
+        width: 8.75rem;         /* 140px */
+        background: linear-gradient(to right, transparent, var(--marker-line), transparent);
+    }
+
+    .passage-heading::after {
+        display: none;
+    }
     /* Too narrow for two columns: stack each speaker above the line. */
     .exchange-line {
         grid-template-columns: 1fr;
