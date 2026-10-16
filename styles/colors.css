@@ -1,7 +1,7 @@
 /* ============================================================
    COLORS — the Stoa's palette. Load it before every other
-   stylesheet: colors.css, then mural.css and the mural's own
-   sheet, or colors.css, then landing.css.
+   stylesheet: colors.css, then mural.css (and play.css, for a
+   play) and the mural's own sheet, or colors.css, then landing.css.
    Raw colors only, named for what they are. Each stylesheet
    maps them to roles (--ink, --scene-ground, --toggle-line)
    in its own :root, and declares no color of its own.

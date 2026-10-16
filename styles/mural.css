@@ -221,8 +221,9 @@ body {
      `data-scene` image path. That pair is the script's hook.
    - A passage may open with <hr class="divider"> in place of a heading,
      to continue the previous passage under the same title.
-   - Inside an excerpt the markup is the mural's own: speakers and lines
-     for a play, paragraphs and verse for a novel. So are the headings'
+   - Inside an excerpt the markup is the mural's own: paragraphs and verse
+     for a novel; for a play, the speakers and lines that play.css lays
+     out. So are the headings'
      type and color, and the look of the dividers. The gaps between blocks
      are set here, from the --space-* tokens, and so are the heading's
      hairlines and how they stack on narrow screens. A mural's header

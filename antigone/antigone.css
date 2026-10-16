@@ -1,4 +1,5 @@
-/* Load ../styles/colors.css, then ../styles/mural.css, then this. */
+/* Load ../styles/colors.css, then ../styles/mural.css, then
+   ../styles/play.css, then this. */
 
 :root {
 
@@ -17,10 +18,10 @@
     --ink:       var(--parchment);  /* base text, title, and lines; headings brighten to it on hover */
     --ink-dim:   var(--sandstone);  /* stoa link at rest and translator line */
 
-    /* Speaker names */
-    --antigone: var(--wine);
-    --creon:    var(--bronze);
-    --neutral:  var(--limestone);  /* everyone else */
+    /* Speaker names (see play.css) */
+    --antigone:    var(--wine);
+    --creon:       var(--bronze);
+    --speaker-ink: var(--limestone);  /* everyone else */
 
     /* Hairlines: around the passage headings (drawn by mural.css), and
        between quotes */
@@ -126,58 +127,17 @@ body {
 }
 
 /* ============================================================
-   SPEECHES
+   SPEECHES AND EXCHANGES
    ============================================================ */
+
+/* Layout, rhythm, line breaks, and the narrow-screen stack come from
+   play.css; type and colors live here. */
 
 .speaker {
     font-family: var(--font-label), sans-serif;
     font-size: 0.85rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin: 0.9rem 0;
-}
-
-.speaker:first-child {
-    margin: 0 0 0.9rem;
-}
-
-.speaker--antigone {
-    color: var(--antigone);
-}
-
-.speaker--creon {
-    color: var(--creon);
-}
-
-.speaker--neutral {
-    color: var(--neutral);
-}
-
-.line {
-    font-size: 1.35rem;
-    line-height: 1.65;
-    font-weight: 400;
-    margin: 0;
-    color: var(--ink);
-    white-space: pre-line;
-}
-
-/* ============================================================
-   EXCHANGES (stichomythia)
-   ============================================================ */
-
-/* Line-for-line dialogue: speaker in a narrow column, line beside it. */
-.excerpt--exchange {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.exchange-line {
-    display: grid;
-    grid-template-columns: 8.5rem 1fr;
-    gap: 1rem;
-    align-items: baseline;
 }
 
 .speaker-inline {
@@ -185,25 +145,20 @@ body {
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    white-space: pre-line;
+}
+
+.speaker--antigone { --speaker-ink: var(--antigone); }
+.speaker--creon    { --speaker-ink: var(--creon); }
+
+.line {
+    font-size: 1.35rem;
+    line-height: 1.65;
+    font-weight: 400;
+    color: var(--ink);
 }
 
 .line-inline {
     font-size: 1.25rem;
     line-height: 1.55;
     color: var(--ink);
-    white-space: pre-line;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-/* Same breakpoint as the shared frame in mural.css. */
-@media (max-width: 40rem) {
-    /* Too narrow for two columns: stack each speaker above the line. */
-    .exchange-line {
-        grid-template-columns: 1fr;
-        gap: 0.15rem;
-    }
 }

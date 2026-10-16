@@ -1,0 +1,92 @@
+/* ============================================================
+   PLAY — structure shared by every mural of a play: speakers,
+   lines, and line-for-line exchanges.
+   Load after mural.css and before the mural's own stylesheet:
+   colors.css, mural.css, play.css, then the mural's sheet.
+   Novels don't load it; Moby-Dick's hymn has a .line of its own.
+   ============================================================ */
+
+:root {
+    /* Speaker color. Each speaker class the mural defines sets this
+       to that character's color; a speaker with no class takes the
+       :root value. Give a finished color. Neutral default; each
+       mural overrides it. */
+    --speaker-ink: var(--limestone);
+
+    /* Exchanges: the speaker column beside each line. Wide enough for
+       the play's longest name at the mural's label size. */
+    --speaker-column: 8.5rem;
+
+    /* Speech rhythm */
+    --space-around-speaker:         0.9rem;  /* above and below a name; none above the first */
+    --space-between-exchange-lines: 0.6rem;
+}
+
+/* Markup, inside an excerpt:
+   Speeches:
+       <p class="speaker speaker--antigone">Antigone</p>
+       <p class="line">…</p>
+   Exchanges (stichomythia):
+       <blockquote class="excerpt excerpt--exchange">
+           <div class="exchange-line">
+               <span class="speaker-inline speaker--creon">Creon</span>
+               <span class="line-inline">…</span>
+           </div>
+       </blockquote>
+   - The mural defines each speaker modifier and sets only the token in
+     it: .speaker--antigone { --speaker-ink: var(--antigone); }
+   - Line breaks in the source are line breaks on the page; indentation
+     in the source is not.
+   - The type of names and lines is the mural's: face, size, spacing,
+     case, line height, and the lines' color. */
+
+/* ============================================================
+   SPEECHES
+   ============================================================ */
+
+.speaker {
+    margin: var(--space-around-speaker) 0;
+}
+
+.speaker:first-child {
+    margin-top: 0;
+}
+
+.speaker,
+.speaker-inline {
+    color: var(--speaker-ink);
+}
+
+/* pre-line: breaks kept, runs of spaces (and source indentation) collapsed. */
+.line,
+.speaker-inline,
+.line-inline {
+    white-space: pre-line;
+}
+
+/* ============================================================
+   EXCHANGES (stichomythia)
+   ============================================================ */
+
+/* Line-for-line dialogue: speaker in a narrow column, line beside it. */
+.excerpt--exchange {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-between-exchange-lines);
+}
+
+.exchange-line {
+    display: grid;
+    grid-template-columns: var(--speaker-column) 1fr;
+    gap: 1rem;
+    align-items: baseline;
+}
+
+/* Too narrow for two columns: stack each speaker above the line.
+   Same breakpoint as the shared frame in mural.css. */
+@media (max-width: 40rem) {
+    .exchange-line {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+    }
+}
