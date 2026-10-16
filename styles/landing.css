@@ -11,6 +11,10 @@
     --font-body:    'Cormorant Garamond';
     --font-display: 'Cormorant SC';
 
+    /* A card borrows its mural's title face when the landing page has
+       no role for it. */
+    --font-birds-title: 'IM Fell English SC';
+
     /* Colors come from colors.css. */
 
     /* Page ground: what shows until the painting decodes. */
@@ -179,15 +183,30 @@ body {
 .section-label::after  { background: linear-gradient(to left,  transparent, var(--rule-strong)); }
 
 /* ============================================================
+   SHELVES (one per kind of work: plays, novels, …)
+   ============================================================ */
+
+.shelf + .shelf {
+    margin-top: 4rem;
+}
+
+/* ============================================================
    MURAL CARDS
    ============================================================ */
 
-/* auto-fill: two across at this measure, more rows as murals arrive. */
+/* Two across, more rows as murals arrive. Flex rather than grid, so a
+   card alone on its row centers under the label instead of leaving an
+   empty column beside it. Cards in a row match heights (stretch). */
 .murals {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
+}
+
+.murals > li {
+    flex: 0 0 calc((100% - 1.5rem) / 2);  /* half the row, less the gap */
 }
 
 /* Colors come from the --card-* tokens each card sets below. */
@@ -262,6 +281,17 @@ body {
     letter-spacing: 0.06em;
 }
 
+
+.mural--birds {
+    --card-tint:   var(--dusk);        /* Birds' scene ground */
+    --card-accent: var(--cinnamon);    /* the hoopoe's crest: Birds' headings */
+}
+.mural--birds .mural-title {
+    font-family: var(--font-birds-title), Georgia, serif;
+    font-weight: 400;                  /* the face's only weight */
+    letter-spacing: 0.04em;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -283,6 +313,8 @@ body {
 @media (max-width: 40rem) {
     .content { padding: 3.5rem 1rem 3rem; }
     .masthead { margin-bottom: 3rem; }
+    .shelf + .shelf { margin-top: 3rem; }
+    .murals > li { flex-basis: 100%; }  /* one card per row */
 }
 
 @media (prefers-reduced-motion: reduce) {
