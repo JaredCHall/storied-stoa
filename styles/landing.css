@@ -15,16 +15,15 @@
        no role for it. */
     --font-birds-title: 'IM Fell English SC';
 
-    /* Colors come from colors.css. */
-
-    /* Page ground: what shows until the painting decodes. */
-    --page-ground: var(--charcoal);
-
     /* Ink */
     --ink-bright: var(--ivory);      /* masthead and card titles */
     --ink:        var(--parchment);  /* base text */
     --ink-dim:    var(--sandstone);  /* subtitle, card authors, and footer */
     --ink-accent: var(--gold);       /* section label, ornament rule, and focus ring; card titles turn to it on hover */
+
+    --page-ground: var(--charcoal);
+    --footer-link-hover: var(--gold);
+
 
     /* Hairlines */
     --rule:        color-mix(in srgb, var(--gold) 25%, transparent);  /* card borders at rest */
@@ -108,13 +107,9 @@ body {
    CONTENT WRAPPER (the frame)
    ============================================================ */
 
-.content,
-.page-footer {
+.content {
     position: relative;
     z-index: 2;
-}
-
-.content {
     flex: 1;
     width: 100%;
     max-width: var(--measure);

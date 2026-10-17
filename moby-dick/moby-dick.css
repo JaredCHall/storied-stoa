@@ -20,6 +20,7 @@
     --ink:        var(--bone);       /* base text; links brighten to it on hover */
     --ink-soft:   var(--vellum);     /* passage text */
     --ink-dim:    var(--sandstone);  /* author line */
+    --footer-link-hover: var(--ink);
 
     /* Hairlines around the chapter labels (drawn by mural.css); the
        divider reuses it */

@@ -21,6 +21,8 @@
     --ink-bright: var(--ivory);    /* title */
     --ink:        var(--bone);     /* base text and lines; headings brighten to it on hover */
     --ink-dim:    var(--heather);  /* stoa link at rest and translator line */
+    --footer-ink: var(--heather);
+    --footer-link-hover: var(--cinnamon);
 
     /* Speaker names (see play.css), by side: the man, the birds, the gods */
     --peisetaerus: var(--myrtle);

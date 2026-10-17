@@ -1,0 +1,113 @@
+/* ============================================================
+   FOOTER — the colophon every page of the Stoa shares: who
+   holds what, and where the source lives.
+   Load right after colors.css, before the page's other sheets,
+   so their :root can override the tokens below.
+   ============================================================ */
+
+:root {
+    /* Type role: a family from fonts.css; the use site adds the
+       generic fallback. Upright: small italics read poorly on a
+       dark ground. */
+    --font-footer: 'Cormorant Garamond';
+
+    /* Neutral defaults from colors.css; each page overrides what it
+       needs. Give finished colors. */
+    --footer-ink:        var(--sandstone);  /* text and separators */
+    --footer-link:       var(--flax);       /* links at rest */
+    --footer-link-hover: var(--parchment);  /* links on hover and focus */
+}
+
+/* Markup, after .content and before </body>:
+   <footer class="page-footer">
+       <p class="footer-line footer-line--terms">
+           <span class="footer-item">…</span>
+           …
+       </p>
+       <p class="footer-line">
+           <span class="footer-item"><a href="…">…</a></span>
+           …
+       </p>
+   </footer>
+   The landing page opens it with
+   <p class="footer-note">More murals forthcoming.</p> */
+
+/* Above the fixed scene layers (z-index 0 and 1), level with .content. */
+.page-footer {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+    font-family: var(--font-footer), serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    color: var(--footer-ink);
+    font-variant-numeric: lining-nums;
+}
+
+.footer-note {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Flex, so a line breaks between items rather than mid-item (unless one
+   item alone is wider than the line), and the whitespace between the
+   spans adds no stray space beside the dots. */
+.footer-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-line + .footer-line {
+    margin-top: 0.35rem;
+}
+
+.footer-item + .footer-item::before {
+    content: "·";
+    margin-inline: 0.6em;
+}
+
+/* Underlined at rest, faintly, so a link is told by more than its color. */
+.page-footer a {
+    color: var(--footer-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.page-footer a:hover,
+.page-footer a:focus-visible {
+    color: var(--footer-link-hover);
+}
+
+.page-footer a:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+/* Too narrow for the terms on one line: stack them, one per line,
+   without the dots. The links are short enough to stay in a row.
+   Same breakpoint as the shared frame in mural.css. */
+@media (max-width: 40rem) {
+    .page-footer {
+        padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .footer-line--terms {
+        flex-direction: column;
+    }
+
+    .footer-line--terms .footer-item + .footer-item::before {
+        content: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-footer a { transition: none; }
+}

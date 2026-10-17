@@ -17,6 +17,7 @@
     /* Ink */
     --ink:       var(--parchment);  /* base text, title, and lines; headings brighten to it on hover */
     --ink-dim:   var(--sandstone);  /* stoa link at rest and translator line */
+    --footer-link-hover: var(--gold);
 
     /* Speaker names (see play.css) */
     --antigone:    var(--wine);
