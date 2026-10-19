@@ -13,9 +13,6 @@
     --font-display: "IM Fell English";  /* title, author line, and passage headings */
     --font-label:   "Inter";
 
-    /* Colors come from colors.css. --rose, used directly, sets the author
-       line and passage headings; the stoa link brightens to it on hover. */
-
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
     --ink:        var(--parchment);  /* base text and lines; headings brighten to it on hover */
