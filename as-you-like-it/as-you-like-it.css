@@ -1,0 +1,192 @@
+/* Load ../styles/colors.css, then ../styles/mural.css, then
+   ../styles/play.css, then this. */
+
+:root {
+
+    /* Default Background: the greenwood at golden hour */
+    --scene-ground: var(--greenwood);
+    --scene-tint:   var(--forest-shade);
+    --scene-glow:   var(--gold);  /* the paintings' late sun, from the top */
+
+    /* Type roles (see mural.css) */
+    --font-text:    "Cormorant Garamond";
+    --font-display: "IM Fell English";  /* title, author line, and passage headings */
+    --font-label:   "Inter";
+
+    /* Colors come from colors.css. --rose, used directly, sets the author
+       line and passage headings; the stoa link brightens to it on hover. */
+
+    /* Ink */
+    --ink-bright: var(--ivory);      /* title */
+    --ink:        var(--parchment);  /* base text and lines; headings brighten to it on hover */
+    --ink-dim:    var(--sandstone);  /* stoa link at rest and stage directions */
+    --footer-link-hover: var(--rose);
+
+    /* Speaker names (see play.css): the two lovers, and everyone else */
+    --rosalind:    var(--rose);
+    --orlando:     var(--myrtle);
+    --speaker-ink: var(--limestone);
+
+    /* Wide enough for "Duke Frederick" on one line, at the same label
+       size as Birds' "First Messenger" */
+    --speaker-column: 9.5rem;
+
+    /* Hairlines: around the passage headings (drawn by mural.css), and
+       between quotes */
+    --heading-rule: color-mix(in srgb, var(--rose) 50%, transparent);
+    --quote-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
+
+    /* Gallery toggle */
+    --toggle-ground:    var(--greenwood);
+    --toggle-line:      var(--rose);
+    --toggle-ink:       var(--flax);
+    --toggle-ink-hover: var(--rose);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   TITLE BLOCK
+   ============================================================ */
+
+/* Position, centering, and the gap below come from mural.css; type and
+   spacing between the lines live here. No translator line: the play
+   is in its own English. IM Fell English is set at 400 throughout:
+   no synthesized bold. */
+
+.stoa-eyebrow {
+    margin-bottom: 1.75rem;
+}
+
+.stoa-link {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+}
+
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: var(--rose);
+}
+
+.work-title {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: clamp(2.75rem, 7vw, 4.2rem);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.9rem;
+    color: var(--ink-bright);
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
+}
+
+.author {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: var(--rose);
+    margin: 0;
+}
+
+/* ============================================================
+   PASSAGES
+   ============================================================ */
+
+/* Gaps between passages, headings, and excerpts come from mural.css, and
+   so do the hairlines around each heading and their narrow-screen stack. */
+
+.passage-heading {
+    font-family: var(--font-display), serif;
+    font-weight: 400;
+    font-size: 1.75rem;
+    letter-spacing: 0.03em;
+    color: var(--rose);
+}
+
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
+    color: var(--ink);
+}
+
+/* A hairline between the quotes of one scene, fading at both ends.
+   Between excerpts, mural.css spaces it. */
+.divider {
+    height: 1px;
+    border: none;
+    background: linear-gradient(to right, transparent, var(--quote-rule), transparent);
+}
+
+/* ============================================================
+   SPEECHES, EXCHANGES, AND STAGE DIRECTIONS
+   ============================================================ */
+
+/* Layout, rhythm, line breaks, and the narrow-screen stack come from
+   play.css; type and colors live here. */
+
+.speaker {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.speaker-inline {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.speaker--rosalind { --speaker-ink: var(--rosalind); }
+.speaker--orlando  { --speaker-ink: var(--orlando); }
+
+.line {
+    font-size: 1.35rem;
+    line-height: 1.65;
+    font-weight: 400;
+    color: var(--ink);
+}
+
+.line-inline {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+/* Cormorant's italic runs faint on a dark ground; a step up in weight
+   for Amiens' songs. */
+.song .line {
+    font-weight: 500;
+}
+
+/* Stage business, kept in its brackets: the label face in sentence case,
+   dim, so it reads as a note beside the speech rather than as a speaker.
+   Upright, not italic. The first stage direction in the Stoa; if another
+   play needs one, this belongs in play.css. */
+.direction {
+    font-family: var(--font-label), sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-dim);
+    margin: 0.6rem 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Same breakpoint as the shared frame in mural.css. */
+@media (max-width: 40rem) {
+    .passage-heading { font-size: 1.4rem; }
+}

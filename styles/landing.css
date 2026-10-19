@@ -14,6 +14,7 @@
     /* A card borrows its mural's title face when the landing page has
        no role for it. */
     --font-birds-title: 'IM Fell English SC';
+    --font-as-you-like-it-title: 'IM Fell English';
 
     /* Ink */
     --ink-bright: var(--ivory);      /* masthead and card titles */
@@ -285,6 +286,16 @@ body {
     font-family: var(--font-birds-title), serif;
     font-weight: 400;                  /* the face's only weight */
     letter-spacing: 0.04em;
+}
+
+.mural--as-you-like-it {
+    --card-tint:   var(--greenwood);   /* As You Like It's scene ground */
+    --card-accent: var(--rose);        /* Rosalind's own name color, and its headings */
+}
+.mural--as-you-like-it .mural-title {
+    font-family: var(--font-as-you-like-it-title), serif;
+    font-weight: 400;                  /* no synthesized bold */
+    letter-spacing: 0.02em;
 }
 
 /* ============================================================

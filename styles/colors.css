@@ -12,8 +12,10 @@
     --black:        #000000;
     --abyss:        #060e1a;
     --winedark-sea: #081223;
+    --forest-shade: #0a130d;
     --nightfall:    #0e0a16;
     --deep-sea:     #0b1a2e;
+    --greenwood:    #0f1c14;
     --charcoal:     #111111;
     --lamp-black:   #17140f;
     --dusk:         #1b1428;
@@ -41,4 +43,5 @@
     --cinnamon:     #d08850;
     --myrtle:       #8fae7c;
     --cornflower:   #8ea6da;
+    --rose:         #d4948a;
 }
