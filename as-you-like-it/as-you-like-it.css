@@ -32,6 +32,7 @@
        between quotes */
     --heading-rule: color-mix(in srgb, var(--rose) 50%, transparent);
     --quote-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
+    --written-rule: color-mix(in srgb, var(--rose) 40%, transparent);
 
     /* Gallery toggle */
     --toggle-ground:    var(--greenwood);
@@ -165,6 +166,20 @@ body {
    for Amiens' songs. */
 .song .line {
     font-weight: 500;
+}
+
+/* Words read off the page (Phoebe's letter, the verses on the trees),
+   set apart from the speaker's own voice, so an aside that breaks into
+   a letter is plainly the reader's: the display face, a rose rule, a
+   small inset. IM Fell's taller lowercase sits larger than Cormorant's
+   at the same size, hence the step down. Upright, not italic. */
+.line--written {
+    font-family: var(--font-display), serif;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    padding-left: 1.1rem;
+    border-left: 1px solid var(--written-rule);
+    margin-block: 0.5rem;
 }
 
 /* Stage business, kept in its brackets: the label face in sentence case,
