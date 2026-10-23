@@ -22,6 +22,7 @@
     /* Speaker names (see play.css): the two lovers, and everyone else */
     --rosalind:    var(--rose);
     --orlando:     var(--myrtle);
+    --hymen:       var(--gold);
     --speaker-ink: var(--limestone);
 
     /* Wide enough for "Duke Frederick" on one line, at the same label
@@ -148,6 +149,7 @@ body {
 
 .speaker--rosalind { --speaker-ink: var(--rosalind); }
 .speaker--orlando  { --speaker-ink: var(--orlando); }
+.speaker--hymen    { --speaker-ink: var(--hymen); }
 
 .line {
     font-size: 1.35rem;
