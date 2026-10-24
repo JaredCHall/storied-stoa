@@ -13,7 +13,7 @@
     --font-author:          "IM Fell English SC", serif;
     --font-translator:      "Inter", sans-serif;
     --font-passage-heading: "IM Fell English SC", serif;
-    --font-passage:         "Alegreya", serif;  /* lines and songs: sturdier italic on dark */
+    --font-passage:         "Crimson Pro", serif;  /* lines and songs: sturdier italic on dark */
     --font-speaker:         "Inter", sans-serif;
 
     /* Colors come from colors.css. --cinnamon, the hoopoe's crest, used
@@ -30,8 +30,10 @@
     /* Speaker names (see play.css), by side: the man, the birds, the gods */
     --peisetaerus: var(--myrtle);
     --birds:       var(--cinnamon);    /* Tereus, the Chorus, and its Leader */
-    --gods:        var(--cornflower);  /* Prometheus, Poseidon, and Heracles */
     --speaker-ink: var(--heather);     /* everyone else */
+
+    --stoa-link-ink: var(--heather);
+    --stoa-link-ink-hover: var(--cinnamon);
 
     /* Wide enough for "First Messenger" on one line */
     --speaker-column: 9.5rem;
@@ -118,29 +120,35 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker-inline {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker--peisetaerus { --speaker-ink: var(--peisetaerus); }
 .speaker--birds       { --speaker-ink: var(--birds); }
-.speaker--gods        { --speaker-ink: var(--gods); }
 
 .line {
     font-size: 1.35rem;
     line-height: 1.65;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--ink);
 }
 
 .line-inline {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1.55;
     color: var(--ink);
+}
+
+.song .line {
+    line-height: 1.75;
+    font-weight: 400;
 }
 
 /* ============================================================

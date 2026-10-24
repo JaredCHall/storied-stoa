@@ -7,11 +7,11 @@
     --scene-ground: var(--lamp-black);
 
     /* Faces (see mural.css; --font-speaker, play.css) */
-    --font-title:           "Cormorant Garamond", serif;
+    --font-title:           'Cormorant Garamond', serif;
     --font-author:          "Inter", sans-serif;
     --font-translator:      "Inter", sans-serif;
-    --font-passage-heading: "Cormorant Garamond", serif;
-    --font-passage:         "Cormorant Garamond", serif;
+    --font-passage-heading: 'Cormorant Garamond', serif;
+    --font-passage:         "Crimson Pro", serif;
     --font-speaker:         "Inter", sans-serif;
 
     /* Colors come from colors.css. --gold, used directly, sets the author
@@ -82,10 +82,10 @@ body {
    so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
-    font-style: italic;
     font-weight: 500;
-    font-size: 1.8rem;
+    font-size: 2rem;
     letter-spacing: 0.02em;
+    font-style: italic;
     color: var(--gold);
 }
 
@@ -110,15 +110,17 @@ body {
    stack come from play.css; sizes and colors live here. */
 
 .speaker {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker-inline {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker--antigone { --speaker-ink: var(--antigone); }
@@ -127,12 +129,13 @@ body {
 .line {
     font-size: 1.35rem;
     line-height: 1.65;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--ink);
 }
 
 .line-inline {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1.55;
+    font-weight: 300;
     color: var(--ink);
 }

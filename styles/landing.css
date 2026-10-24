@@ -9,7 +9,9 @@
     --measure: 46rem;
 
     --font-body:    'Cormorant Garamond';
-    --font-display: 'Cormorant SC';
+    --font-masthead: 'Cormorant SC';
+    --font-mural-title: 'Cormorant SC';
+    --font-section-label: 'Cormorant SC';
 
     /* A card borrows its mural's title face when the landing page has
        no role for it. */
@@ -56,7 +58,7 @@ body {
     flex-direction: column;
     background: var(--page-ground);
     color: var(--ink);
-    font-family: var(--font-body), serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -128,7 +130,7 @@ body {
 }
 
 .masthead h1 {
-    font-family: var(--font-display), serif;
+    font-family: var(--font-masthead);
     font-weight: 500;
     font-size: clamp(2.75rem, 8vw, 4.2rem);
     letter-spacing: 0.06em;
@@ -160,7 +162,7 @@ body {
     align-items: center;
     gap: 1.25rem;
     margin-bottom: 2rem;
-    font-family: var(--font-display), serif;
+    font-family: var(--font-section-label), serif;
     font-weight: 600;
     font-size: 1.15rem;
     letter-spacing: 0.16em;
@@ -272,7 +274,7 @@ body {
     --card-accent: var(--brass);       /* Moby-Dick's headings */
 }
 .mural--moby-dick .mural-title {
-    font-family: var(--font-display), serif;
+    font-family: var(--font-mural-title), serif;
     font-weight: 500;
     letter-spacing: 0.06em;
 }

@@ -12,22 +12,22 @@
     --font-title:           "IM Fell English", serif;
     --font-author:          "IM Fell English", serif;
     --font-passage-heading: "IM Fell English", serif;
-    --font-passage:         "Cormorant Garamond", serif;
-    --font-speaker:         "Inter", sans-serif;
+    --font-passage:         "Crimson Pro", serif;
     --font-written:         "IM Fell English", serif;  /* Phoebe's letter, the tree verses */
+    --font-speaker:         "Inter", sans-serif;
     --font-direction:       "Inter", sans-serif;       /* stage directions */
 
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
     --ink:        var(--parchment);  /* base text and lines; headings brighten to it on hover */
-    --ink-dim:    var(--sandstone);  /* stage directions */
+    --ink-dim:    var(--limestone);  /* stage directions */
     --footer-link-hover: var(--rose);
 
     /* Speaker names (see play.css): the two lovers, and everyone else */
     --rosalind:    var(--rose);
     --orlando:     var(--myrtle);
     --hymen:       var(--gold);
-    --speaker-ink: var(--limestone);
+    --speaker-ink: var(--sandstone);
 
     /* Wide enough for "Duke Frederick" on one line, at the same label
        size as Birds' "First Messenger" */
@@ -38,6 +38,8 @@
     --heading-rule: color-mix(in srgb, var(--rose) 50%, transparent);
     --quote-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
     --written-rule: color-mix(in srgb, var(--rose) 40%, transparent);
+
+    --stoa-link-ink-hover: var(--rose);
 
     /* Gallery toggle */
     --toggle-ground:    var(--greenwood);
@@ -113,12 +115,14 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker-inline {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .speaker--rosalind { --speaker-ink: var(--rosalind); }
@@ -128,12 +132,12 @@ body {
 .line {
     font-size: 1.35rem;
     line-height: 1.65;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--ink);
 }
 
 .line-inline {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1.55;
     color: var(--ink);
 }
@@ -141,7 +145,8 @@ body {
 /* Cormorant's italic runs faint on a dark ground; a step up in weight
    for Amiens' songs. */
 .song .line {
-    font-weight: 500;
+    line-height: 1.75;
+    font-weight: 400;
 }
 
 /* Words read off the page (Phoebe's letter, the verses on the trees),
@@ -153,9 +158,10 @@ body {
     font-family: var(--font-written);
     font-size: 1.2rem;
     line-height: 1.7;
-    padding-left: 1.1rem;
+    padding-left: 1.5rem;
     border-left: 1px solid var(--written-rule);
-    margin-block: 0.5rem;
+    margin-block: 0.75rem;
+    font-weight: 400;
 }
 
 /* Stage business, kept in its brackets: --font-direction in sentence

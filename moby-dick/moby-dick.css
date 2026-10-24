@@ -10,7 +10,7 @@
     --font-title:           'Cormorant SC', serif;
     --font-author:          'IM Fell English', serif;
     --font-passage-heading: 'Cormorant SC', serif;
-    --font-passage:         'Cormorant Garamond', serif;
+    --font-passage:         'Crimson Pro', serif;
 
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
@@ -72,7 +72,7 @@ body {
    The lines double as the divider between passages. */
 .passage-heading {
     font-size: var(--size-passage-heading);
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 0.14em;
     color: var(--brass);
     text-transform: uppercase;
@@ -96,8 +96,9 @@ body {
 
 /* The face, --font-passage, comes from <body> (mural.css). */
 .excerpt {
-    font-size: var(--size-excerpt);
-    line-height: 1.85;
+    font-size: 1.35rem;
+    line-height: 1.65;
+    font-weight: 300;
     color: var(--ink-soft);
 }
 

@@ -33,12 +33,12 @@
        included, so a use site adds nothing after it. Families come
        from fonts.css. mural.css applies all of these; play.css applies
        --font-speaker. Stoa defaults; each mural overrides these. */
-    --font-title:           "Cormorant Garamond", serif;
+    --font-title:           "IM Fell English", serif;
     --font-author:          "Inter", sans-serif;
     --font-translator:      "Inter", sans-serif;
-    --font-passage-heading: "Cormorant Garamond", serif;
-    --font-passage:         "Cormorant Garamond", serif;  /* body and excerpts */
-    --font-stoa-link:       "IM Fell English SC", serif;
+    --font-passage-heading: "IM Fell English", serif;
+    --font-passage:         "Crimson Pro", serif;  /* body and excerpts */
+    --font-stoa-link:       "Inter", sans-serif;
 
     /* The stoa link. Its face is --font-stoa-link, above. Its ink is the
        color on hover and focus; at rest the link shows it at 60%. The
