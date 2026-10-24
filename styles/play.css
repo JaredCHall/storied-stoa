@@ -8,16 +8,12 @@
 
 :root {
 
-    --line-ink: var(--parchment);
-
     /* Speaker color. Each speaker class the mural defines sets this
        to that character's color; a speaker with no class takes the
        :root value. Give a finished color. Neutral default; each
        mural overrides it. */
-    --speaker-ink: var(--limestone);
-    --font-speaker: "Inter";
-
-
+    --speaker-ink:  var(--limestone);
+    --speaker-font: "Inter";
 
     /* Exchanges: the speaker column beside each line. Wide enough for
        the play's longest name at the mural's label size. */
@@ -65,7 +61,7 @@
 
 .speaker {
     margin: var(--space-above-speaker) 0 var(--space-below-speaker);
-    font-family: var(--font-speaker), sans-serif;
+    font-family: var(--speaker-font), sans-serif;
     color: var(--speaker-ink);
     font-size: 0.8rem;
     letter-spacing: 0.14em;
@@ -74,7 +70,7 @@
 }
 
 .speaker-inline {
-    font-family: var(--font-speaker), sans-serif;
+    font-family: var(--speaker-font), sans-serif;
     color: var(--speaker-ink);
     font-size: 0.72rem;
     letter-spacing: 0.12em;
@@ -93,7 +89,6 @@
     font-size: 1.35rem;
     line-height: 1.65;
     font-weight: 300;
-    --line-ink: var(--line-ink);
     white-space: pre-line;
 }
 
@@ -101,7 +96,6 @@
     font-size: 1.15rem;
     line-height: 1.55;
     font-weight: 300;
-    --line-ink: var(--line-ink);
     white-space: pre-line;
 }
 

@@ -7,7 +7,7 @@
    ============================================================ */
 
 :where(:root) {
-    --font-footer: 'Cormorant Garamond';
+    --footer-font:       'Cormorant Garamond';
     --footer-ink:        var(--sandstone);  /* text and separators */
     --footer-link:       var(--flax);       /* links at rest */
     --footer-link-hover: var(--parchment);  /* links on hover and focus */
@@ -19,7 +19,7 @@
     z-index: 2;
     padding: 2rem 1.5rem 3rem;
     text-align: center;
-    font-family: var(--font-footer), serif;
+    font-family: var(--footer-font), serif;
     font-size: 0.95rem;
     line-height: 1.6;
     letter-spacing: 0.03em;

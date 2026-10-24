@@ -22,35 +22,30 @@
     --space-after-heading:    1.75rem;   /* 28px: heading to its first excerpt */
     --space-around-divider:   2.625rem;  /* 42px above and below a divider */
 
-    /* Passage-heading hairlines: the label sits between two lines that
-       fade outward, or below the breakpoint under one short line. Give
-       the finished color, transparency included: the lines use it as is.
-       A mural that draws its own divider can reuse both tokens. */
-    --heading-rule:       color-mix(in srgb, var(--sandstone) 50%, transparent);
-    --heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
+    --title-font:  "IM Fell English", serif;
+    --title-ink:   var(--ivory);
 
-    /* Faces, one per element. Each is a whole stack, generic family
-       included, so a use site adds nothing after it. Families come
-       from fonts.css. mural.css applies all of these; play.css applies
-       --font-speaker. Stoa defaults; each mural overrides these. */
-    --font-title:           "IM Fell English", serif;
-    --font-author:          "Inter", sans-serif;
-    --font-translator:      "Inter", sans-serif;
-    --font-passage-heading: "IM Fell English", serif;
-    --font-passage:         "Crimson Pro", serif;  /* body and excerpts */
-    --font-stoa-link:       "Inter", sans-serif;
+    --author-font:  "Inter", sans-serif;
+    --author-ink:   var(--sandstone);
 
+    --translator-font:  "Inter", sans-serif;
+    --translator-ink:   var(--sandstone);
 
-    --excerpt-ink: var(--vellum);
+    --passage-heading-font: "IM Fell English", serif;
     --passage-heading-ink: var(--gold);
     --passage-heading-ink-hover: var(--ivory);
+    --passage-heading-rule:       color-mix(in srgb, var(--passage-heading-ink) 50%, transparent);
+    --passage-heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
 
-    /* The stoa link. Its face is --font-stoa-link, above. Its ink is the
-       color on hover and focus; at rest the link shows it at 60%. The
-       default names --ink-bright, which the mural defines; a mural
-       without one must set --stoa-link-ink itself. */
-    --stoa-link-ink: var(--ivory);
-    --stoa-link-ink-hover: var(--sandstone);
+    /* body and excerpts */
+    --passage-font: "Crimson Pro", serif;
+    --passage-ink:  var(--parchment);
+    --passage-rule:     color-mix(in srgb, var(--passage-heading-ink) 40%, transparent);
+
+    /* The stoa link. */
+    --stoa-link-font:       "Inter", sans-serif;
+    --stoa-link-ink:        var(--ivory);
+    --stoa-link-ink-hover:  var(--sandstone);
 
 
     /* Scene ground: what shows when no image has loaded. Give opaque
@@ -98,9 +93,10 @@ body {
     margin: 0;
     min-height: 100vh;
     background: var(--scene-ground);
-    font-family: var(--font-passage);
+    font-family: var(--passage-font);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    color: var(--passage-ink);
 }
 
 /* ============================================================
@@ -164,29 +160,14 @@ body {
    TITLE BLOCK (the page header every mural shares)
    ============================================================ */
 
-/* Markup, in this order; translator is optional:
-   <header class="title-block">
-       <nav class="stoa-eyebrow" aria-label="Site">…</nav>
-       <h1 class="work-title">…</h1>
-       <p class="author">…</p>
-       <p class="translator">…</p>
-   </header>
-   The eyebrow is set in full below. The title, author, and translator
-   lines are sized, tracked, and spaced here, the same on every mural,
-   and take their faces from --font-title, --font-author, and
-   --font-translator. A mural sets only how each line is drawn in its
-   face (weight, italic, small caps or capitals) and its color, and
-   draws any ornament in CSS rather than adding elements. The header
-   ends with no trailing margin, so --space-after-header is the whole
-   gap below it. */
-
 .title-block {
     text-align: center;
 }
 
 /* clamp() carries the narrow-screen size: no breakpoint rule needed. */
 .work-title {
-    font-family: var(--font-title);
+    font-family: var(--title-font);
+    color: var(--title-ink);
     font-size: clamp(2.75rem, 7vw, 4.2rem);
     line-height: 1.1;
     letter-spacing: 0.04em;
@@ -195,7 +176,8 @@ body {
 }
 
 .author {
-    font-family: var(--font-author);
+    font-family: var(--author-font);
+    color: var(--author-ink);
     font-size: 1.3rem;
     letter-spacing: 0.08em;
 }
@@ -203,7 +185,8 @@ body {
 /* The gap sits above the translator rather than below the author, so a
    mural without one ends its header on the author line, nothing trailing. */
 .translator {
-    font-family: var(--font-translator);
+    font-family: var(--translator-font);
+    color: var(--translator-ink);
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     margin-top: 0.45rem;
@@ -212,12 +195,6 @@ body {
 /* ============================================================
    STOA LINK (eyebrow above the title, back to the landing page)
    ============================================================ */
-
-/* Set here in full, so the way back looks and sits the same on every
-   mural. A mural changes only --font-stoa-link and --stoa-link-ink.
-   Markup: <nav class="stoa-eyebrow" aria-label="Site">
-             <a class="stoa-link" href="../index.html">Storied Stoa</a>
-           </nav> */
 
 /* Flex, so the eyebrow is exactly as tall as the link: no stray line box. */
 .stoa-eyebrow {
@@ -230,7 +207,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.6em;
-    font-family: var(--font-stoa-link);
+    font-family: var(--stoa-link-font);
     font-size: 0.7rem;
     line-height: 1;
     letter-spacing: 0.2em;
@@ -267,30 +244,6 @@ body {
    READING BODY (the skeleton every mural shares)
    ============================================================ */
 
-/* Markup:
-   <main class="reading">
-       <section class="passage">
-           <h2 class="passage-heading" id="…"><a href="#…">…</a></h2>
-           <blockquote class="excerpt">…</blockquote>
-           <hr class="divider">
-           <blockquote class="excerpt">…</blockquote>
-       </section>
-   </main>
-   - A heading that changes the backdrop also takes `scene-marker` and a
-     `data-scene` image path. That pair is the script's hook.
-   - A passage may open with <hr class="divider"> in place of a heading,
-     to continue the previous passage under the same title.
-   - Inside an excerpt the markup is the mural's own: paragraphs and verse
-     for a novel; for a play, the speakers and lines that play.css lays
-     out. Excerpts inherit --font-passage from <body>. The headings take
-     --font-passage-heading here; their size, weight, and color are the
-     mural's, and so is the look of the dividers. The gaps between blocks
-     are set here, from the --space-* tokens, and so are the heading's
-     hairlines and how they stack on narrow screens. A mural's header
-     should end with no trailing margin, so --space-after-header is the
-     whole gap below it.
-   - A divider that opens a passage is placed by the mural (its margins),
-     since where it belongs depends on the heading it stands in for. */
 
 .reading {
     margin-top: var(--space-after-header);
@@ -308,14 +261,13 @@ body {
 
 /* A jumped-to heading lands where the eyebrow sits at the top of the page. */
 .passage-heading {
-    font-family: var(--font-passage-heading);
+    font-family: var(--passage-heading-font);
     margin: 0 0 var(--space-after-heading);
     scroll-margin-top: var(--frame-top);
-    color: var(--passage-heading-ink);
 }
 
 .passage-heading a {
-    color: inherit;
+    color: var(--passage-heading-ink);
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -330,7 +282,7 @@ body {
     font-size: 1.35rem;
     line-height: 1.65;
     font-weight: 300;
-    color: var(--excerpt-ink);
+    color: var(--passage-ink);
 }
 
 .excerpt p {
@@ -348,7 +300,7 @@ body {
 .divider {
     height: 2px;
     border: none;
-    background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
+    background: linear-gradient(to right, transparent, var(--passage-rule), transparent);
 }
 
 
@@ -374,11 +326,11 @@ body {
 }
 
 .passage-heading::before {
-    background: linear-gradient(to right, transparent, var(--heading-rule));
+    background: linear-gradient(to right, transparent, var(--passage-heading-rule));
 }
 
 .passage-heading::after {
-    background: linear-gradient(to left, transparent, var(--heading-rule));
+    background: linear-gradient(to left, transparent, var(--passage-heading-rule));
 }
 
 /* Too narrow for flanking lines: most labels would wrap or leave stubs
@@ -392,8 +344,8 @@ body {
 
     .passage-heading::before {
         flex: none;
-        width: var(--heading-rule-short);
-        background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
+        width: var(--passage-heading-rule-short);
+        background: linear-gradient(to right, transparent, var(--passage-heading-rule), transparent);
     }
 
     .passage-heading::after {

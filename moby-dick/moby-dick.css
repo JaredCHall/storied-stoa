@@ -6,27 +6,26 @@
     --scene-ground: var(--deep-sea);
     --scene-tint:   var(--abyss);
 
-    /* Faces (see mural.css). No translator line. */
-    --font-title:           'Cormorant SC', serif;
-    --font-author:          'IM Fell English', serif;
-    --font-passage-heading: 'Cormorant SC', serif;
-    --font-passage:         'Crimson Pro', serif;
+    /* Work Title */
+    --title-font: 'Cormorant SC', serif;
+    --title-ink:  var(--ivory);
 
-    /* Ink */
-    --ink-bright: var(--ivory);      /* title */
-    --ink:        var(--bone);       /* base text; links brighten to it on hover */
-    --ink-soft:   var(--vellum);     /* passage text */
-    --ink-dim:    var(--sandstone);  /* author line */
+    /* Author */
+    --author-font: 'IM Fell English', serif;
+    --author-ink:  var(--sandstone);
 
-    --passage-heading-ink: var(--brass);
+    /* Passage Headings */
+    --passage-heading-font:      'Cormorant SC', serif;
+    --passage-heading-ink:       var(--brass);
     --passage-heading-ink-hover: var(--ink);
+    --passage-heading-rule:              color-mix(in srgb, var(--brass-pale) 50%, transparent);
 
-    --excerpt-ink:   var(--ink-soft);
-    --footer-link-hover: var(--ink);
+    /* Passages */
+    --passage-font: 'Crimson Pro', serif;
+    --passage-ink:  var(--vellum);
 
-    /* Hairlines around the chapter labels (drawn by mural.css); the
-       divider reuses it */
-    --heading-rule: color-mix(in srgb, var(--brass-pale) 50%, transparent);
+    /* Footer */
+    --footer-link-hover: var(--bone);
 
     /* Font sizes (the title block's come from mural.css) */
     --size-passage-heading: 1.5rem;
@@ -40,46 +39,25 @@
     --toggle-ground:    var(--winedark-sea);
     --toggle-line:      var(--brass-pale);
     --toggle-ink:       var(--brass);
-    --toggle-ink-hover: var(--ink);
+    --toggle-ink-hover: var(--bone);
 }
 
 /* ============================================================
-   BASE
+   ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-body {
-    color: var(--ink);
-}
-
-/* ============================================================
-   TITLE BLOCK
-   ============================================================ */
-
-/* Layout, faces, sizes, tracking, and spacing come from mural.css;
-   style and color live here. */
 
 .work-title {
-    color: var(--ink-bright);
     font-weight: 700;
 }
 
 .author {
     font-style: italic;
-    color: var(--ink-dim);
 }
 
-/* ============================================================
-   PASSAGES
-   ============================================================ */
-
-/* Gaps between passages, headings, and excerpts come from mural.css, and
-   so do the hairlines around each heading and their narrow-screen stack.
-   The lines double as the divider between passages. */
 .passage-heading {
     font-size: var(--size-passage-heading);
     font-weight: 700;
     letter-spacing: 0.14em;
-    color: var(--brass);
     text-transform: uppercase;
 }
 
@@ -110,7 +88,7 @@ body {
 
     /* Shortened to match the single hairline over each heading. */
     .divider {
-        width: var(--heading-rule-short);
+        width: var(--passage-heading-rule-short);
         margin: 0 auto 64px;
     }
 }

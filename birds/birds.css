@@ -8,45 +8,43 @@
     --scene-tint:   var(--nightfall);
     --scene-glow:   var(--cinnamon);  /* afterglow from the top */
 
-    /* Faces (see mural.css; --font-speaker, play.css) */
-    --font-title:           "IM Fell English SC", serif;
-    --font-author:          "IM Fell English SC", serif;
-    --font-translator:      "Inter", sans-serif;
-    --font-passage-heading: "IM Fell English SC", serif;
-    --font-passage:         "Crimson Pro", serif;  /* lines and songs: sturdier italic on dark */
-    --font-speaker:         "Inter", sans-serif;
+    /* Work Title */
+    --title-font: "IM Fell English SC", serif;
+    --title-ink:  var(--ivory);
 
-    /* Colors come from colors.css. --cinnamon, the hoopoe's crest, used
-       directly, sets the author line and passage headings; the stoa
-       link brightens to it on hover. */
+    /* Author */
+    --author-font: 'IM Fell English SC', serif;
+    --author-ink:  var(--cinnamon);
 
-    /* Ink */
-    --ink-bright: var(--ivory);    /* title */
-    --ink:        var(--bone);     /* base text and lines; headings brighten to it on hover */
-    --ink-dim:    var(--heather);  /* translator line */
+    /* Translator */
+    --translator-font: 'Inter', sans-serif;
+    --translator-ink:  var(--heather);
 
-    --passage-heading-ink: var(--cinnamon);
-    --passage-heading-ink-hover: var(--ink);
-    --line-ink: var(--parchment);
+    /* Passage Headings */
+    --passage-heading-font:      "IM Fell English SC", serif;
+    --passage-heading-ink:       var(--cinnamon);
+    --passage-heading-ink-hover: var(--bone);
+    --passage-heading-rule:              color-mix(in srgb, var(--cinnamon) 50%, transparent);
 
-    --footer-ink: var(--heather);
-    --footer-link-hover: var(--cinnamon);
+    /* Passages */
+    --passage-font: 'Crimson Pro', serif;
+    --passage-ink:  var(--parchment);
+    --passage-rule:   color-mix(in srgb, var(--cinnamon) 25%, transparent);
 
-    /* Speaker names (see play.css), by side: the man, the birds, the gods */
-    --peisetaerus: var(--myrtle);
-    --birds:       var(--cinnamon);    /* Tereus, the Chorus, and its Leader */
-    --speaker-ink: var(--heather);     /* everyone else */
+    /* Speakers */
+    --speaker-font:  'Inter', sans-serif;
+    --speaker-column: 9.5rem;                   /* Wide enough for "First Messenger" on one line */
+    --speaker-ink:    var(--heather);
+    --peisetaerus:    var(--myrtle);
+    --birds:          var(--cinnamon);          /* Tereus, the Chorus, and its Leader */
 
-    --stoa-link-ink: var(--heather);
+    /* Stoa Link */
+    --stoa-link-ink:       var(--heather);
     --stoa-link-ink-hover: var(--cinnamon);
 
-    /* Wide enough for "First Messenger" on one line */
-    --speaker-column: 9.5rem;
-
-    /* Hairlines: around the passage headings (drawn by mural.css), and
-       between quotes */
-    --heading-rule: color-mix(in srgb, var(--cinnamon) 50%, transparent);
-    --quote-rule:   color-mix(in srgb, var(--cinnamon) 25%, transparent);
+    /* Footer */
+    --footer-ink:        var(--heather);
+    --footer-link-hover: var(--cinnamon);
 
     /* Gallery toggle */
     --toggle-ground:    var(--nightfall);
@@ -56,41 +54,16 @@
 }
 
 /* ============================================================
-   BASE
+   ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-body {
-    color: var(--ink);
-}
-
-/* ============================================================
-   TITLE BLOCK
-   ============================================================ */
-
-/* Layout, faces, sizes, tracking, and spacing come from mural.css;
-   style and color live here. IM Fell English SC comes in one weight,
-   so every use sets 400: no synthesized bold. */
 
 .work-title {
     font-weight: 400;
-    color: var(--ink-bright);
 }
 
 .author {
     font-weight: 400;
-    color: var(--cinnamon);
 }
-
-.translator {
-    color: var(--ink-dim);
-}
-
-/* ============================================================
-   PASSAGES
-   ============================================================ */
-
-/* Gaps between passages, headings, and excerpts come from mural.css, and
-   so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
     font-weight: 400;
@@ -98,18 +71,8 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* ============================================================
-   SPEECHES AND EXCHANGES
-   ============================================================ */
-
 .speaker--peisetaerus { --speaker-ink: var(--peisetaerus); }
 .speaker--birds       { --speaker-ink: var(--birds); }
-
-
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 
 /* Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {

@@ -8,42 +8,47 @@
     --scene-tint:   var(--forest-shade);
     --scene-glow:   var(--gold);  /* the paintings' late sun, from the top */
 
-    /* Faces (see mural.css; --font-speaker, play.css). */
-    --font-title:           "IM Fell English", serif;
-    --font-author:          "IM Fell English", serif;
-    --font-passage-heading: "IM Fell English", serif;
-    --font-passage:         "Crimson Pro", serif;
-    --font-written:         "IM Fell English", serif;  /* Phoebe's letter, the tree verses */
-    --font-speaker:         "Inter", sans-serif;
-    --font-direction:       "Inter", sans-serif;       /* stage directions */
+    /* Work Title */
+    --title-font: 'IM Fell English', serif;
+    --title-ink:  var(--ivory);
 
-    /* Ink */
-    --ink-bright: var(--ivory);      /* title */
-    --ink:        var(--parchment);  /* base text and lines; headings brighten to it on hover */
-    --ink-dim:    var(--limestone);  /* stage directions */
-    --footer-link-hover: var(--rose);
+    /* Author */
+    --author-font: 'IM Fell English', serif;
+    --author-ink:  var(--rose);
 
-    --passage-heading-ink: var(--rose);
-    --passage-heading-ink-hover: var(--ink);
-    --line-ink: var(--parchment);
+    /* Passage Headings */
+    --passage-heading-font:      'IM Fell English', serif;
+    --passage-heading-ink:       var(--rose);
+    --passage-heading-ink-hover: var(--parchment);
+    --passage-heading-rule:      color-mix(in srgb, var(--rose) 50%, transparent);
 
-    /* Speaker names (see play.css): the two lovers, and everyone else */
-    --rosalind:    var(--rose);
-    --orlando:     var(--myrtle);
-    --hymen:       var(--gold);
-    --speaker-ink: var(--sandstone);
+    /* Passages */
+    --passage-font:   'Crimson Pro', serif;
+    --passage-ink:    var(--parchment);
+    --passage-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
 
-    /* Wide enough for "Duke Frederick" on one line, at the same label
-       size as Birds' "First Messenger" */
-    --speaker-column: 9.5rem;
+    /* Speakers */
+    --speaker-font:   'Inter', sans-serif;
+    --speaker-column: 9.5rem;               /* Wide enough for "Duke Frederick" on one line */
+    --speaker-ink:    var(--sandstone);
+    --rosalind:       var(--rose);
+    --orlando:        var(--myrtle);
+    --hymen:          var(--gold);
 
-    /* Hairlines: around the passage headings (drawn by mural.css), and
-       between quotes */
-    --heading-rule: color-mix(in srgb, var(--rose) 50%, transparent);
-    --quote-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
+    /* Stage Directions */
+    --stage-direction-font: 'Inter', sans-serif;
+    --stage-direction-ink:  var(--limestone);
+
+
+    /* Written Letters / Notes; Phoebe's letter, the tree verses */
+    --written-font: 'IM Fell English', serif;
     --written-rule: color-mix(in srgb, var(--rose) 40%, transparent);
 
+    /* Stoa Link */
     --stoa-link-ink-hover: var(--rose);
+
+    /* Footer */
+    --footer-link-hover: var(--rose);
 
     /* Gallery toggle */
     --toggle-ground:    var(--greenwood);
@@ -53,48 +58,22 @@
 }
 
 /* ============================================================
-   BASE
+   ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-body {
-    color: var(--ink);
-}
-
-/* ============================================================
-   TITLE BLOCK
-   ============================================================ */
-
-/* Layout, faces, sizes, tracking, and spacing come from mural.css;
-   style and color live here. No translator line: the play is in its
-   own English. IM Fell English is set at 400 throughout: no
-   synthesized bold. */
 
 .work-title {
     font-weight: 400;
-    color: var(--ink-bright);
 }
 
 .author {
     font-weight: 400;
-    color: var(--rose);
 }
-
-/* ============================================================
-   PASSAGES
-   ============================================================ */
-
-/* Gaps between passages, headings, and excerpts come from mural.css, and
-   so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0.03em;
 }
-
-/* ============================================================
-   SPEECHES, EXCHANGES, AND STAGE DIRECTIONS
-   ============================================================ */
 
 .speaker--rosalind { --speaker-ink: var(--rosalind); }
 .speaker--orlando  { --speaker-ink: var(--orlando); }
@@ -106,7 +85,7 @@ body {
    small inset. IM Fell's taller lowercase sits larger than Cormorant's
    at the same size, hence the step down. Upright, not italic. */
 .line--written {
-    font-family: var(--font-written);
+    font-family: var(--written-font);
     font-size: 1.2rem;
     line-height: 1.7;
     padding-left: 1.5rem;
@@ -120,10 +99,10 @@ body {
    speaker. Upright, not italic. The first stage direction in the Stoa;
    if another play needs one, this and its token belong in play.css. */
 .direction {
-    font-family: var(--font-direction);
+    font-family: var(--stage-direction-font);
     font-size: 0.85rem;
     letter-spacing: 0.04em;
-    color: var(--ink-dim);
+    color: var(--stage-direction-ink);
     margin: 0.6rem 0;
 }
 

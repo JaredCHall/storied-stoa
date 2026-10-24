@@ -2,42 +2,40 @@
    ../styles/play.css, then this. */
 
 :root {
-
     /* Default Background */
     --scene-ground: var(--lamp-black);
 
-    /* Faces (see mural.css; --font-speaker, play.css) */
-    --font-title:           'Cormorant Garamond', serif;
-    --font-author:          "Inter", sans-serif;
-    --font-translator:      "Inter", sans-serif;
-    --font-passage-heading: 'Cormorant Garamond', serif;
-    --font-passage:         "Crimson Pro", serif;
-    --font-speaker:         "Inter", sans-serif;
+    /* Work Title */
+    --title-font: 'Cormorant Garamond', serif;
+    --title-ink:  var(--ivory);
 
-    /* Colors come from colors.css. --gold, used directly, sets the author
-       line and passage headings. */
+    /* Author */
+    --author-font: 'Inter', sans-serif;
+    --author-ink:  var(--gold);
 
-    /* Ink */
-    --ink:       var(--parchment);  /* base text, and lines; headings brighten to it on hover */
-    --ink-dim:   var(--sandstone);  /* translator line */
-    --ink-bright:   var(--ivory);   /* title */
+    /* Translator */
+    --translator-font: 'Inter', sans-serif;
+    --translator-ink:  var(--sandstone);
 
-    --passage-heading-ink: var(--gold);
-    --passage-heading-ink-hover: var(--ink);
-    --line-ink: var(--parchment);
+    /* Passage Headings */
+    --passage-heading-font:     'Cormorant Garamond', serif;
+    --passage-heading-ink:       var(--gold);
+    --passage-heading-ink-hover: var(--parchment);
+    --passage-heading-rule:              color-mix(in srgb, var(--gold) 55%, transparent);
 
-    /* No --ink-bright here: the title is in --ink, so the stoa link is too. */
+    /* Passages */
+    --passage-font: 'Crimson Pro', serif;
+    --passage-ink:  var(--parchment);
+    --passage-rule:   color-mix(in srgb, var(--gold) 25%, transparent);
+
+    /* Speakers */
+    --speaker-font: 'Inter', sans-serif;
+    --speaker-ink:  var(--limestone);
+    --antigone:     var(--wine);
+    --creon:        var(--bronze);
+
+    /* Footer */
     --footer-link-hover: var(--gold);
-
-    /* Speaker names (see play.css) */
-    --antigone:    var(--wine);
-    --creon:       var(--bronze);
-    --speaker-ink: var(--limestone);  /* everyone else */
-
-    /* Hairlines: around the passage headings (drawn by mural.css), and
-       between quotes */
-    --heading-rule: color-mix(in srgb, var(--gold) 55%, transparent);
-    --quote-rule:   color-mix(in srgb, var(--gold) 25%, transparent);
 
     /* Gallery toggle */
     --toggle-ground:    var(--lamp-black);
@@ -47,41 +45,17 @@
 }
 
 /* ============================================================
-   BASE
+   ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-body {
-    color: var(--ink);
-}
-
-/* ============================================================
-   TITLE BLOCK
-   ============================================================ */
-
-/* Layout, faces, sizes, tracking, and spacing come from mural.css;
-   style and color live here. */
 
 .work-title {
     font-weight: 500;
     font-style: italic;
-    color: var(--ink-bright);
 }
 
 .author {
     text-transform: uppercase;
-    color: var(--gold);
 }
-
-.translator {
-    color: var(--ink-dim);
-}
-
-/* ============================================================
-   PASSAGES
-   ============================================================ */
-
-/* Gaps between passages, headings, and excerpts come from mural.css, and
-   so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
     font-weight: 500;
@@ -89,10 +63,6 @@ body {
     letter-spacing: 0.02em;
     font-style: italic;
 }
-
-/* ============================================================
-   SPEECHES AND EXCHANGES
-   ============================================================ */
 
 .speaker--antigone { --speaker-ink: var(--antigone); }
 .speaker--creon    { --speaker-ink: var(--creon); }
