@@ -94,22 +94,5 @@ body {
    SPEECHES AND EXCHANGES
    ============================================================ */
 
-/* Layout, rhythm, line breaks, the speaker face, and the narrow-screen
-   stack come from play.css; sizes and colors live here. */
-
-.speaker {
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
-.speaker-inline {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
 .speaker--antigone { --speaker-ink: var(--antigone); }
 .speaker--creon    { --speaker-ink: var(--creon); }
