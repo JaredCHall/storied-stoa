@@ -16,7 +16,7 @@
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
     --ink:        var(--parchment);  /* base text and lines; headings brighten to it on hover */
-    --ink-dim:    var(--sandstone);  /* stoa link at rest and stage directions */
+    --ink-dim:    var(--sandstone);  /* stage directions */
     --footer-link-hover: var(--rose);
 
     /* Speaker names (see play.css): the two lovers, and everyone else */
@@ -60,23 +60,6 @@ body {
    spacing between the lines live here. No translator line: the play
    is in its own English. IM Fell English is set at 400 throughout:
    no synthesized bold. */
-
-.stoa-eyebrow {
-    margin-bottom: 1.75rem;
-}
-
-.stoa-link {
-    font-family: var(--font-label), sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-}
-
-.stoa-link:hover,
-.stoa-link:focus-visible {
-    color: var(--rose);
-}
 
 .work-title {
     font-family: var(--font-display), serif;

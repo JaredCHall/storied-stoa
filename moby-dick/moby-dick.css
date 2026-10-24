@@ -11,9 +11,9 @@
     --font-display: 'Cormorant SC';
     --font-label:   'IM Fell English';  /* the author line */
 
-    /* Colors come from colors.css. Used directly: --brass for the stoa
-       link and passage headings at rest, --brass-pale for the hairlines
-       and the toggle ring. */
+    /* Colors come from colors.css. Used directly: --brass for the
+       passage headings at rest, --brass-pale for the hairlines and the
+       toggle ring. */
 
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
@@ -59,26 +59,6 @@ body {
 
 /* Position, centering, and the gap below come from mural.css; type and
    spacing between the lines live here. */
-
-/* Same brass and hover as the passage headings, which are links too. */
-.stoa-eyebrow {
-    margin-bottom: 30px;
-}
-
-.stoa-link {
-    font-family: var(--font-display), serif;
-    font-size: 0.95rem;
-    font-variant: small-caps; /* fallback for fonts without a true SC variant */
-    font-weight: bold;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--brass);
-}
-
-.stoa-link:hover,
-.stoa-link:focus-visible {
-    color: var(--ink);
-}
 
 .work-title {
     font-family: var(--font-display), serif;
@@ -168,7 +148,6 @@ body {
 
 /* Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {
-    .stoa-eyebrow         { margin-bottom: 24px; }
     .work-title           { font-size: var(--size-title-mobile); }
     .author               { font-size: var(--size-author-mobile); }
     .excerpt              { font-size: var(--size-excerpt-mobile); }

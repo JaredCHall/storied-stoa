@@ -12,11 +12,14 @@
     --font-label:   "Inter";
 
     /* Colors come from colors.css. --gold, used directly, sets the author
-       line and passage headings; the stoa link brightens to it on hover. */
+       line and passage headings. */
 
     /* Ink */
-    --ink:       var(--parchment);  /* base text, title, and lines; headings brighten to it on hover */
-    --ink-dim:   var(--sandstone);  /* stoa link at rest and translator line */
+    --ink:       var(--parchment);  /* base text, and lines; headings brighten to it on hover */
+    --ink-dim:   var(--sandstone);  /* translator line */
+    --ink-bright:   var(--ivory);   /* title */
+
+    /* No --ink-bright here: the title is in --ink, so the stoa link is too. */
     --footer-link-hover: var(--gold);
 
     /* Speaker names (see play.css) */
@@ -53,24 +56,6 @@ body {
 /* Position, centering, and the gap below come from mural.css; type and
    spacing between the lines live here. */
 
-/* Dim at rest: the gold caps belong to the author line below the title. */
-.stoa-eyebrow {
-    margin-bottom: 1.75rem;
-}
-
-.stoa-link {
-    font-family: var(--font-label), sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-}
-
-.stoa-link:hover,
-.stoa-link:focus-visible {
-    color: var(--gold);
-}
-
 .work-title {
     font-family: var(--font-display), serif;
     font-weight: 500;
@@ -78,7 +63,7 @@ body {
     font-size: clamp(2.75rem, 6vw, 4rem);
     letter-spacing: 0.02em;
     margin: 0 0 0.75rem;
-    color: var(--ink);
+    color: var(--ink-bright);
 }
 
 .author {

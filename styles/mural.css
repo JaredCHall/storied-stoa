@@ -35,7 +35,17 @@
        is the mural's call. Stoa defaults; each mural overrides these. */
     --font-text:    'Cormorant Garamond';  /* reading face: body and excerpts */
     --font-display: 'Cormorant Garamond';  /* title and passage headings */
-    --font-label:   'Inter';               /* eyebrow, byline, translator, speakers */
+    --font-label:   'Inter';               /* byline, translator, speakers */
+
+    /* The stoa link. Its face is a whole stack, generic family included,
+       because a mural may swap in a serif. Its ink is the color on hover
+       and focus; at rest the link shows it at 60%. The default names
+       --ink-bright, which the mural defines; a mural without one must
+       set --stoa-link-ink itself. */
+    --stoa-link-font: "IM Fell English SC";
+    --stoa-link-ink: var(--ivory);
+    --stoa-link-ink-hover: var(--sandstone);
+
 
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. Neutral
@@ -153,8 +163,10 @@ body {
        <p class="author">…</p>
        <p class="translator">…</p>
    </header>
-   Each mural sets the type, colors, and spacing between the lines,
-   and draws any ornament in CSS rather than adding elements. */
+   The eyebrow is set in full below. For the title, author, and
+   translator lines, each mural sets the type, colors, and spacing
+   between them, and draws any ornament in CSS rather than adding
+   elements. */
 
 .title-block {
     text-align: center;
@@ -164,7 +176,8 @@ body {
    STOA LINK (eyebrow above the title, back to the landing page)
    ============================================================ */
 
-/* Each mural sets the face, size, spacing, and colors.
+/* Set here in full, so the way back looks and sits the same on every
+   mural. A mural changes only --stoa-link-font and --stoa-link-ink.
    Markup: <nav class="stoa-eyebrow" aria-label="Site">
              <a class="stoa-link" href="../index.html">Storied Stoa</a>
            </nav> */
@@ -173,16 +186,27 @@ body {
 .stoa-eyebrow {
     display: flex;
     justify-content: center;
+    margin-bottom: 1.75rem;
 }
 
 .stoa-link {
     display: inline-flex;
     align-items: center;
     gap: 0.6em;
+    font-family: var(--stoa-link-font), sans-serif;
+    font-size: 0.7rem;
     line-height: 1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     text-decoration: none;
+    color: var(--stoa-link-ink);
     transition: color 0.3s ease;
     -webkit-tap-highlight-color: transparent;
+}
+
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: var(--stoa-link-ink-hover);
 }
 
 /* The arrow: an SVG used as a mask over the link's own color, so it

@@ -20,7 +20,7 @@
     /* Ink */
     --ink-bright: var(--ivory);    /* title */
     --ink:        var(--bone);     /* base text and lines; headings brighten to it on hover */
-    --ink-dim:    var(--heather);  /* stoa link at rest and translator line */
+    --ink-dim:    var(--heather);  /* translator line */
     --footer-ink: var(--heather);
     --footer-link-hover: var(--cinnamon);
 
@@ -62,23 +62,6 @@ body {
 /* Position, centering, and the gap below come from mural.css; type and
    spacing between the lines live here. IM Fell English SC comes in one
    weight, so every use sets 400: no synthesized bold. */
-
-.stoa-eyebrow {
-    margin-bottom: 1.75rem;
-}
-
-.stoa-link {
-    font-family: var(--font-label), sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-}
-
-.stoa-link:hover,
-.stoa-link:focus-visible {
-    color: var(--cinnamon);
-}
 
 .work-title {
     font-family: var(--font-display), serif;
