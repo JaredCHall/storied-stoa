@@ -23,15 +23,11 @@
        divider reuses it */
     --heading-rule: color-mix(in srgb, var(--brass-pale) 50%, transparent);
 
-    /* Font sizes */
-    --size-title:           4.2rem;
-    --size-author:          1.58rem;
+    /* Font sizes (the title block's come from mural.css) */
     --size-passage-heading: 1.5rem;
     --size-excerpt:         1.5rem;
 
     /* Font sizes — mobile */
-    --size-title-mobile:           2.8rem;
-    --size-author-mobile:          1.2rem;
     --size-passage-heading-mobile: 0.95rem;
     --size-excerpt-mobile:         1.25rem;
 
@@ -54,23 +50,17 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, faces, and the gap below come from mural.css;
-   size, color, and spacing between the lines live here. */
+/* Layout, faces, sizes, tracking, and spacing come from mural.css;
+   style and color live here. */
 
 .work-title {
-    font-size: var(--size-title);
-    font-variant: small-caps; /* fallback for fonts without a true SC variant */
-    letter-spacing: 0.06em;
     color: var(--ink-bright);
-    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
-    line-height: 1.1;
+    font-weight: 700;
 }
 
 .author {
     font-style: italic;
-    font-size: var(--size-author);
     color: var(--ink-dim);
-    letter-spacing: 0.04em;
 }
 
 /* ============================================================
@@ -82,7 +72,6 @@ body {
    The lines double as the divider between passages. */
 .passage-heading {
     font-size: var(--size-passage-heading);
-    font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
     letter-spacing: 0.14em;
     color: var(--brass);
@@ -142,8 +131,6 @@ body {
 
 /* Same breakpoint as the shared frame in mural.css. */
 @media (max-width: 40rem) {
-    .work-title           { font-size: var(--size-title-mobile); }
-    .author               { font-size: var(--size-author-mobile); }
     .excerpt              { font-size: var(--size-excerpt-mobile); }
     .passage-heading      { font-size: var(--size-passage-heading-mobile); }
 

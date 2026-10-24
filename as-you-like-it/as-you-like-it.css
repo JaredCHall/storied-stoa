@@ -60,27 +60,19 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, faces, and the gap below come from mural.css;
-   size, color, and spacing between the lines live here. No translator
-   line: the play is in its own English. IM Fell English is set at 400
-   throughout: no synthesized bold. */
+/* Layout, faces, sizes, tracking, and spacing come from mural.css;
+   style and color live here. No translator line: the play is in its
+   own English. IM Fell English is set at 400 throughout: no
+   synthesized bold. */
 
 .work-title {
     font-weight: 400;
-    font-size: clamp(2.75rem, 7vw, 4.2rem);
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-    margin: 0 0 0.9rem;
     color: var(--ink-bright);
-    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
 }
 
 .author {
     font-weight: 400;
-    font-size: 1.3rem;
-    letter-spacing: 0.06em;
     color: var(--rose);
-    margin: 0;
 }
 
 /* ============================================================

@@ -165,18 +165,42 @@ body {
        <p class="translator">…</p>
    </header>
    The eyebrow is set in full below. The title, author, and translator
-   lines take their faces here, from --font-title, --font-author, and
-   --font-translator; each mural sets their size, weight, colors, and
-   the spacing between them, and draws any ornament in CSS rather
-   than adding elements. */
+   lines are sized, tracked, and spaced here, the same on every mural,
+   and take their faces from --font-title, --font-author, and
+   --font-translator. A mural sets only how each line is drawn in its
+   face (weight, italic, small caps or capitals) and its color, and
+   draws any ornament in CSS rather than adding elements. The header
+   ends with no trailing margin, so --space-after-header is the whole
+   gap below it. */
 
 .title-block {
     text-align: center;
 }
 
-.work-title { font-family: var(--font-title); }
-.author     { font-family: var(--font-author); }
-.translator { font-family: var(--font-translator); }
+/* clamp() carries the narrow-screen size: no breakpoint rule needed. */
+.work-title {
+    font-family: var(--font-title);
+    font-size: clamp(2.75rem, 7vw, 4.2rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.9rem;
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
+}
+
+.author {
+    font-family: var(--font-author);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+}
+
+/* The gap sits above the translator rather than below the author, so a
+   mural without one ends its header on the author line, nothing trailing. */
+.translator {
+    font-family: var(--font-translator);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    margin-top: 0.45rem;
+}
 
 /* ============================================================
    STOA LINK (eyebrow above the title, back to the landing page)

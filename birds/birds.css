@@ -62,34 +62,22 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, faces, and the gap below come from mural.css;
-   size, color, and spacing between the lines live here. IM Fell
-   English SC comes in one weight, so every use sets 400: no
-   synthesized bold. */
+/* Layout, faces, sizes, tracking, and spacing come from mural.css;
+   style and color live here. IM Fell English SC comes in one weight,
+   so every use sets 400: no synthesized bold. */
 
 .work-title {
     font-weight: 400;
-    font-size: clamp(3rem, 8vw, 4.6rem);
-    letter-spacing: 0.04em;
-    line-height: 1.05;
-    margin: 0 0 0.9rem;
     color: var(--ink-bright);
-    text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
 }
 
 .author {
     font-weight: 400;
-    font-size: 1.3rem;
-    letter-spacing: 0.1em;
     color: var(--cinnamon);
-    margin: 0 0 0.45rem;
 }
 
 .translator {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
     color: var(--ink-dim);
-    margin: 0;
 }
 
 /* ============================================================
