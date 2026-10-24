@@ -6,14 +6,11 @@
     --scene-ground: var(--deep-sea);
     --scene-tint:   var(--abyss);
 
-    /* Type roles (see mural.css) */
-    --font-text:    'Cormorant Garamond';
-    --font-display: 'Cormorant SC';
-    --font-label:   'IM Fell English';  /* the author line */
-
-    /* Colors come from colors.css. Used directly: --brass for the
-       passage headings at rest, --brass-pale for the hairlines and the
-       toggle ring. */
+    /* Faces (see mural.css). No translator line. */
+    --font-title:           'Cormorant SC', serif;
+    --font-author:          'IM Fell English', serif;
+    --font-passage-heading: 'Cormorant SC', serif;
+    --font-passage:         'Cormorant Garamond', serif;
 
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
@@ -57,11 +54,10 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, and the gap below come from mural.css; type and
-   spacing between the lines live here. */
+/* Position, centering, faces, and the gap below come from mural.css;
+   size, color, and spacing between the lines live here. */
 
 .work-title {
-    font-family: var(--font-display), serif;
     font-size: var(--size-title);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     letter-spacing: 0.06em;
@@ -71,7 +67,6 @@ body {
 }
 
 .author {
-    font-family: var(--font-label), serif;
     font-style: italic;
     font-size: var(--size-author);
     color: var(--ink-dim);
@@ -86,7 +81,6 @@ body {
    so do the hairlines around each heading and their narrow-screen stack.
    The lines double as the divider between passages. */
 .passage-heading {
-    font-family: var(--font-display), serif;
     font-size: var(--size-passage-heading);
     font-variant: small-caps; /* fallback for fonts without a true SC variant */
     font-weight: bold;
@@ -111,8 +105,8 @@ body {
     background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
 }
 
+/* The face, --font-passage, comes from <body> (mural.css). */
 .excerpt {
-    font-family: var(--font-text), serif;
     font-size: var(--size-excerpt);
     line-height: 1.85;
     color: var(--ink-soft);

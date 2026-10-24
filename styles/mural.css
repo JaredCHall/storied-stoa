@@ -29,20 +29,21 @@
     --heading-rule:       color-mix(in srgb, var(--sandstone) 50%, transparent);
     --heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
 
-    /* Type roles: faces named for the job they do. Families only, from
-       fonts.css; each use site adds its own generic fallback. mural.css
-       applies only --font-text, to <body>; which element wears which role
-       is the mural's call. Stoa defaults; each mural overrides these. */
-    --font-text:    'Cormorant Garamond';  /* reading face: body and excerpts */
-    --font-display: 'Cormorant Garamond';  /* title and passage headings */
-    --font-label:   'Inter';               /* byline, translator, speakers */
+    /* Faces, one per element. Each is a whole stack, generic family
+       included, so a use site adds nothing after it. Families come
+       from fonts.css. mural.css applies all of these; play.css applies
+       --font-speaker. Stoa defaults; each mural overrides these. */
+    --font-title:           "Cormorant Garamond", serif;
+    --font-author:          "Inter", sans-serif;
+    --font-translator:      "Inter", sans-serif;
+    --font-passage-heading: "Cormorant Garamond", serif;
+    --font-passage:         "Cormorant Garamond", serif;  /* body and excerpts */
+    --font-stoa-link:       "IM Fell English SC", serif;
 
-    /* The stoa link. Its face is a whole stack, generic family included,
-       because a mural may swap in a serif. Its ink is the color on hover
-       and focus; at rest the link shows it at 60%. The default names
-       --ink-bright, which the mural defines; a mural without one must
-       set --stoa-link-ink itself. */
-    --stoa-link-font: "IM Fell English SC";
+    /* The stoa link. Its face is --font-stoa-link, above. Its ink is the
+       color on hover and focus; at rest the link shows it at 60%. The
+       default names --ink-bright, which the mural defines; a mural
+       without one must set --stoa-link-ink itself. */
     --stoa-link-ink: var(--ivory);
     --stoa-link-ink-hover: var(--sandstone);
 
@@ -92,7 +93,7 @@ body {
     margin: 0;
     min-height: 100vh;
     background: var(--scene-ground);
-    font-family: var(--font-text), serif;
+    font-family: var(--font-passage);
 }
 
 /* ============================================================
@@ -163,21 +164,26 @@ body {
        <p class="author">…</p>
        <p class="translator">…</p>
    </header>
-   The eyebrow is set in full below. For the title, author, and
-   translator lines, each mural sets the type, colors, and spacing
-   between them, and draws any ornament in CSS rather than adding
-   elements. */
+   The eyebrow is set in full below. The title, author, and translator
+   lines take their faces here, from --font-title, --font-author, and
+   --font-translator; each mural sets their size, weight, colors, and
+   the spacing between them, and draws any ornament in CSS rather
+   than adding elements. */
 
 .title-block {
     text-align: center;
 }
+
+.work-title { font-family: var(--font-title); }
+.author     { font-family: var(--font-author); }
+.translator { font-family: var(--font-translator); }
 
 /* ============================================================
    STOA LINK (eyebrow above the title, back to the landing page)
    ============================================================ */
 
 /* Set here in full, so the way back looks and sits the same on every
-   mural. A mural changes only --stoa-link-font and --stoa-link-ink.
+   mural. A mural changes only --font-stoa-link and --stoa-link-ink.
    Markup: <nav class="stoa-eyebrow" aria-label="Site">
              <a class="stoa-link" href="../index.html">Storied Stoa</a>
            </nav> */
@@ -193,7 +199,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.6em;
-    font-family: var(--stoa-link-font), sans-serif;
+    font-family: var(--font-stoa-link);
     font-size: 0.7rem;
     line-height: 1;
     letter-spacing: 0.2em;
@@ -245,8 +251,9 @@ body {
      to continue the previous passage under the same title.
    - Inside an excerpt the markup is the mural's own: paragraphs and verse
      for a novel; for a play, the speakers and lines that play.css lays
-     out. So are the headings'
-     type and color, and the look of the dividers. The gaps between blocks
+     out. Excerpts inherit --font-passage from <body>. The headings take
+     --font-passage-heading here; their size, weight, and color are the
+     mural's, and so is the look of the dividers. The gaps between blocks
      are set here, from the --space-* tokens, and so are the heading's
      hairlines and how they stack on narrow screens. A mural's header
      should end with no trailing margin, so --space-after-header is the
@@ -270,6 +277,7 @@ body {
 
 /* A jumped-to heading lands where the eyebrow sits at the top of the page. */
 .passage-heading {
+    font-family: var(--font-passage-heading);
     margin: 0 0 var(--space-after-heading);
     scroll-margin-top: var(--frame-top);
 }

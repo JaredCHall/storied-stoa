@@ -12,6 +12,7 @@
        :root value. Give a finished color. Neutral default; each
        mural overrides it. */
     --speaker-ink: var(--limestone);
+    --font-speaker: "Inter";
 
     /* Exchanges: the speaker column beside each line. Wide enough for
        the play's longest name at the mural's label size. */
@@ -58,6 +59,7 @@
 
 .speaker {
     margin: var(--space-around-speaker) 0;
+    font-family: var(--font-speaker), sans-serif;
 }
 
 /* No gap above the excerpt's first name, whether or not a song opens it. */
@@ -69,6 +71,7 @@
 .speaker,
 .speaker-inline {
     color: var(--speaker-ink);
+    font-family: var(--font-speaker), sans-serif;
 }
 
 /* pre-line: breaks kept, runs of spaces (and source indentation) collapsed. */

@@ -6,10 +6,13 @@
     /* Default Background */
     --scene-ground: var(--lamp-black);
 
-    /* Type roles (see mural.css) */
-    --font-text:    "Cormorant Garamond";
-    --font-display: "Cormorant Garamond";
-    --font-label:   "Inter";
+    /* Faces (see mural.css; --font-speaker, play.css) */
+    --font-title:           "Cormorant Garamond", serif;
+    --font-author:          "Inter", sans-serif;
+    --font-translator:      "Inter", sans-serif;
+    --font-passage-heading: "Cormorant Garamond", serif;
+    --font-passage:         "Cormorant Garamond", serif;
+    --font-speaker:         "Inter", sans-serif;
 
     /* Colors come from colors.css. --gold, used directly, sets the author
        line and passage headings. */
@@ -53,11 +56,10 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, and the gap below come from mural.css; type and
-   spacing between the lines live here. */
+/* Position, centering, faces, and the gap below come from mural.css;
+   size, color, and spacing between the lines live here. */
 
 .work-title {
-    font-family: var(--font-display), serif;
     font-weight: 500;
     font-style: italic;
     font-size: clamp(2.75rem, 6vw, 4rem);
@@ -67,7 +69,6 @@ body {
 }
 
 .author {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.95rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -76,7 +77,6 @@ body {
 }
 
 .translator {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     color: var(--ink-dim);
@@ -91,7 +91,6 @@ body {
    so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
-    font-family: var(--font-display), serif;
     font-style: italic;
     font-weight: 500;
     font-size: 1.8rem;
@@ -116,18 +115,16 @@ body {
    SPEECHES AND EXCHANGES
    ============================================================ */
 
-/* Layout, rhythm, line breaks, and the narrow-screen stack come from
-   play.css; type and colors live here. */
+/* Layout, rhythm, line breaks, the speaker face, and the narrow-screen
+   stack come from play.css; sizes and colors live here. */
 
 .speaker {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.85rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .speaker-inline {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;

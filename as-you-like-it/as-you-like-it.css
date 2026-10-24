@@ -8,10 +8,14 @@
     --scene-tint:   var(--forest-shade);
     --scene-glow:   var(--gold);  /* the paintings' late sun, from the top */
 
-    /* Type roles (see mural.css) */
-    --font-text:    "Cormorant Garamond";
-    --font-display: "IM Fell English";  /* title, author line, and passage headings */
-    --font-label:   "Inter";
+    /* Faces (see mural.css; --font-speaker, play.css). */
+    --font-title:           "IM Fell English", serif;
+    --font-author:          "IM Fell English", serif;
+    --font-passage-heading: "IM Fell English", serif;
+    --font-passage:         "Cormorant Garamond", serif;
+    --font-speaker:         "Inter", sans-serif;
+    --font-written:         "IM Fell English", serif;  /* Phoebe's letter, the tree verses */
+    --font-direction:       "Inter", sans-serif;       /* stage directions */
 
     /* Ink */
     --ink-bright: var(--ivory);      /* title */
@@ -56,13 +60,12 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, and the gap below come from mural.css; type and
-   spacing between the lines live here. No translator line: the play
-   is in its own English. IM Fell English is set at 400 throughout:
-   no synthesized bold. */
+/* Position, centering, faces, and the gap below come from mural.css;
+   size, color, and spacing between the lines live here. No translator
+   line: the play is in its own English. IM Fell English is set at 400
+   throughout: no synthesized bold. */
 
 .work-title {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: clamp(2.75rem, 7vw, 4.2rem);
     letter-spacing: 0.02em;
@@ -73,7 +76,6 @@ body {
 }
 
 .author {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: 1.3rem;
     letter-spacing: 0.06em;
@@ -89,7 +91,6 @@ body {
    so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0.03em;
@@ -113,18 +114,16 @@ body {
    SPEECHES, EXCHANGES, AND STAGE DIRECTIONS
    ============================================================ */
 
-/* Layout, rhythm, line breaks, and the narrow-screen stack come from
-   play.css; type and colors live here. */
+/* Layout, rhythm, line breaks, the speaker face, and the narrow-screen
+   stack come from play.css; sizes and colors live here. */
 
 .speaker {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .speaker-inline {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -155,11 +154,11 @@ body {
 
 /* Words read off the page (Phoebe's letter, the verses on the trees),
    set apart from the speaker's own voice, so an aside that breaks into
-   a letter is plainly the reader's: the display face, a rose rule, a
+   a letter is plainly the reader's: --font-written, a rose rule, a
    small inset. IM Fell's taller lowercase sits larger than Cormorant's
    at the same size, hence the step down. Upright, not italic. */
 .line--written {
-    font-family: var(--font-display), serif;
+    font-family: var(--font-written);
     font-size: 1.2rem;
     line-height: 1.7;
     padding-left: 1.1rem;
@@ -167,12 +166,12 @@ body {
     margin-block: 0.5rem;
 }
 
-/* Stage business, kept in its brackets: the label face in sentence case,
-   dim, so it reads as a note beside the speech rather than as a speaker.
-   Upright, not italic. The first stage direction in the Stoa; if another
-   play needs one, this belongs in play.css. */
+/* Stage business, kept in its brackets: --font-direction in sentence
+   case, dim, so it reads as a note beside the speech rather than as a
+   speaker. Upright, not italic. The first stage direction in the Stoa;
+   if another play needs one, this and its token belong in play.css. */
 .direction {
-    font-family: var(--font-label), sans-serif;
+    font-family: var(--font-direction);
     font-size: 0.85rem;
     letter-spacing: 0.04em;
     color: var(--ink-dim);

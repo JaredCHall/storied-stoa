@@ -8,10 +8,13 @@
     --scene-tint:   var(--nightfall);
     --scene-glow:   var(--cinnamon);  /* afterglow from the top */
 
-    /* Type roles (see mural.css) */
-    --font-text:    "Alegreya";            /* lines and songs: sturdier italic on dark */
-    --font-display: "IM Fell English SC";  /* title, author line, and passage headings */
-    --font-label:   "Inter";
+    /* Faces (see mural.css; --font-speaker, play.css) */
+    --font-title:           "IM Fell English SC", serif;
+    --font-author:          "IM Fell English SC", serif;
+    --font-translator:      "Inter", sans-serif;
+    --font-passage-heading: "IM Fell English SC", serif;
+    --font-passage:         "Alegreya", serif;  /* lines and songs: sturdier italic on dark */
+    --font-speaker:         "Inter", sans-serif;
 
     /* Colors come from colors.css. --cinnamon, the hoopoe's crest, used
        directly, sets the author line and passage headings; the stoa
@@ -59,12 +62,12 @@ body {
    TITLE BLOCK
    ============================================================ */
 
-/* Position, centering, and the gap below come from mural.css; type and
-   spacing between the lines live here. IM Fell English SC comes in one
-   weight, so every use sets 400: no synthesized bold. */
+/* Position, centering, faces, and the gap below come from mural.css;
+   size, color, and spacing between the lines live here. IM Fell
+   English SC comes in one weight, so every use sets 400: no
+   synthesized bold. */
 
 .work-title {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: clamp(3rem, 8vw, 4.6rem);
     letter-spacing: 0.04em;
@@ -75,7 +78,6 @@ body {
 }
 
 .author {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: 1.3rem;
     letter-spacing: 0.1em;
@@ -84,7 +86,6 @@ body {
 }
 
 .translator {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     color: var(--ink-dim);
@@ -99,7 +100,6 @@ body {
    so do the hairlines around each heading and their narrow-screen stack. */
 
 .passage-heading {
-    font-family: var(--font-display), serif;
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0.05em;
@@ -123,18 +123,16 @@ body {
    SPEECHES AND EXCHANGES
    ============================================================ */
 
-/* Layout, rhythm, line breaks, and the narrow-screen stack come from
-   play.css; type and colors live here. */
+/* Layout, rhythm, line breaks, the speaker face, and the narrow-screen
+   stack come from play.css; sizes and colors live here. */
 
 .speaker {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .speaker-inline {
-    font-family: var(--font-label), sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
