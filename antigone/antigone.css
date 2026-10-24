@@ -22,6 +22,10 @@
     --ink-dim:   var(--sandstone);  /* translator line */
     --ink-bright:   var(--ivory);   /* title */
 
+    --heading-ink: var(--gold);
+    --heading-ink-hover: var(--ink);
+    --line-ink: var(--parchment);
+
     /* No --ink-bright here: the title is in --ink, so the stoa link is too. */
     --footer-link-hover: var(--gold);
 
@@ -48,8 +52,6 @@
 
 body {
     color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
 /* ============================================================
@@ -86,20 +88,6 @@ body {
     font-size: 2rem;
     letter-spacing: 0.02em;
     font-style: italic;
-    color: var(--gold);
-}
-
-.passage-heading a:hover,
-.passage-heading a:focus-visible {
-    color: var(--ink);
-}
-
-/* A plain gold hairline between the quotes of one scene. Between excerpts,
-   mural.css spaces it. */
-.divider {
-    height: 0;
-    border: none;
-    border-top: 1px solid var(--quote-rule);
 }
 
 /* ============================================================
@@ -125,17 +113,3 @@ body {
 
 .speaker--antigone { --speaker-ink: var(--antigone); }
 .speaker--creon    { --speaker-ink: var(--creon); }
-
-.line {
-    font-size: 1.35rem;
-    line-height: 1.65;
-    font-weight: 300;
-    color: var(--ink);
-}
-
-.line-inline {
-    font-size: 1.15rem;
-    line-height: 1.55;
-    font-weight: 300;
-    color: var(--ink);
-}

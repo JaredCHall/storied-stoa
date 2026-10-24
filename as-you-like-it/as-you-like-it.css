@@ -23,6 +23,10 @@
     --ink-dim:    var(--limestone);  /* stage directions */
     --footer-link-hover: var(--rose);
 
+    --heading-ink: var(--rose);
+    --heading-ink-hover: var(--ink);
+    --line-ink: var(--parchment);
+
     /* Speaker names (see play.css): the two lovers, and everyone else */
     --rosalind:    var(--rose);
     --orlando:     var(--myrtle);
@@ -54,8 +58,6 @@
 
 body {
     color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
 /* ============================================================
@@ -88,20 +90,6 @@ body {
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0.03em;
-    color: var(--rose);
-}
-
-.passage-heading a:hover,
-.passage-heading a:focus-visible {
-    color: var(--ink);
-}
-
-/* A hairline between the quotes of one scene, fading at both ends.
-   Between excerpts, mural.css spaces it. */
-.divider {
-    height: 1px;
-    border: none;
-    background: linear-gradient(to right, transparent, var(--quote-rule), transparent);
 }
 
 /* ============================================================
@@ -128,26 +116,6 @@ body {
 .speaker--rosalind { --speaker-ink: var(--rosalind); }
 .speaker--orlando  { --speaker-ink: var(--orlando); }
 .speaker--hymen    { --speaker-ink: var(--hymen); }
-
-.line {
-    font-size: 1.35rem;
-    line-height: 1.65;
-    font-weight: 300;
-    color: var(--ink);
-}
-
-.line-inline {
-    font-size: 1.15rem;
-    line-height: 1.55;
-    color: var(--ink);
-}
-
-/* Cormorant's italic runs faint on a dark ground; a step up in weight
-   for Amiens' songs. */
-.song .line {
-    line-height: 1.75;
-    font-weight: 400;
-}
 
 /* Words read off the page (Phoebe's letter, the verses on the trees),
    set apart from the speaker's own voice, so an aside that breaks into

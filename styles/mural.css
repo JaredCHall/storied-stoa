@@ -40,6 +40,11 @@
     --font-passage:         "Crimson Pro", serif;  /* body and excerpts */
     --font-stoa-link:       "Inter", sans-serif;
 
+
+    --excerpt-ink: var(--vellum);
+    --heading-ink: var(--gold);
+    --heading-ink-hover: var(--ivory);
+
     /* The stoa link. Its face is --font-stoa-link, above. Its ink is the
        color on hover and focus; at rest the link shows it at 60%. The
        default names --ink-bright, which the mural defines; a mural
@@ -94,6 +99,8 @@ body {
     min-height: 100vh;
     background: var(--scene-ground);
     font-family: var(--font-passage);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 /* ============================================================
@@ -304,14 +311,7 @@ body {
     font-family: var(--font-passage-heading);
     margin: 0 0 var(--space-after-heading);
     scroll-margin-top: var(--frame-top);
-}
-
-.excerpt {
-    margin: 0;
-}
-
-.excerpt + .divider {
-    margin-block: var(--space-around-divider);
+    color: var(--heading-ink);
 }
 
 .passage-heading a {
@@ -319,6 +319,39 @@ body {
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
 }
+
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
+    color: var(--heading-ink-hover);
+}
+
+.excerpt {
+    margin: 0;
+    font-size: 1.35rem;
+    line-height: 1.65;
+    font-weight: 300;
+    color: var(--excerpt-ink);
+}
+
+.excerpt p {
+    margin-bottom: 16px;
+}
+
+.excerpt p:last-child {
+    margin-bottom: 0;
+}
+
+.excerpt + .divider {
+    margin-block: var(--space-around-divider);
+}
+
+.divider {
+    height: 2px;
+    border: none;
+    background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
+}
+
+
 
 /* ---------- Passage-heading hairlines ---------- */
 

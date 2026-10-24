@@ -17,6 +17,11 @@
     --ink:        var(--bone);       /* base text; links brighten to it on hover */
     --ink-soft:   var(--vellum);     /* passage text */
     --ink-dim:    var(--sandstone);  /* author line */
+
+    --heading-ink: var(--brass);
+    --heading-ink-hover: var(--ink);
+
+    --excerpt-ink:   var(--ink-soft);
     --footer-link-hover: var(--ink);
 
     /* Hairlines around the chapter labels (drawn by mural.css); the
@@ -76,38 +81,6 @@ body {
     letter-spacing: 0.14em;
     color: var(--brass);
     text-transform: uppercase;
-}
-
-.passage-heading a:hover,
-.passage-heading a:focus-visible {
-    color: var(--ink);
-}
-
-/* The two flanking lines joined, with no text between them. Between excerpts,
-   mural.css spaces it. Opening a passage, it stands in for a heading when the
-   passage continues the previous chapter's title: the margin-top drops it to
-   where a heading's lines would sit. */
-.divider {
-    border: none;
-    height: 2px;
-    margin: 14px 0 var(--space-around-divider);
-    background: linear-gradient(to right, transparent, var(--heading-rule), transparent);
-}
-
-/* The face, --font-passage, comes from <body> (mural.css). */
-.excerpt {
-    font-size: 1.35rem;
-    line-height: 1.65;
-    font-weight: 300;
-    color: var(--ink-soft);
-}
-
-.excerpt p {
-    margin-bottom: 16px;
-}
-
-.excerpt p:last-child {
-    margin-bottom: 0;
 }
 
 .hymn {
