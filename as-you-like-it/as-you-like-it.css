@@ -23,8 +23,8 @@
     --ink-dim:    var(--limestone);  /* stage directions */
     --footer-link-hover: var(--rose);
 
-    --heading-ink: var(--rose);
-    --heading-ink-hover: var(--ink);
+    --passage-heading-ink: var(--rose);
+    --passage-heading-ink-hover: var(--ink);
     --line-ink: var(--parchment);
 
     /* Speaker names (see play.css): the two lovers, and everyone else */

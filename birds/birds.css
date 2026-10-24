@@ -25,8 +25,8 @@
     --ink:        var(--bone);     /* base text and lines; headings brighten to it on hover */
     --ink-dim:    var(--heather);  /* translator line */
 
-    --heading-ink: var(--cinnamon);
-    --heading-ink-hover: var(--ink);
+    --passage-heading-ink: var(--cinnamon);
+    --passage-heading-ink-hover: var(--ink);
     --line-ink: var(--parchment);
 
     --footer-ink: var(--heather);

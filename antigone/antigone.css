@@ -22,8 +22,8 @@
     --ink-dim:   var(--sandstone);  /* translator line */
     --ink-bright:   var(--ivory);   /* title */
 
-    --heading-ink: var(--gold);
-    --heading-ink-hover: var(--ink);
+    --passage-heading-ink: var(--gold);
+    --passage-heading-ink-hover: var(--ink);
     --line-ink: var(--parchment);
 
     /* No --ink-bright here: the title is in --ink, so the stoa link is too. */

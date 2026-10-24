@@ -18,8 +18,8 @@
     --ink-soft:   var(--vellum);     /* passage text */
     --ink-dim:    var(--sandstone);  /* author line */
 
-    --heading-ink: var(--brass);
-    --heading-ink-hover: var(--ink);
+    --passage-heading-ink: var(--brass);
+    --passage-heading-ink-hover: var(--ink);
 
     --excerpt-ink:   var(--ink-soft);
     --footer-link-hover: var(--ink);

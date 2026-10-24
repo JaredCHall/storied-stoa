@@ -42,8 +42,8 @@
 
 
     --excerpt-ink: var(--vellum);
-    --heading-ink: var(--gold);
-    --heading-ink-hover: var(--ivory);
+    --passage-heading-ink: var(--gold);
+    --passage-heading-ink-hover: var(--ivory);
 
     /* The stoa link. Its face is --font-stoa-link, above. Its ink is the
        color on hover and focus; at rest the link shows it at 60%. The
@@ -311,7 +311,7 @@ body {
     font-family: var(--font-passage-heading);
     margin: 0 0 var(--space-after-heading);
     scroll-margin-top: var(--frame-top);
-    color: var(--heading-ink);
+    color: var(--passage-heading-ink);
 }
 
 .passage-heading a {
@@ -322,7 +322,7 @@ body {
 
 .passage-heading a:hover,
 .passage-heading a:focus-visible {
-    color: var(--heading-ink-hover);
+    color: var(--passage-heading-ink-hover);
 }
 
 .excerpt {
