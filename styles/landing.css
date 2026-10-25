@@ -1,43 +1,57 @@
 /* ============================================================
    LANDING — the Stoa's front page: the painted backdrop, the
    masthead, and a card for each mural.
-   Load after ../styles/colors.css.
+   Load after colors.css; footer.css may come anywhere after it.
    ============================================================ */
 
 :root {
-    /* The frame: line length of the content column. */
-    --measure: 46rem;
-
-    --font-body:    'Cormorant Garamond';
-    --font-masthead: 'Cormorant SC';
-    --font-mural-title: 'Cormorant SC';
-    --font-section-label: 'Cormorant SC';
-
-    /* A card borrows its mural's title face when the landing page has
-       no role for it. */
-    --font-birds-title: 'IM Fell English SC';
-    --font-as-you-like-it-title: 'IM Fell English';
-
-    /* Ink */
-    --ink-bright: var(--ivory);      /* masthead and card titles */
-    --ink:        var(--parchment);  /* base text */
-    --ink-dim:    var(--sandstone);  /* subtitle and card authors */
-    --ink-accent: var(--gold);       /* section label, ornament rule, and focus ring; card titles turn to it on hover */
-
+    /* Page */
+    --measure:     46rem;  /* line length of the content column */
+    --page-font:   'Cormorant Garamond', serif;
+    --page-ink:    var(--parchment);
     --page-ground: var(--charcoal);
+
+    /* Backdrop veil over the painting. Give opaque colors: the veil
+       applies its own transparency. */
+    --veil-glow:     var(--umber);     /* warm Theban light, top left, at 30% */
+    --veil-water:    var(--harbor);    /* deep Nantucket water, bottom right, at 45% */
+    --veil-vignette: var(--black);     /* darkened edges, at 45% */
+    --veil-tint:     var(--charcoal);  /* overall wash, at 20% */
+
+    /* Masthead */
+    --masthead-font: 'Cormorant SC', serif;
+    --masthead-ink:  var(--ivory);
+    --masthead-rule: var(--gold);      /* the ornament under the title */
+    --masthead-subtitle-ink: var(--sandstone);
+
+    /* Section Labels */
+    --section-label-font: 'Cormorant SC', serif;
+    --section-label-ink:  var(--gold);
+    --section-label-rule: color-mix(in srgb, var(--gold) 55%, transparent);
+
+    /* Cards. Each card sets its own tint, accent, and title face
+       below; these are the defaults. Give an opaque tint: the card
+       applies its own transparency. */
+    --card-gap:          1.5rem;
+    --card-tint:         var(--page-ground);
+    --card-accent:       var(--gold);  /* short bar above the title */
+    --card-border:       color-mix(in srgb, var(--gold) 25%, transparent);
+    --card-border-hover: color-mix(in srgb, var(--gold) 55%, transparent);
+    --card-focus:        var(--gold);
+
+    /* Card Titles */
+    --card-title-font:      var(--page-font);
+    --card-title-weight:    400;
+    --card-title-style:     normal;
+    --card-title-tracking:  0.02em;
+    --card-title-ink:       var(--ivory);
+    --card-title-ink-hover: var(--gold);
+
+    /* Card Authors */
+    --card-author-ink: var(--sandstone);
+
+    /* Footer */
     --footer-link-hover: var(--gold);
-
-
-    /* Hairlines */
-    --rule:        color-mix(in srgb, var(--gold) 25%, transparent);  /* card borders at rest */
-    --rule-strong: color-mix(in srgb, var(--gold) 55%, transparent);  /* section-label hairlines; card borders on hover */
-
-    /* Veil over the painting. Give opaque colors: the veil applies its
-       own transparency. */
-    --veil-glow:     var(--umber);        /* warm Theban light, top left, at 30% */
-    --veil-water:    var(--harbor);       /* deep Nantucket water, bottom right, at 45% */
-    --veil-vignette: var(--black);        /* darkened edges, at 45% */
-    --veil-tint:     var(--charcoal);         /* overall wash, at 20% */
 }
 
 /* ============================================================
@@ -57,8 +71,8 @@ body {
     display: flex;
     flex-direction: column;
     background: var(--page-ground);
-    color: var(--ink);
-    font-family: var(--font-body);
+    color: var(--page-ink);
+    font-family: var(--page-font);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -94,8 +108,7 @@ body {
 
 /* Warm Theban glow above, deep Nantucket water below, over the
    painting's own warm-to-cool light; grain as on the murals. Lighter
-   than the murals' 70% wash: this painting is dark already. Colors
-   come from the --veil-* tokens on :root. */
+   than the murals' 70% wash: this painting is dark already. */
 .backdrop-veil {
     z-index: 1;
     background:
@@ -130,27 +143,27 @@ body {
 }
 
 .masthead h1 {
-    font-family: var(--font-masthead);
+    font-family: var(--masthead-font);
     font-weight: 500;
     font-size: clamp(2.75rem, 8vw, 4.2rem);
     letter-spacing: 0.06em;
     line-height: 1.1;
-    color: var(--ink-bright);
+    color: var(--masthead-ink);
     text-shadow: 0 2px 24px color-mix(in srgb, var(--black) 80%, transparent);
 }
 
-.rule {
+.masthead-rule {
     width: 140px;
     height: 1px;
     margin: 1.5rem auto;
-    background: linear-gradient(to right, transparent, var(--ink-accent), transparent);
+    background: linear-gradient(to right, transparent, var(--masthead-rule), transparent);
 }
 
-.subtitle {
+.masthead-subtitle {
     font-style: italic;
     font-size: 1.4rem;
     letter-spacing: 0.03em;
-    color: var(--ink-dim);
+    color: var(--masthead-subtitle-ink);
 }
 
 /* ============================================================
@@ -162,11 +175,11 @@ body {
     align-items: center;
     gap: 1.25rem;
     margin-bottom: 2rem;
-    font-family: var(--font-section-label), serif;
+    font-family: var(--section-label-font);
     font-weight: 600;
     font-size: 1.15rem;
     letter-spacing: 0.16em;
-    color: var(--ink-accent);
+    color: var(--section-label-ink);
 }
 
 .section-label::before,
@@ -177,8 +190,8 @@ body {
     height: 2px;
 }
 
-.section-label::before { background: linear-gradient(to right, transparent, var(--rule-strong)); }
-.section-label::after  { background: linear-gradient(to left,  transparent, var(--rule-strong)); }
+.section-label::before { background: linear-gradient(to right, transparent, var(--section-label-rule)); }
+.section-label::after  { background: linear-gradient(to left,  transparent, var(--section-label-rule)); }
 
 /* ============================================================
    SHELVES (one per kind of work: plays, novels, …)
@@ -200,14 +213,13 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
+    gap: var(--card-gap);
 }
 
 .murals > li {
-    flex: 0 0 calc((100% - 1.5rem) / 2);  /* half the row, less the gap */
+    flex: 0 0 calc((100% - var(--card-gap)) / 2);  /* half the row, less the gap */
 }
 
-/* Colors come from the --card-* tokens each card sets below. */
 .mural {
     display: block;
     height: 100%;
@@ -216,18 +228,18 @@ body {
     text-decoration: none;
     color: inherit;
     background: color-mix(in srgb, var(--card-tint) 75%, transparent);
-    border: 1px solid var(--rule);
+    border: 1px solid var(--card-border);
     transition: border-color 0.3s ease, transform 0.3s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
 .mural:hover {
-    border-color: var(--rule-strong);
+    border-color: var(--card-border-hover);
     transform: translateY(-2px);
 }
 
 .mural:focus-visible {
-    outline: 1px solid var(--ink-accent);
+    outline: 1px solid var(--card-focus);
     outline-offset: 4px;
 }
 
@@ -239,65 +251,56 @@ body {
 }
 
 .mural-title {
+    font-family:    var(--card-title-font);
+    font-weight:    var(--card-title-weight);
+    font-style:     var(--card-title-style);
+    letter-spacing: var(--card-title-tracking);
+    color:          var(--card-title-ink);
     font-size: 2rem;
     line-height: 1.15;
     margin-bottom: 0.75rem;
-    color: var(--ink-bright);
     transition: color 0.3s ease;
 }
 
 .mural:hover .mural-title,
 .mural:focus-visible .mural-title {
-    color: var(--ink-accent);
+    color: var(--card-title-ink-hover);
 }
 
 .mural-author {
     font-style: italic;
     font-size: 1.15rem;
-    color: var(--ink-dim);
+    color: var(--card-author-ink);
 }
 
-/* Each card borrows its mural's own colors and title face. Give opaque
-   colors: the card applies its own transparency to the tint. */
+/* Each card borrows its mural's scene ground, its accent, and its
+   title face. The modifier sets only tokens. */
 .mural--antigone {
-    --card-tint:   var(--lamp-black);  /* fill, at 75%: Antigone's scene ground */
-    --card-accent: var(--wine);        /* short bar above the title: Antigone's own name color */
+    --card-tint:         var(--lamp-black);  /* Antigone's scene ground */
+    --card-accent:       var(--wine);        /* Antigone's own name color */
+    --card-title-weight: 500;
+    --card-title-style:  italic;
 }
-.mural--antigone .mural-title {
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-.mural--moby-dick {
-    --card-tint:   var(--deep-sea);    /* Moby-Dick's scene ground */
-    --card-accent: var(--brass);       /* Moby-Dick's headings */
-}
-.mural--moby-dick .mural-title {
-    font-family: var(--font-mural-title), serif;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-}
-
 
 .mural--birds {
-    --card-tint:   var(--dusk);        /* Birds' scene ground */
-    --card-accent: var(--cinnamon);    /* the hoopoe's crest: Birds' headings */
-}
-.mural--birds .mural-title {
-    font-family: var(--font-birds-title), serif;
-    font-weight: 400;                  /* the face's only weight */
-    letter-spacing: 0.04em;
+    --card-tint:           var(--dusk);      /* Birds' scene ground */
+    --card-accent:         var(--cinnamon);  /* the hoopoe's crest: Birds' headings */
+    --card-title-font:     'IM Fell English SC', serif;  /* the face's only weight */
+    --card-title-tracking: 0.04em;
 }
 
 .mural--as-you-like-it {
-    --card-tint:   var(--greenwood);   /* As You Like It's scene ground */
-    --card-accent: var(--rose);        /* Rosalind's own name color, and its headings */
+    --card-tint:       var(--greenwood);     /* As You Like It's scene ground */
+    --card-accent:     var(--rose);          /* Rosalind's own name color, and its headings */
+    --card-title-font: 'IM Fell English', serif;
 }
-.mural--as-you-like-it .mural-title {
-    font-family: var(--font-as-you-like-it-title), serif;
-    font-weight: 400;                  /* no synthesized bold */
-    letter-spacing: 0.02em;
+
+.mural--moby-dick {
+    --card-tint:           var(--deep-sea);  /* Moby-Dick's scene ground */
+    --card-accent:         var(--brass);     /* Moby-Dick's headings */
+    --card-title-font:     'Cormorant SC', serif;
+    --card-title-weight:   500;
+    --card-title-tracking: 0.06em;
 }
 
 /* ============================================================
