@@ -29,6 +29,7 @@
     --creon:        var(--bronze);
 
     /* Footer */
+    --footer-ink: var(--brass-pale);
     --footer-link-hover: var(--gold);
 
     /* Gallery toggle */

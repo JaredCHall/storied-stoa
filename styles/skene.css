@@ -1,5 +1,5 @@
 
-:root {
+:where(:root) {
     /* Scene ground: what shows when no image has loaded. Give opaque
        colors: the overlay applies its own transparency. Neutral
        defaults from colors.css; each mural overrides what it needs. */
@@ -60,6 +60,54 @@ body {
             radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
             radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
             color-mix(in srgb, var(--scene-tint) 70%, transparent);
+}
+
+/* ============================================================
+   STOA LINK (eyebrow above the title, back to the landing page)
+   ============================================================ */
+
+/* Flex, so the eyebrow is exactly as tall as the link: no stray line box. */
+.stoa-eyebrow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+}
+
+.stoa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--stoa-link-font);
+    font-size: 0.7rem;
+    line-height: 1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--stoa-link-ink);
+    transition: color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: var(--stoa-link-ink-hover);
+}
+
+/* The arrow: an SVG used as a mask over the link's own color, so it
+   brightens with the text on hover and needs no glyph from any font.
+   Inline as a data: URI, so nothing is fetched. */
+.stoa-link::before {
+    content: "";
+    flex: none;
+    width: 1em;   /* no taller than the text, so the link is 1em tall */
+    height: 1em;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M14 8H2.5M7 3.5 2.5 8 7 12.5' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.stoa-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 6px;
 }
 
 /* ============================================================

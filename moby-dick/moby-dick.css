@@ -18,7 +18,7 @@
     --passage-heading-weight:     700;
     --passage-heading-transform:  uppercase;
     --passage-heading-ink:        var(--brass);
-    --passage-heading-ink-hover:  var(--ink);
+    --passage-heading-ink-hover:  var(--bone);
 
     /* Footer */
     --footer-link-hover: var(--bone);

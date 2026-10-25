@@ -20,7 +20,6 @@
     --passage-heading-font:      "IM Fell English SC", serif;
     --passage-heading-ink:       var(--cinnamon);
     --passage-heading-ink-hover: var(--bone);
-    --passage-heading-rule:      color-mix(in srgb, var(--cinnamon) 50%, transparent);
 
     /* Speakers */
     --speaker-column: 9.5rem;                   /* Wide enough for "First Messenger" on one line */

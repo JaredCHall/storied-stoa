@@ -13,12 +13,6 @@
     --passage-heading-font:      'IM Fell English', serif;
     --passage-heading-ink:       var(--rose);
     --passage-heading-ink-hover: var(--parchment);
-    --passage-heading-rule:      color-mix(in srgb, var(--rose) 50%, transparent);
-
-    /* Passages */
-    --passage-font:   'Crimson Pro', serif;
-    --passage-ink:    var(--parchment);
-    --passage-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
 
     /* Speakers */
     --speaker-column: 9.5rem;               /* Wide enough for "Duke Frederick" on one line */
