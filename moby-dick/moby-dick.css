@@ -8,32 +8,23 @@
 
     /* Work Title */
     --title-font: 'Cormorant SC', serif;
+    --title-weight: 700;
     --title-ink:  var(--ivory);
 
     /* Author */
     --author-font: 'IM Fell English', serif;
+    --author-style: italic;
     --author-ink:  var(--sandstone);
 
     /* Passage Headings */
     --passage-heading-font:      'Cormorant SC', serif;
-    --passage-heading-ink:       var(--brass);
-    --passage-heading-ink-hover: var(--ink);
-    --passage-heading-rule:              color-mix(in srgb, var(--brass-pale) 50%, transparent);
-
-    /* Passages */
-    --passage-font: 'Crimson Pro', serif;
-    --passage-ink:  var(--vellum);
+    --passage-heading-weight:     700;
+    --passage-heading-transform:  uppercase;
+    --passage-heading-ink:        var(--brass);
+    --passage-heading-ink-hover:  var(--ink);
 
     /* Footer */
     --footer-link-hover: var(--bone);
-
-    /* Font sizes (the title block's come from mural.css) */
-    --size-passage-heading: 1.5rem;
-    --size-excerpt:         1.5rem;
-
-    /* Font sizes — mobile */
-    --size-passage-heading-mobile: 0.95rem;
-    --size-excerpt-mobile:         1.25rem;
 
     /* Gallery toggle */
     --toggle-ground:    var(--winedark-sea);
@@ -45,21 +36,6 @@
 /* ============================================================
    ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-.work-title {
-    font-weight: 700;
-}
-
-.author {
-    font-style: italic;
-}
-
-.passage-heading {
-    font-size: var(--size-passage-heading);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
 
 .hymn {
     width: fit-content;
@@ -75,20 +51,4 @@
 }
 .hymn .line.indent {
     padding-left: 3em;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-/* Same breakpoint as the shared frame in mural.css. */
-@media (max-width: 40rem) {
-    .excerpt              { font-size: var(--size-excerpt-mobile); }
-    .passage-heading      { font-size: var(--size-passage-heading-mobile); }
-
-    /* Shortened to match the single hairline over each heading. */
-    .divider {
-        width: var(--passage-heading-rule-short);
-        margin: 0 auto 64px;
-    }
 }

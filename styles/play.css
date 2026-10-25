@@ -12,12 +12,16 @@
        to that character's color; a speaker with no class takes the
        :root value. Give a finished color. Neutral default; each
        mural overrides it. */
-    --speaker-ink:  var(--limestone);
-    --speaker-font: "Inter";
+    --speaker-ink:    var(--limestone);
+    --speaker-font:   'Inter', sans-serif;
+    --speaker-column: 8.5rem; /* Wide enough for the play's longest name at the mural's label size. */
 
-    /* Exchanges: the speaker column beside each line. Wide enough for
-       the play's longest name at the mural's label size. */
-    --speaker-column: 8.5rem;
+    --stage-direction-font: 'Inter', sans-serif;
+    --stage-direction-ink:  var(--flax);
+
+    /* Written Letters / Notes; Phoebe's letter, the tree verses */
+    --written-font: 'IM Fell English', serif;
+    --written-rule: color-mix(in srgb, var(--parchment) 40%, transparent);
 
     /* Speech rhythm */
     --space-above-speaker:          1.3rem;  /* the turn: last line to the next name; none above the first */
@@ -30,38 +34,13 @@
     --song-inset: 3.5rem;
 }
 
-/* Markup, inside an excerpt:
-   Speeches:
-       <p class="speaker speaker--antigone">Antigone</p>
-       <p class="line">…</p>
-   Exchanges (stichomythia):
-       <blockquote class="excerpt excerpt--exchange">
-           <div class="exchange-line">
-               <span class="speaker-inline speaker--creon">Creon</span>
-               <span class="line-inline">…</span>
-           </div>
-       </blockquote>
-   Songs: wrap a sung speech, or a run of them, speakers included:
-       <div class="song">
-           <p class="speaker …">…</p>
-           <p class="line">…</p>
-       </div>
-     Only what the play sets as song: a translation that puts every
-     line in verse still keeps its spoken lines out of this.
-   - The mural defines each speaker modifier and sets only the token in
-     it: .speaker--antigone { --speaker-ink: var(--antigone); }
-   - Line breaks in the source are line breaks on the page; indentation
-     in the source is not.
-   - The type of names and lines is the mural's: face, size, spacing,
-     case, line height, and the lines' color. */
-
 /* ============================================================
    SPEECHES
    ============================================================ */
 
-.speaker {
+.excerpt .speaker {
     margin: var(--space-above-speaker) 0 var(--space-below-speaker);
-    font-family: var(--speaker-font), sans-serif;
+    font-family: var(--speaker-font);
     color: var(--speaker-ink);
     font-size: 0.8rem;
     letter-spacing: 0.14em;
@@ -69,8 +48,8 @@
     font-weight: 500;
 }
 
-.speaker-inline {
-    font-family: var(--speaker-font), sans-serif;
+.excerpt .speaker-inline {
+    font-family: var(--speaker-font);
     color: var(--speaker-ink);
     font-size: 0.72rem;
     letter-spacing: 0.12em;
@@ -142,6 +121,34 @@
     gap: 1rem;
     align-items: baseline;
 }
+
+/* ============================================================
+   Stage Directions
+   ============================================================ */
+
+.stage-direction {
+    font-family: var(--stage-direction-font);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--stage-direction-ink);
+    margin: 0.6rem 0;
+}
+
+/* ============================================================
+   Written Lines
+   ============================================================ */
+
+/* Words read off the page (Phoebe's letter, the verses on the trees) */
+.line--written {
+    font-family: var(--written-font);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--written-rule);
+    margin-block: 0.75rem;
+    font-weight: 400;
+}
+
 
 /* Too narrow for two columns: stack each speaker above the line.
    Same breakpoint as the shared frame in mural.css. */

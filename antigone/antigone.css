@@ -7,10 +7,13 @@
 
     /* Work Title */
     --title-font: 'Cormorant Garamond', serif;
+    --title-weight: 500;
+    --title-style: italic;
     --title-ink:  var(--ivory);
 
     /* Author */
     --author-font: 'Inter', sans-serif;
+    --author-transform: uppercase;
     --author-ink:  var(--gold);
 
     /* Translator */
@@ -19,17 +22,13 @@
 
     /* Passage Headings */
     --passage-heading-font:     'Cormorant Garamond', serif;
+    --passage-heading-size:      2rem;
+    --passage-heading-weight:    500;
+    --passage-heading-style:     italic;
     --passage-heading-ink:       var(--gold);
     --passage-heading-ink-hover: var(--parchment);
-    --passage-heading-rule:              color-mix(in srgb, var(--gold) 55%, transparent);
-
-    /* Passages */
-    --passage-font: 'Crimson Pro', serif;
-    --passage-ink:  var(--parchment);
-    --passage-rule:   color-mix(in srgb, var(--gold) 25%, transparent);
 
     /* Speakers */
-    --speaker-font: 'Inter', sans-serif;
     --speaker-ink:  var(--limestone);
     --antigone:     var(--wine);
     --creon:        var(--bronze);
@@ -47,22 +46,6 @@
 /* ============================================================
    ADDITIONAL CUSTOM RULES
    ============================================================ */
-
-.work-title {
-    font-weight: 500;
-    font-style: italic;
-}
-
-.author {
-    text-transform: uppercase;
-}
-
-.passage-heading {
-    font-weight: 500;
-    font-size: 2rem;
-    letter-spacing: 0.02em;
-    font-style: italic;
-}
 
 .speaker--antigone { --speaker-ink: var(--antigone); }
 .speaker--creon    { --speaker-ink: var(--creon); }

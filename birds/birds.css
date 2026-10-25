@@ -24,15 +24,9 @@
     --passage-heading-font:      "IM Fell English SC", serif;
     --passage-heading-ink:       var(--cinnamon);
     --passage-heading-ink-hover: var(--bone);
-    --passage-heading-rule:              color-mix(in srgb, var(--cinnamon) 50%, transparent);
-
-    /* Passages */
-    --passage-font: 'Crimson Pro', serif;
-    --passage-ink:  var(--parchment);
-    --passage-rule:   color-mix(in srgb, var(--cinnamon) 25%, transparent);
+    --passage-heading-rule:      color-mix(in srgb, var(--cinnamon) 50%, transparent);
 
     /* Speakers */
-    --speaker-font:  'Inter', sans-serif;
     --speaker-column: 9.5rem;                   /* Wide enough for "First Messenger" on one line */
     --speaker-ink:    var(--heather);
     --peisetaerus:    var(--myrtle);
@@ -57,24 +51,5 @@
    ADDITIONAL CUSTOM RULES
    ============================================================ */
 
-.work-title {
-    font-weight: 400;
-}
-
-.author {
-    font-weight: 400;
-}
-
-.passage-heading {
-    font-weight: 400;
-    font-size: 1.75rem;
-    letter-spacing: 0.05em;
-}
-
 .speaker--peisetaerus { --speaker-ink: var(--peisetaerus); }
 .speaker--birds       { --speaker-ink: var(--birds); }
-
-/* Same breakpoint as the shared frame in mural.css. */
-@media (max-width: 40rem) {
-    .passage-heading { font-size: 1.4rem; }
-}

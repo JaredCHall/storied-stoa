@@ -22,25 +22,36 @@
     --space-after-heading:    1.75rem;   /* 28px: heading to its first excerpt */
     --space-around-divider:   2.625rem;  /* 42px above and below a divider */
 
-    --title-font:  "IM Fell English", serif;
-    --title-ink:   var(--ivory);
+    --title-font:   "IM Fell English", serif;
+    --title-size:   clamp(2.75rem, 7vw, 4.2rem);
+    --title-style:  normal;
+    --title-weight: 400;
+    --title-ink:    var(--ivory);
 
-    --author-font:  "Inter", sans-serif;
-    --author-ink:   var(--sandstone);
+    --author-font:      "Inter", sans-serif;
+    --author-size:      1.3rem;
+    --author-weight:    400;
+    --author-style:     normal;
+    --author-transform: none;
+    --author-ink:       var(--sandstone);
 
     --translator-font:  "Inter", sans-serif;
     --translator-ink:   var(--sandstone);
 
-    --passage-heading-font: "IM Fell English", serif;
-    --passage-heading-ink: var(--gold);
-    --passage-heading-ink-hover: var(--ivory);
+    --passage-heading-font:       "IM Fell English", serif;
+    --passage-heading-weight:     400;
+    --passage-heading-style:      normal;
+    --passage-heading-size:       clamp(1.4rem, 0.7rem + 1.75vw, 1.75rem);
+    --passage-heading-transform:  none;
+    --passage-heading-ink:        var(--gold);
+    --passage-heading-ink-hover:  var(--ivory);
     --passage-heading-rule:       color-mix(in srgb, var(--passage-heading-ink) 50%, transparent);
     --passage-heading-rule-short: 8.75rem;  /* 140px: the single line on narrow screens */
 
     /* body and excerpts */
     --passage-font: "Crimson Pro", serif;
     --passage-ink:  var(--parchment);
-    --passage-rule:     color-mix(in srgb, var(--passage-heading-ink) 40%, transparent);
+    --passage-rule: color-mix(in srgb, var(--passage-heading-ink) 40%, transparent);
 
     /* The stoa link. */
     --stoa-link-font:       "Inter", sans-serif;
@@ -167,8 +178,10 @@ body {
 /* clamp() carries the narrow-screen size: no breakpoint rule needed. */
 .work-title {
     font-family: var(--title-font);
-    color: var(--title-ink);
-    font-size: clamp(2.75rem, 7vw, 4.2rem);
+    font-size:   var(--title-size);
+    font-weight: var(--title-weight);
+    font-style:  var(--title-style);
+    color:       var(--title-ink);
     line-height: 1.1;
     letter-spacing: 0.04em;
     margin-bottom: 0.9rem;
@@ -177,8 +190,11 @@ body {
 
 .author {
     font-family: var(--author-font);
+    font-size: var(--author-size);
+    font-weight: var(--author-weight);
+    font-style:  var(--author-style);
+    text-transform:  var(--author-transform);
     color: var(--author-ink);
-    font-size: 1.3rem;
     letter-spacing: 0.08em;
 }
 
@@ -262,6 +278,10 @@ body {
 /* A jumped-to heading lands where the eyebrow sits at the top of the page. */
 .passage-heading {
     font-family: var(--passage-heading-font);
+    font-size: var(--passage-heading-size);
+    font-weight: var(--passage-heading-weight);
+    font-style:  var(--passage-heading-style);
+    text-transform:  var(--passage-heading-transform);
     margin: 0 0 var(--space-after-heading);
     scroll-margin-top: var(--frame-top);
 }
@@ -315,6 +335,7 @@ body {
     gap: 1.25rem;
     text-align: center;
     text-wrap: balance;  /* if a label must break, break it evenly */
+    letter-spacing: 0.03em;
 }
 
 .passage-heading::before,

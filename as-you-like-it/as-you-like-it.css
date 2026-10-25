@@ -28,20 +28,13 @@
     --passage-rule:   color-mix(in srgb, var(--rose) 25%, transparent);
 
     /* Speakers */
-    --speaker-font:   'Inter', sans-serif;
     --speaker-column: 9.5rem;               /* Wide enough for "Duke Frederick" on one line */
     --speaker-ink:    var(--sandstone);
     --rosalind:       var(--rose);
     --orlando:        var(--myrtle);
     --hymen:          var(--gold);
 
-    /* Stage Directions */
-    --stage-direction-font: 'Inter', sans-serif;
-    --stage-direction-ink:  var(--limestone);
-
-
     /* Written Letters / Notes; Phoebe's letter, the tree verses */
-    --written-font: 'IM Fell English', serif;
     --written-rule: color-mix(in srgb, var(--rose) 40%, transparent);
 
     /* Stoa Link */
@@ -61,56 +54,6 @@
    ADDITIONAL CUSTOM RULES
    ============================================================ */
 
-.work-title {
-    font-weight: 400;
-}
-
-.author {
-    font-weight: 400;
-}
-
-.passage-heading {
-    font-weight: 400;
-    font-size: 1.75rem;
-    letter-spacing: 0.03em;
-}
-
 .speaker--rosalind { --speaker-ink: var(--rosalind); }
 .speaker--orlando  { --speaker-ink: var(--orlando); }
 .speaker--hymen    { --speaker-ink: var(--hymen); }
-
-/* Words read off the page (Phoebe's letter, the verses on the trees),
-   set apart from the speaker's own voice, so an aside that breaks into
-   a letter is plainly the reader's: --font-written, a rose rule, a
-   small inset. IM Fell's taller lowercase sits larger than Cormorant's
-   at the same size, hence the step down. Upright, not italic. */
-.line--written {
-    font-family: var(--written-font);
-    font-size: 1.2rem;
-    line-height: 1.7;
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--written-rule);
-    margin-block: 0.75rem;
-    font-weight: 400;
-}
-
-/* Stage business, kept in its brackets: --font-direction in sentence
-   case, dim, so it reads as a note beside the speech rather than as a
-   speaker. Upright, not italic. The first stage direction in the Stoa;
-   if another play needs one, this and its token belong in play.css. */
-.direction {
-    font-family: var(--stage-direction-font);
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    color: var(--stage-direction-ink);
-    margin: 0.6rem 0;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-/* Same breakpoint as the shared frame in mural.css. */
-@media (max-width: 40rem) {
-    .passage-heading { font-size: 1.4rem; }
-}
