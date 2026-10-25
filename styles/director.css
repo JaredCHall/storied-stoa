@@ -1,0 +1,184 @@
+
+:root {
+    /* Scene ground: what shows when no image has loaded. Give opaque
+       colors: the overlay applies its own transparency. Neutral
+       defaults from colors.css; each mural overrides what it needs. */
+    --scene-ground:   var(--charcoal);      /* page background */
+    --scene-tint:     var(--charcoal);      /* overlay wash, at 70% */
+    --scene-glow:     var(--umber);         /* warm light from the top, at 25% */
+    --scene-vignette: var(--black);         /* darkened edges, at 45% */
+
+    /* Gallery toggle palette. Give opaque colors: the button applies its
+       own transparency. Neutral defaults; each mural overrides these. */
+    --toggle-ground:     var(--charcoal);   /* fill behind the glyph */
+    --toggle-line:       var(--sandstone);  /* ring */
+    --toggle-ink:        var(--limestone);  /* glyph at rest */
+    --toggle-ink-hover:  var(--parchment);  /* glyph on hover */
+}
+
+body {
+    background: var(--scene-ground);
+}
+
+/* ============================================================
+   SCENE / BACKGROUND LAYERS
+   ============================================================ */
+
+.scene-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100lvh;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 1.25s ease-in-out; /* the script reads this as the crossfade length */
+}
+
+.scene-layer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* like background-size: cover */
+    object-position: center;  /* like background-position */
+}
+
+.scene-layer.hidden {
+    opacity: 0;
+}
+
+/* Colors come from the --scene-* tokens on :root. */
+.scene-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100lvh;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+    background:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
+            radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
+            radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
+            color-mix(in srgb, var(--scene-tint) 70%, transparent);
+}
+
+/* ============================================================
+   GALLERY BUTTONS (toggle and pause; the script inserts both)
+   ============================================================ */
+
+/* Colors come from the --toggle-* tokens on :root. */
+#gallery-toggle,
+#gallery-pause {
+    position: fixed;
+    bottom: 32px;
+    right: 36px;
+    z-index: 10;
+    background: color-mix(in srgb, var(--toggle-ground) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--toggle-line) 28%, transparent);
+    border-radius: 50%;
+    color: var(--toggle-ink);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    font-size: 1.2rem;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Pause sits left of the toggle: 36px offset + 44px toggle + 12px gap. */
+#gallery-pause {
+    right: 92px;
+}
+
+/* The script draws both buttons' icons as SVG; 1em ties them to the font-size above. */
+#gallery-toggle svg,
+#gallery-pause svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+/* Pause only means something during the slideshow. `display: none`
+   also takes it out of the tab order. */
+body:not(.gallery-mode) #gallery-pause {
+    display: none;
+}
+
+#gallery-toggle:hover,
+#gallery-pause:hover {
+    background: color-mix(in srgb, var(--toggle-ground) 85%, transparent);
+    border-color: color-mix(in srgb, var(--toggle-line) 55%, transparent);
+    color: var(--toggle-ink-hover);
+}
+
+body:hover #gallery-toggle,
+body:hover #gallery-pause {
+    opacity: 1;
+}
+
+/* ---------- Gallery buttons on touch devices ---------- */
+/* These must follow `body:hover #gallery-toggle`: same specificity.
+   The portrait rule needs no pause selector: pause is already
+   display: none outside gallery mode. */
+
+/* Portrait, reading: hidden and untappable. */
+@media (hover: none) and (orientation: portrait) {
+    body:not(.gallery-mode) #gallery-toggle {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* Landscape: visible, dimmed. */
+@media (hover: none) and (orientation: landscape) {
+    #gallery-toggle,
+    #gallery-pause,
+    body:hover #gallery-toggle,
+    body:hover #gallery-pause {
+        opacity: 0.5;
+    }
+}
+
+/* Gallery mode, any orientation: always visible, so the reader can get back. */
+@media (hover: none) {
+    body.gallery-mode #gallery-toggle,
+    body.gallery-mode #gallery-pause {
+        opacity: 0.5;
+    }
+}
+
+/* ============================================================
+   GALLERY MODE
+   ============================================================ */
+
+body.gallery-mode .content,
+body.gallery-mode .page-footer {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.gallery-mode .scene-overlay {
+    opacity: 0;
+}
+
+html:has(body.gallery-mode) {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+}
+
+/* Leave sideways drags to the script's swipe handling; vertical panning and
+   pinch-zoom stay with the browser. Set on both, since a touch can land on either. */
+html:has(body.gallery-mode),
+body.gallery-mode {
+    touch-action: pan-y pinch-zoom;
+}
+
+.page-footer {
+    transition: opacity 0.7s ease;
+}

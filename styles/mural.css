@@ -57,22 +57,6 @@
     --stoa-link-font:       "Inter", sans-serif;
     --stoa-link-ink:        var(--ivory);
     --stoa-link-ink-hover:  var(--sandstone);
-
-
-    /* Scene ground: what shows when no image has loaded. Give opaque
-       colors: the overlay applies its own transparency. Neutral
-       defaults from colors.css; each mural overrides what it needs. */
-    --scene-ground:   var(--charcoal);      /* page background */
-    --scene-tint:     var(--charcoal);      /* overlay wash, at 70% */
-    --scene-glow:     var(--umber);         /* warm light from the top, at 25% */
-    --scene-vignette: var(--black);         /* darkened edges, at 45% */
-
-    /* Gallery toggle palette. Give opaque colors: the button applies its
-       own transparency. Neutral defaults; each mural overrides these. */
-    --toggle-ground:     var(--charcoal);   /* fill behind the glyph */
-    --toggle-line:       var(--sandstone);  /* ring */
-    --toggle-ink:        var(--limestone);  /* glyph at rest */
-    --toggle-ink-hover:  var(--parchment);  /* glyph on hover */
 }
 
 /* Murals should put their own mobile rules at this same breakpoint,
@@ -103,53 +87,10 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    background: var(--scene-ground);
     font-family: var(--passage-font);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     color: var(--passage-ink);
-}
-
-/* ============================================================
-   SCENE / BACKGROUND LAYERS
-   ============================================================ */
-
-.scene-layer {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100lvh;
-    z-index: 0;
-    pointer-events: none;
-    transition: opacity 1.25s ease-in-out; /* the script reads this as the crossfade length */
-}
-
-.scene-layer img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;        /* like background-size: cover */
-    object-position: center;  /* like background-position */
-}
-
-.scene-layer.hidden {
-    opacity: 0;
-}
-
-/* Colors come from the --scene-* tokens on :root. */
-.scene-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100lvh;
-    z-index: 1;
-    pointer-events: none;
-    transition: opacity 0.7s ease;
-    background:
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E"),
-            radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--scene-glow) 25%, transparent) 0%, transparent 70%),
-            radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--scene-vignette) 45%, transparent) 100%),
-            color-mix(in srgb, var(--scene-tint) 70%, transparent);
 }
 
 /* ============================================================
@@ -209,57 +150,8 @@ body {
 }
 
 /* ============================================================
-   STOA LINK (eyebrow above the title, back to the landing page)
-   ============================================================ */
-
-/* Flex, so the eyebrow is exactly as tall as the link: no stray line box. */
-.stoa-eyebrow {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.75rem;
-}
-
-.stoa-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-    font-family: var(--stoa-link-font);
-    font-size: 0.7rem;
-    line-height: 1;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--stoa-link-ink);
-    transition: color 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.stoa-link:hover,
-.stoa-link:focus-visible {
-    color: var(--stoa-link-ink-hover);
-}
-
-/* The arrow: an SVG used as a mask over the link's own color, so it
-   brightens with the text on hover and needs no glyph from any font.
-   Inline as a data: URI, so nothing is fetched. */
-.stoa-link::before {
-    content: "";
-    flex: none;
-    width: 1em;   /* no taller than the text, so the link is 1em tall */
-    height: 1em;
-    background: currentColor;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M14 8H2.5M7 3.5 2.5 8 7 12.5' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.stoa-link:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 6px;
-}
-
-/* ============================================================
    READING BODY (the skeleton every mural shares)
    ============================================================ */
-
 
 .reading {
     margin-top: var(--space-after-header);
@@ -273,28 +165,6 @@ body {
 
 .passage + .passage {
     margin-top: var(--space-between-passages);
-}
-
-/* A jumped-to heading lands where the eyebrow sits at the top of the page. */
-.passage-heading {
-    font-family: var(--passage-heading-font);
-    font-size: var(--passage-heading-size);
-    font-weight: var(--passage-heading-weight);
-    font-style:  var(--passage-heading-style);
-    text-transform:  var(--passage-heading-transform);
-    margin: 0 0 var(--space-after-heading);
-    scroll-margin-top: var(--frame-top);
-}
-
-.passage-heading a {
-    color: var(--passage-heading-ink);
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.passage-heading a:hover,
-.passage-heading a:focus-visible {
-    color: var(--passage-heading-ink-hover);
 }
 
 .excerpt {
@@ -323,12 +193,29 @@ body {
     background: linear-gradient(to right, transparent, var(--passage-rule), transparent);
 }
 
+/* A jumped-to heading lands where the eyebrow sits at the top of the page. */
+.passage-heading {
+    font-family: var(--passage-heading-font);
+    font-size: var(--passage-heading-size);
+    font-weight: var(--passage-heading-weight);
+    font-style:  var(--passage-heading-style);
+    text-transform:  var(--passage-heading-transform);
+    margin: 0 0 var(--space-after-heading);
+    scroll-margin-top: var(--frame-top);
+}
 
+.passage-heading a {
+    color: var(--passage-heading-ink);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-/* ---------- Passage-heading hairlines ---------- */
+.passage-heading a:hover,
+.passage-heading a:focus-visible {
+    color: var(--passage-heading-ink-hover);
+}
 
-/* The label between two hairlines that fade outward. Color from
-   --heading-rule; the mural sets the label's type and color. */
+/* The label between two hairlines that fade outward. */
 .passage-heading {
     display: flex;
     align-items: center;
@@ -375,122 +262,49 @@ body {
 }
 
 /* ============================================================
-   GALLERY BUTTONS (toggle and pause; the script inserts both)
+   STOA LINK (eyebrow above the title, back to the landing page)
    ============================================================ */
 
-/* Colors come from the --toggle-* tokens on :root. */
-#gallery-toggle,
-#gallery-pause {
-    position: fixed;
-    bottom: 32px;
-    right: 36px;
-    z-index: 10;
-    background: color-mix(in srgb, var(--toggle-ground) 55%, transparent);
-    border: 1px solid color-mix(in srgb, var(--toggle-line) 28%, transparent);
-    border-radius: 50%;
-    color: var(--toggle-ink);
-    width: 44px;
-    height: 44px;
+/* Flex, so the eyebrow is exactly as tall as the link: no stray line box. */
+.stoa-eyebrow {
     display: flex;
-    align-items: center;
     justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
-    font-size: 1.2rem;
+    margin-bottom: 1.75rem;
+}
+
+.stoa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--stoa-link-font);
+    font-size: 0.7rem;
     line-height: 1;
-    user-select: none;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--stoa-link-ink);
+    transition: color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Pause sits left of the toggle: 36px offset + 44px toggle + 12px gap. */
-#gallery-pause {
-    right: 92px;
+.stoa-link:hover,
+.stoa-link:focus-visible {
+    color: var(--stoa-link-ink-hover);
 }
 
-/* The script draws both buttons' icons as SVG; 1em ties them to the font-size above. */
-#gallery-toggle svg,
-#gallery-pause svg {
-    display: block;
-    width: 1em;
+/* The arrow: an SVG used as a mask over the link's own color, so it
+   brightens with the text on hover and needs no glyph from any font.
+   Inline as a data: URI, so nothing is fetched. */
+.stoa-link::before {
+    content: "";
+    flex: none;
+    width: 1em;   /* no taller than the text, so the link is 1em tall */
     height: 1em;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M14 8H2.5M7 3.5 2.5 8 7 12.5' fill='none' stroke='%23000' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-/* Pause only means something during the slideshow. `display: none`
-   also takes it out of the tab order. */
-body:not(.gallery-mode) #gallery-pause {
-    display: none;
-}
-
-#gallery-toggle:hover,
-#gallery-pause:hover {
-    background: color-mix(in srgb, var(--toggle-ground) 85%, transparent);
-    border-color: color-mix(in srgb, var(--toggle-line) 55%, transparent);
-    color: var(--toggle-ink-hover);
-}
-
-body:hover #gallery-toggle,
-body:hover #gallery-pause {
-    opacity: 1;
-}
-
-/* ---------- Gallery buttons on touch devices ---------- */
-/* These must follow `body:hover #gallery-toggle`: same specificity.
-   The portrait rule needs no pause selector: pause is already
-   display: none outside gallery mode. */
-
-/* Portrait, reading: hidden and untappable. */
-@media (hover: none) and (orientation: portrait) {
-    body:not(.gallery-mode) #gallery-toggle {
-        opacity: 0;
-        pointer-events: none;
-    }
-}
-
-/* Landscape: visible, dimmed. */
-@media (hover: none) and (orientation: landscape) {
-    #gallery-toggle,
-    #gallery-pause,
-    body:hover #gallery-toggle,
-    body:hover #gallery-pause {
-        opacity: 0.5;
-    }
-}
-
-/* Gallery mode, any orientation: always visible, so the reader can get back. */
-@media (hover: none) {
-    body.gallery-mode #gallery-toggle,
-    body.gallery-mode #gallery-pause {
-        opacity: 0.5;
-    }
-}
-
-/* ============================================================
-   GALLERY MODE
-   ============================================================ */
-
-body.gallery-mode .content,
-body.gallery-mode .page-footer {
-    opacity: 0;
-    pointer-events: none;
-}
-
-body.gallery-mode .scene-overlay {
-    opacity: 0;
-}
-
-html:has(body.gallery-mode) {
-    overflow: hidden;
-    scrollbar-gutter: stable;
-}
-
-/* Leave sideways drags to the script's swipe handling; vertical panning and
-   pinch-zoom stay with the browser. Set on both, since a touch can land on either. */
-html:has(body.gallery-mode),
-body.gallery-mode {
-    touch-action: pan-y pinch-zoom;
-}
-
-.page-footer {
-    transition: opacity 0.7s ease;
+.stoa-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 6px;
 }

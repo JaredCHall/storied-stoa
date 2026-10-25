@@ -1,16 +1,9 @@
-/* Load ../styles/colors.css, then ../styles/mural.css, then
-   ../styles/play.css, then this. */
-
 :root {
 
     /* Default Background: the greenwood at golden hour */
     --scene-ground: var(--greenwood);
     --scene-tint:   var(--forest-shade);
     --scene-glow:   var(--gold);  /* the paintings' late sun, from the top */
-
-    /* Work Title */
-    --title-font: 'IM Fell English', serif;
-    --title-ink:  var(--ivory);
 
     /* Author */
     --author-font: 'IM Fell English', serif;
