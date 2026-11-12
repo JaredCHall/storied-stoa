@@ -295,6 +295,12 @@ body {
     --card-title-font: 'IM Fell English', serif;
 }
 
+.mural--trojan-women {
+    --card-tint:         var(--soot);   /* The Trojan Women's scene ground */
+    --card-accent:       var(--ember);  /* Hecuba's own name color, and its headings */
+    --card-title-weight: 500;
+}
+
 .mural--moby-dick {
     --card-tint:           var(--deep-sea);  /* Moby-Dick's scene ground */
     --card-accent:         var(--brass);     /* Moby-Dick's headings */

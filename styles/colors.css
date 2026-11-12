@@ -18,6 +18,7 @@
     --greenwood:    #0f1c14;
     --charcoal:     #111111;
     --lamp-black:   #17140f;
+    --soot:         #16151a;
     --dusk:         #1b1428;
     --harbor:       #142d50;
     --umber:        #5a4128;
@@ -32,12 +33,14 @@
     --parchment:    #e9e2d3;
     --ivory:        #f5edd8;
 
-    /* Metals and dyes */
+    /* Metals, dyes, and fire */
     --brass:        #8a7a5a;
     --bronze:       #9c7a45;
     --brass-pale:   #b4a06e;
+    --steel:        #8a96a3;
     --gold:         #c9a24b;
     --wine:         #b14450;
+    --ember:        #cc6044;
 
     /* Spices, leaves, and flowers */
     --cinnamon:     #d08850;

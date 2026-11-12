@@ -53,6 +53,15 @@
     --passage-ink:  var(--parchment);
     --passage-rule: color-mix(in srgb, var(--passage-heading-ink) 40%, transparent);
 
+    /* Closing notes: the curator's voice, after the work. Set apart
+       from the reading body so it is never mistaken for the text. */
+    --notes-heading-font: "Inter";
+    --notes-heading-ink:  var(--sandstone);
+    --notes-font:         "Crimson Pro";
+    --notes-ink:          var(--flax);
+    --notes-rule:         color-mix(in srgb, var(--passage-heading-ink) 40%, transparent);
+    --note-ref-ink:       var(--passage-heading-ink);
+
     /* The stoa link. */
     --stoa-link-font:       "Inter", sans-serif;
     --stoa-link-ink:        var(--ivory);
@@ -193,6 +202,23 @@ body {
     background: linear-gradient(to right, transparent, var(--passage-rule), transparent);
 }
 
+/* A footnote marker in the text. line-height 0 keeps it from
+   prying its line apart from the ones above. */
+.note-ref {
+    font-family: var(--notes-heading-font), sans-serif;
+    font-size: 0.6em;
+    line-height: 0;
+    vertical-align: super;
+    margin-left: 0.1em;
+}
+
+.note-ref a {
+    color: var(--note-ref-ink);
+    text-decoration: none;
+    scroll-margin-top: var(--frame-top);
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* A jumped-to heading lands where the eyebrow sits at the top of the page. */
 .passage-heading {
     font-family: var(--passage-heading-font);
@@ -259,4 +285,63 @@ body {
     .passage-heading::after {
         display: none;
     }
+}
+
+/* ============================================================
+   CLOSING NOTES (optional: after </main>, inside .content)
+   ============================================================ */
+
+/* The site's own voice: an Inter label like the stoa link, upright
+   text a size below the excerpts, in a quieter ink. Ends with no
+   trailing margin, so --frame-bottom stays the whole gap below. */
+.notes {
+    margin-top: var(--space-between-passages);
+    font-family: var(--notes-font), serif;
+    color: var(--notes-ink);
+}
+
+.notes::before {
+    content: "";
+    display: block;
+    width: var(--passage-heading-rule-short);
+    height: 1px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(to right, transparent, var(--notes-rule), transparent);
+}
+
+.notes-heading {
+    font-family: var(--notes-heading-font), sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--notes-heading-ink);
+    margin-bottom: 1.75rem;
+}
+
+.notes p {
+    font-size: 1.15rem;
+    line-height: 1.65;
+}
+
+.notes p + p {
+    margin-top: 1rem;
+}
+
+.footnotes {
+    margin-top: 2rem;
+}
+
+.footnotes p {
+    font-size: 1rem;
+    scroll-margin-top: var(--frame-top);
+}
+
+.footnote-mark {
+    font-family: var(--notes-heading-font), sans-serif;
+    font-size: 0.75rem;
+    margin-right: 0.5em;
+    color: var(--note-ref-ink);
+    text-decoration: none;
 }

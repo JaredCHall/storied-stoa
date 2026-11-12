@@ -31,3 +31,4 @@ may contact [email](mailto:storied.stoa@gmail.com).
 - Sophocles, *Antigone*, trans. Elizabeth Wyckoff. [University of Chicago, 2013]
 - Aristophanes, *Birds*, trans. Jeffrey Henderson. [Harvard University Press, 2000]
 - William Shakespeare, *As You Like It* (c. 1599). Public domain.
+- Euripides, *The Trojan Women*, trans. Richmond Lattimore. [University of Chicago, 2013]

@@ -104,6 +104,20 @@
     font-weight: 400;
 }
 
+/* A sung exchange (an amoibaion): the song wraps the exchange lines, so
+   it takes over their column and spacing, and its lines go italic too. */
+.excerpt--exchange > .song {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-between-exchange-lines);
+}
+
+.song .line-inline {
+    font-style: italic;
+    line-height: 1.65;
+    font-weight: 400;
+}
+
 /* ============================================================
    EXCHANGES (stichomythia)
    ============================================================ */

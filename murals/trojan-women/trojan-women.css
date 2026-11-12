@@ -1,0 +1,49 @@
+:root {
+
+    /* Default Background: Troy under smoke, the fire below */
+    --scene-ground:  var(--soot);
+    --scene-tint:    var(--soot);
+    --scene-glow:    var(--ember);
+    --scene-glow-at: 50% 100%;  /* the burning city, from below */
+
+    /* Work Title: Antigone's face, set upright */
+    --title-font:   'Cormorant Garamond', serif;
+    --title-weight: 500;
+
+    /* Author */
+    --author-transform: uppercase;
+    --author-ink:       var(--ember);
+
+    /* Passage Headings */
+    --passage-heading-font:      'Cormorant Garamond', serif;
+    --passage-heading-size:      clamp(1.6rem, 0.9rem + 1.75vw, 2rem);
+    --passage-heading-weight:    500;
+    --passage-heading-ink:       var(--ember);
+    --passage-heading-ink-hover: var(--parchment);
+
+    /* Speakers: Hecuba, the Greeks, the gods; the women of Troy neutral */
+    --speaker-ink: var(--limestone);
+    --hecuba:      var(--ember);
+    --greeks:      var(--steel);   /* Talthybius, Menelaus */
+    --gods:        var(--gold);    /* Poseidon, Athena */
+
+    /* Stoa Link */
+    --stoa-link-ink-hover: var(--ember);
+
+    /* Footer */
+    --footer-link-hover: var(--ember);
+
+    /* Gallery toggle */
+    --toggle-ground:    var(--soot);
+    --toggle-line:      var(--ember);
+    --toggle-ink:       var(--flax);
+    --toggle-ink-hover: var(--ember);
+}
+
+/* ============================================================
+   ADDITIONAL CUSTOM RULES
+   ============================================================ */
+
+.speaker--hecuba { --speaker-ink: var(--hecuba); }
+.speaker--greeks { --speaker-ink: var(--greeks); }
+.speaker--gods   { --speaker-ink: var(--gods); }
